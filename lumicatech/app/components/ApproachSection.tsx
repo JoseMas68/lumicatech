@@ -1,108 +1,111 @@
 'use client';
 
 export default function ApproachSection() {
+  const services = [
+    {
+      icon: "developer_mode_tv",
+      title: "Custom Software",
+      description: "Soluciones a medida para problemas complejos de arquitectura digital.",
+      filled: true
+    },
+    {
+      icon: "cloud_done",
+      title: "Cloud Infrastructure",
+      description: "Infraestructuras resilientes diseñadas para escalar masivamente.",
+      filled: true
+    },
+    {
+      icon: "auto_awesome",
+      title: "AI & Automation",
+      description: "Integramos modelos inteligentes para potenciar la productividad operativa.",
+      filled: true
+    },
+    {
+      icon: "security",
+      title: "Cybersecurity",
+      description: "Protección robusta para los activos digitales más críticos de tu empresa.",
+      filled: true
+    }
+  ];
+
   return (
-    <section id="approach" className="py-32 bg-surface">
-      <div className="max-w-7xl mx-auto px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-headline font-bold text-on-surface mb-4">
-              Nuestra Filosofía
+    <section id="approach" className="py-32 bg-surface-container-low relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          {/* Left Column - Philosophy */}
+          <div className="lg:col-span-5">
+            <div className="font-label text-xs text-primary-container tracking-[0.3em] uppercase mb-6">
+              Filosofía
+            </div>
+            <h2 className="text-4xl md:text-5xl font-headline font-extrabold text-on-surface tracking-tighter mb-8 leading-tight">
+              Qué hacemos y por qué importa.
             </h2>
-            <div className="h-1 w-12 bg-primary-container mb-6"></div>
-            <p className="text-on-surface-variant">
-              Proceso estructurado para máximo impacto técnico y valor sostenible.
+            <p className="text-xl text-on-surface-variant leading-relaxed mb-12">
+              Calidad, atención al detalle y obsesión por la excelencia. Cada proyecto es único y buscamos soluciones que realmente generen impacto.
             </p>
-          </div>
-          <div className="font-label text-on-surface-variant tracking-widest uppercase text-xs">
-            Metodología Comprobada
-          </div>
-        </div>
 
-        {/* Philosophy Points */}
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Point 1 */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary-container bg-opacity-10 flex items-center justify-center flex-shrink-0 border border-primary-container border-opacity-20">
-                <span className="material-symbols-outlined text-primary-container">precision</span>
+            {/* Philosophy Points */}
+            <div className="space-y-8">
+              {/* Point 1 */}
+              <div className="flex gap-6">
+                <div className="w-12 h-12 shrink-0 bg-surface-container flex items-center justify-center rounded-lg border border-outline-variant/10">
+                  <span className="material-symbols-outlined text-primary-container">
+                    precision_manufacturing
+                  </span>
+                </div>
+                <div>
+                  <h4 className="font-headline font-bold text-on-surface text-lg mb-2">
+                    Ingeniería de Precisión
+                  </h4>
+                  <p className="text-on-surface-variant">
+                    Código limpio, escalable y mantenible desde el primer día.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-bold font-headline text-on-surface mb-2">
-                  Precisión Técnica
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Código limpio, arquitecturas escalables y soluciones pensadas para durar. No buscamos atajos, buscamos excelencia.
-                </p>
+
+              {/* Point 2 */}
+              <div className="flex gap-6">
+                <div className="w-12 h-12 shrink-0 bg-surface-container flex items-center justify-center rounded-lg border border-outline-variant/10">
+                  <span className="material-symbols-outlined text-primary-container">
+                    lightbulb
+                  </span>
+                </div>
+                <div>
+                  <h4 className="font-headline font-bold text-on-surface text-lg mb-2">
+                    Mentalidad de Producto
+                  </h4>
+                  <p className="text-on-surface-variant">
+                    No solo ejecutamos, entendemos tu negocio para proponer la mejor ruta.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Point 2 */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary-container bg-opacity-10 flex items-center justify-center flex-shrink-0 border border-primary-container border-opacity-20">
-                <span className="material-symbols-outlined text-primary-container">target</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold font-headline text-on-surface mb-2">
-                  Mentalidad de Producto
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  No solo construimos features. Entendemos tu negocio, objetivos y usuarios para crear soluciones que realmente impacten.
+          {/* Right Column - Services Grid */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className={`bg-surface p-8 rounded-xl border border-outline-variant/5 hover:scale-[1.02] transition-transform duration-300 ${
+                  idx >= 2 ? 'sm:mt-8' : ''
+                }`}
+              >
+                <span
+                  className="material-symbols-outlined text-primary-container mb-4 text-3xl"
+                  style={{ fontVariationSettings: "'FILL' 1" }}
+                >
+                  {service.icon}
+                </span>
+                <h4 className="font-headline font-bold text-on-surface mb-3">
+                  {service.title}
+                </h4>
+                <p className="text-sm text-on-surface-variant leading-relaxed">
+                  {service.description}
                 </p>
               </div>
-            </div>
+            ))}
           </div>
-
-          {/* Point 3 */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary-container bg-opacity-10 flex items-center justify-center flex-shrink-0 border border-primary-container border-opacity-20">
-                <span className="material-symbols-outlined text-primary-container">speed</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold font-headline text-on-surface mb-2">
-                  Velocidad Responsable
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Iteramos rápido sin sacrificar calidad. Entrega de valor constante, decisiones informadas y adaptación ágil.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Point 4 */}
-          <div className="space-y-4">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-primary-container bg-opacity-10 flex items-center justify-center flex-shrink-0 border border-primary-container border-opacity-20">
-                <span className="material-symbols-outlined text-primary-container">handshake</span>
-              </div>
-              <div>
-                <h3 className="text-lg font-bold font-headline text-on-surface mb-2">
-                  Transparencia Total
-                </h3>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Comunicación clara, documentación completa y visibilidad total del progreso. Eres parte del proceso.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="mt-20 bg-surface-container-low border border-surface-container-high rounded-xl p-12 text-center">
-          <h3 className="text-2xl font-bold font-headline text-on-surface mb-4">
-            ¿Listo para transformar tu proyecto?
-          </h3>
-          <p className="text-on-surface-variant mb-8 max-w-2xl mx-auto">
-            Cuéntanos sobre tu idea. Analizaremos la viabilidad técnica y crearemos un plan de acción claro.
-          </p>
-          <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg text-base font-bold tracking-tight hover:shadow-[0_0_30px_rgba(156,240,255,0.4)] transition-all active:scale-95 inline-flex items-center gap-2">
-            Solicitar diagnóstico
-            <span className="material-symbols-outlined">arrow_forward</span>
-          </button>
         </div>
       </div>
     </section>

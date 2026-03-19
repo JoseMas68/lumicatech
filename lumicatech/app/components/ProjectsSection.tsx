@@ -11,27 +11,11 @@ export default function ProjectsSection() {
       color: "from-primary"
     },
     {
-      category: "Reservas & Turismo",
-      icon: "calendar_month",
-      title: "Delta Caravan",
-      description: "Plataforma integral de gestión de reservas: Calendario avanzado, documentación automática y reportería en tiempo real.",
-      tech: ["Next.js", "Prisma", "Stripe Integration"],
-      color: "from-primary"
-    },
-    {
-      category: "CRM Empresarial",
-      icon: "dashboard",
-      title: "CRMDev",
-      description: "Sistema CRM escalable: Gestión de proyectos, tareas, soporte y webhooks para integraciones automáticas.",
-      tech: ["Next.js", "Neon DB", "MCP API"],
-      color: "from-primary"
-    },
-    {
-      category: "Eventos & Análisis",
-      icon: "analytics",
-      title: "App Sphera",
-      description: "Plataforma de gestión de eventos con análisis avanzados y reportería interactiva en tiempo real.",
-      tech: ["React", "Node.js", "MongoDB"],
+      category: "Automatización",
+      icon: "settings_suggest",
+      title: "Eficiencia Operativa",
+      description: "Reducción de tareas manuales y optimización de flujos de trabajo mediante pipelines de datos inteligentes.",
+      tech: ["Python", "Node.js", "Apache Airflow"],
       color: "from-primary"
     }
   ];
@@ -84,7 +68,7 @@ export default function ProjectsSection() {
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech, i) => (
                     <span
                       key={i}
@@ -94,16 +78,18 @@ export default function ProjectsSection() {
                     </span>
                   ))}
                 </div>
+
+                {/* Link */}
+                <a
+                  href="#"
+                  className="inline-flex items-center gap-2 text-on-surface font-bold hover:text-primary-container transition-colors"
+                >
+                  Ver detalles
+                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <button className="px-8 py-4 rounded-lg text-base font-bold tracking-tight text-primary border border-outline-variant/20 hover:bg-surface-container transition-all">
-            Ver todos los proyectos
-          </button>
         </div>
       </div>
     </section>
