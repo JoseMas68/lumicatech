@@ -92,29 +92,100 @@ export default function RootLayout({
           };`}
         </script>
         <style>{`
+          /* Light mode overrides */
+          .light {
+            --color-surface: #faf9f8;
+            --color-surface-container-low: #f3f1f0;
+            --color-surface-container: #ede9e8;
+            --color-surface-container-high: #e7e3e2;
+            --color-surface-container-highest: #e1dcd9;
+            --color-surface-container-lowest: #ffffff;
+            --color-surface-dim: #ede9e8;
+            --color-surface-bright: #fefdfb;
+            --color-on-surface: #1a1a1a;
+            --color-on-surface-variant: #49454f;
+            --color-outline-variant: #cac7c0;
+            --color-outline: #79747e;
+          }
+
+          .light {
+            color-scheme: light;
+            background-color: #faf9f8;
+            color: #1a1a1a;
+          }
+
+          .light .bg-surface {
+            background-color: #faf9f8;
+          }
+
+          .light .bg-surface-container-low {
+            background-color: #f3f1f0;
+          }
+
+          .light .bg-surface-container {
+            background-color: #ede9e8;
+          }
+
+          .light .bg-surface-container-high {
+            background-color: #e7e3e2;
+          }
+
+          .light .bg-surface-container-lowest {
+            background-color: #ffffff;
+          }
+
+          .light .text-on-surface {
+            color: #1a1a1a;
+          }
+
+          .light .text-on-surface-variant {
+            color: #49454f;
+          }
+
+          .light .border-outline-variant {
+            border-color: #cac7c0;
+          }
+
+          .light .glass-nav {
+            background: rgba(250, 249, 248, 0.6);
+            backdrop-filter: blur(24px);
+          }
+
           .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
           }
+
           .technical-grid {
             background-image: 
               linear-gradient(to right, rgba(59, 73, 76, 0.1) 1px, transparent 1px),
               linear-gradient(to bottom, rgba(59, 73, 76, 0.1) 1px, transparent 1px);
             background-size: 40px 40px;
           }
+
           .hero-glow {
             background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
           }
+
           .glass-nav {
             background: rgba(19, 19, 19, 0.6);
             backdrop-filter: blur(24px);
           }
+
           .card-glow-hover:hover {
             box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
           }
+
+          .gradient-primary {
+            background: linear-gradient(135deg, #c3f5ff 0%, #00e5ff 100%);
+          }
+
+          .glow-shadow {
+            box-shadow: 0 40px 40px -15px rgba(0, 79, 88, 0.15);
+          }
         `}</style>
       </head>
-      <body className="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary-container">
+      <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface" suppressHydrationWarning>
         {children}
       </body>
     </html>
