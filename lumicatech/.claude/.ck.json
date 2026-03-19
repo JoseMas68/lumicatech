@@ -1,0 +1,17 @@
+{
+  "name": "lumicatech",
+  "version": "1.0.0",
+  "description": "Lumica Tech - Landing Page with Next.js 16 and Tailwind CSS v4",
+  "agents": [
+    "debugger",
+    "fullstack-developer",
+    "ui-ux-designer"
+  ],
+  "skills": [
+    "fix",
+    "debug",
+    "frontend-development",
+    "ui-styling"
+  ],
+  "enabled": true
+}
