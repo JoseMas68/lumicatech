@@ -23,15 +23,19 @@ export default function Header() {
     document.documentElement.classList.toggle('light', newTheme === 'light');
   };
 
+  const logoSrc = theme === 'light' 
+    ? 'https://lumicatech.b-cdn.net/Logos/v_dark.png'
+    : 'https://lumicatech.b-cdn.net/Logos/h_light.png';
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 glass-nav transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo - 3x Larger */}
         <Link href="/" className="flex items-center gap-2">
           <img 
-            src="https://lumicatech.b-cdn.net/Logos/h_light.png" 
+            src={logoSrc}
             alt="LumicaTech" 
-            className="h-8 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 

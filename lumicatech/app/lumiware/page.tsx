@@ -10,7 +10,6 @@ import CommercialEngine from './components/CommercialEngine';
 import AIEngine from './components/AIEngine';
 import ERPIntegration from './components/ERPIntegration';
 import Benefits from './components/Benefits';
-import Pricing from './components/Pricing';
 import ClosingCTA from './components/ClosingCTA';
 
 export default function LumiwarePage() {
@@ -26,7 +25,6 @@ export default function LumiwarePage() {
         <AIEngine />
         <ERPIntegration />
         <Benefits />
-        <Pricing />
         <ClosingCTA />
       </main>
       <Footer />

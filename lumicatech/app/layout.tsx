@@ -94,6 +94,10 @@ export default function RootLayout({
         <style>{`
           /* Light mode overrides */
           .light {
+            color-scheme: light;
+          }
+
+          .light {
             --color-surface: #faf9f8;
             --color-surface-container-low: #f3f1f0;
             --color-surface-container: #ede9e8;
@@ -106,12 +110,7 @@ export default function RootLayout({
             --color-on-surface-variant: #49454f;
             --color-outline-variant: #cac7c0;
             --color-outline: #79747e;
-          }
-
-          .light {
-            color-scheme: light;
-            background-color: #faf9f8;
-            color: #1a1a1a;
+            --color-primary: #2751f6;
           }
 
           .light .bg-surface {
@@ -130,6 +129,10 @@ export default function RootLayout({
             background-color: #e7e3e2;
           }
 
+          .light .bg-surface-container-highest {
+            background-color: #e1dcd9;
+          }
+
           .light .bg-surface-container-lowest {
             background-color: #ffffff;
           }
@@ -146,9 +149,46 @@ export default function RootLayout({
             border-color: #cac7c0;
           }
 
+          .light .border-outline-variant\/20 {
+            border-color: rgba(202, 199, 192, 0.2);
+          }
+
+          .light .border-outline-variant\/30 {
+            border-color: rgba(202, 199, 192, 0.3);
+          }
+
           .light .glass-nav {
-            background: rgba(250, 249, 248, 0.6);
+            background: rgba(250, 249, 248, 0.8);
             backdrop-filter: blur(24px);
+            border-bottom-color: rgba(79, 79, 79, 0.1);
+          }
+
+          .light .bg-gradient-to-br.from-primary.to-primary-container {
+            background: linear-gradient(135deg, #2751f6 0%, #2751f6 100%);
+          }
+
+          .light .gradient-primary {
+            background: linear-gradient(135deg, #2751f6 0%, #2751f6 100%);
+          }
+
+          .light .text-primary-container {
+            color: #2751f6;
+          }
+
+          .light .border-primary-container {
+            border-color: #2751f6;
+          }
+
+          .light .hover\:border-primary-container\/30:hover {
+            border-color: rgba(39, 81, 246, 0.3);
+          }
+
+          .light .text-on-surface-variant.group-hover\:text-primary-container {
+            color: #49454f;
+          }
+
+          .light .group-hover\:text-primary-container:hover {
+            color: #2751f6;
           }
 
           .material-symbols-outlined {
@@ -163,8 +203,18 @@ export default function RootLayout({
             background-size: 40px 40px;
           }
 
+          .light .technical-grid {
+            background-image: 
+              linear-gradient(to right, rgba(39, 81, 246, 0.05) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(39, 81, 246, 0.05) 1px, transparent 1px);
+          }
+
           .hero-glow {
             background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 70%);
+          }
+
+          .light .hero-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(39, 81, 246, 0.06) 0%, transparent 70%);
           }
 
           .glass-nav {
@@ -176,12 +226,20 @@ export default function RootLayout({
             box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
           }
 
+          .light .card-glow-hover:hover {
+            box-shadow: 0 0 30px rgba(39, 81, 246, 0.05);
+          }
+
           .gradient-primary {
             background: linear-gradient(135deg, #c3f5ff 0%, #00e5ff 100%);
           }
 
           .glow-shadow {
             box-shadow: 0 40px 40px -15px rgba(0, 79, 88, 0.15);
+          }
+
+          .light .glow-shadow {
+            box-shadow: 0 40px 40px -15px rgba(39, 81, 246, 0.15);
           }
         `}</style>
       </head>
