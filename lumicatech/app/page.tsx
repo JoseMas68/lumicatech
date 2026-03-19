@@ -1,17 +1,19 @@
+'use client';
+
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
-import CaseStudies from './components/CaseStudies';
-import ApproachSection from './components/ApproachSection';
+import ProjectsSection from './components/ProjectsSection';
 import ServicesSection from './components/ServicesSection';
+import ApproachSection from './components/ApproachSection';
 import Footer from './components/Footer';
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-surface">
       <Header />
-      <main className="pt-20 flex-grow">
+      <main className="flex-grow">
         <HeroSection />
-        <CaseStudies />
+        <ProjectsSection />
         <ServicesSection />
         <ApproachSection />
       </main>

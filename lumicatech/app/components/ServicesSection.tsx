@@ -1,91 +1,77 @@
+'use client';
+
 export default function ServicesSection() {
+  const services = [
+    {
+      icon: "code",
+      title: "Desarrollo Full-Stack",
+      description: "Aplicaciones escalables desde frontend hasta infraestructura. TypeScript, React, Node.js, PostgreSQL."
+    },
+    {
+      icon: "architecture",
+      title: "Arquitectura de Sistemas",
+      description: "Diseño de arquitecturas robustas, microservicios, APIs y bases de datos optimizadas."
+    },
+    {
+      icon: "dashboard",
+      title: "Dashboards & Analytics",
+      description: "Interfaces de datos inteligentes, reportería en tiempo real y visualizaciones impactantes."
+    },
+    {
+      icon: "security",
+      title: "Seguridad & DevOps",
+      description: "Infraestructura segura, CI/CD, monitoreo y escalabilidad automática."
+    },
+    {
+      icon: "design",
+      title: "Design System & UI",
+      description: "Sistemas de diseño consistentes, Material Design 3, accesibilidad y experiencia de usuario."
+    },
+    {
+      icon: "support",
+      title: "Consultoría Técnica",
+      description: "Estrategia tecnológica, auditoría de código, optimización de procesos y mentoría."
+    }
+  ];
+
   return (
-    <section id="servicios" className="py-24 bg-surface" id="filosofia">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16">
-          {/* Left Column */}
-          <div className="space-y-12">
-            {/* Philosophy */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-on-surface mb-6">
-                Filosofía
-              </h2>
-              <p className="text-lg text-on-surface-variant leading-relaxed">
-                No solo escribimos código; diseñamos soluciones estratégicas. El software es una herramienta para impulsar el crecimiento, no una barrera técnica.
+    <section id="services" className="relative py-20 px-6 sm:px-8 bg-surface">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16 space-y-4">
+          <h2 className="text-4xl md:text-5xl font-bold font-headline text-on-surface">
+            Servicios Especializados
+          </h2>
+          <p className="text-lg text-on-surface-variant max-w-2xl mx-auto">
+            Soluciones técnicas diseñadas para resolver problemas complejos.
+          </p>
+        </div>
+
+        {/* Services Grid */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {services.map((service, idx) => (
+            <div
+              key={idx}
+              className="card-glow-hover bg-surface-container border border-surface-container-high rounded-lg p-6 transition-all duration-300 hover:border-primary-container hover:border-opacity-50"
+            >
+              {/* Icon */}
+              <div className="w-12 h-12 bg-primary-container bg-opacity-10 rounded-lg flex items-center justify-center mb-4 border border-primary-container border-opacity-20">
+                <span className="material-symbols-outlined text-primary-container">
+                  {service.icon}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-lg font-bold font-headline text-on-surface mb-2">
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-sm text-on-surface-variant leading-relaxed">
+                {service.description}
               </p>
             </div>
-
-            {/* Features */}
-            <div className="space-y-6">
-              {/* Feature 1 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined text-2xl">engineering</span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-on-surface mb-2">Ingeniería de Precisión</h4>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">
-                    Arquitecturas escalables, seguras y mantenibles a largo plazo.
-                  </p>
-                </div>
-              </div>
-
-              {/* Feature 2 */}
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined text-2xl">lightbulb</span>
-                </div>
-                <div>
-                  <h4 className="font-bold text-on-surface mb-2">Mentalidad de Producto</h4>
-                  <p className="text-on-surface-variant text-sm leading-relaxed">
-                    Entregamos valor real desde las primeras etapas del desarrollo.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Services Grid */}
-          <div>
-            <h3 className="text-2xl font-bold text-on-surface mb-8">Servicios</h3>
-            <div className="grid grid-cols-2 gap-4">
-              {/* Service 1 */}
-              <div className="glass-card rounded-xl p-6 card-glow-hover border border-primary/10">
-                <span className="material-symbols-outlined text-primary text-3xl mb-4">code</span>
-                <h4 className="font-bold text-on-surface mb-2">Custom Software</h4>
-                <p className="text-on-surface-variant text-sm">
-                  Aplicaciones a medida
-                </p>
-              </div>
-
-              {/* Service 2 */}
-              <div className="glass-card rounded-xl p-6 card-glow-hover border border-primary/10">
-                <span className="material-symbols-outlined text-primary text-3xl mb-4">cloud</span>
-                <h4 className="font-bold text-on-surface mb-2">Cloud Infrastructure</h4>
-                <p className="text-on-surface-variant text-sm">
-                  Escalabilidad automática
-                </p>
-              </div>
-
-              {/* Service 3 */}
-              <div className="glass-card rounded-xl p-6 card-glow-hover border border-primary/10">
-                <span className="material-symbols-outlined text-primary text-3xl mb-4">smart_toy</span>
-                <h4 className="font-bold text-on-surface mb-2">AI & Automation</h4>
-                <p className="text-on-surface-variant text-sm">
-                  Procesos inteligentes
-                </p>
-              </div>
-
-              {/* Service 4 */}
-              <div className="glass-card rounded-xl p-6 card-glow-hover border border-primary/10">
-                <span className="material-symbols-outlined text-primary text-3xl mb-4">security</span>
-                <h4 className="font-bold text-on-surface mb-2">Cybersecurity</h4>
-                <p className="text-on-surface-variant text-sm">
-                  Protección avanzada
-                </p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>
