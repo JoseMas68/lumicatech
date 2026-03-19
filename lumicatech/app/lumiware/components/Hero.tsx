@@ -25,7 +25,7 @@ export default function Hero() {
 
           {/* Subtitle */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-label text-on-surface-variant font-light tracking-tight">WareFlow</h2>
+            <h2 className="text-2xl font-label text-on-surface-variant font-light tracking-tight">LumiFlow</h2>
             <p className="text-xl text-on-surface-variant max-w-md">
               Convierte tu almacén en un sistema inteligente
             </p>
