@@ -9,28 +9,38 @@ export default function ClosingCTA() {
       </div>
 
       <div className="max-w-screen-md mx-auto px-8 text-center relative z-10 space-y-8">
+        {/* Main Headline */}
         <h2 className="text-5xl md:text-7xl font-black font-headline tracking-tighter italic text-on-surface">
           Digitaliza tu almacén.
         </h2>
 
-        <p className="text-xl text-on-surface-variant leading-relaxed">
-          WareFlow es la herramienta que faltaba en tu operación. Desde hoy, tus almacenes hablan datos.
+        {/* Description */}
+        <p className="text-xl md:text-2xl text-on-surface-variant mb-12 leading-relaxed font-light">
+          WareFlow transforma la gestión de inventario en un proceso{' '}
+          <span className="text-on-surface font-medium underline decoration-primary-container/30">
+            ágil, visual y altamente eficiente.
+          </span>
         </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-          <button className="gradient-primary text-on-primary px-12 py-4 rounded-lg font-headline font-bold text-lg hover:shadow-[0_0_40px_rgba(0,229,255,0.4)] transition-all active:scale-95">
-            Comienza tu Transformación
-          </button>
-          <button className="px-12 py-4 rounded-lg font-headline font-bold text-lg text-on-surface border border-outline-variant/30 hover:border-primary-container/30 hover:bg-surface-container transition-all">
-            Agendar Demostración
-          </button>
+        {/* CTA Button */}
+        <button className="gradient-primary text-on-primary px-12 py-5 rounded-lg font-black text-xl hover:scale-105 transition-all shadow-[0_20px_40px_rgba(0,229,255,0.2)]">
+          Solicitar reunión
+        </button>
+
+        {/* Footer Indicators */}
+        <div className="mt-12 flex justify-center items-center gap-8 opacity-50">
+          <span className="text-xs font-label tracking-widest uppercase text-on-surface-variant">
+            Process Optimization
+          </span>
+          <span className="w-1 h-1 rounded-full bg-outline"></span>
+          <span className="text-xs font-label tracking-widest uppercase text-on-surface-variant">
+            Digital Twin Ready
+          </span>
+          <span className="w-1 h-1 rounded-full bg-outline"></span>
+          <span className="text-xs font-label tracking-widest uppercase text-on-surface-variant">
+            QR Ecosystem
+          </span>
         </div>
-
-        {/* Footer Note */}
-        <p className="text-sm text-on-surface-variant pt-8">
-          Sin compromiso. Setup en 7 días. ROI comprobado en 90 días.
-        </p>
       </div>
     </section>
   );

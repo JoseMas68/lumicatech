@@ -6,57 +6,46 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-transparent border-t border-outline-variant/15 py-16">
-      <div className="max-w-7xl mx-auto px-8">
-        {/* Main Footer Content */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-12 mb-12">
-          {/* Brand & Description */}
-          <div className="flex flex-col items-center md:items-start gap-4">
-            <div className="text-2xl font-bold text-on-surface tracking-tighter">
+    <footer className="bg-surface-container-lowest w-full border-t border-outline-variant/15">
+      <div className="flex flex-col md:flex-row justify-between items-center px-12 py-16 gap-8 max-w-screen-2xl mx-auto">
+        {/* Left: Brand */}
+        <div className="flex flex-col items-center md:items-start gap-4">
+          <div className="flex items-center gap-3">
+            <span className="text-lg font-black text-on-surface font-headline">
               LumicaTech
-            </div>
-            <p className="text-on-surface-variant font-label text-sm tracking-wide text-center md:text-left max-w-sm">
-              © {currentYear} LumicaTech. Calidad, atención al detalle y obsesión por la excelencia.
-            </p>
+            </span>
           </div>
-
-          {/* Links */}
-          <div className="flex flex-wrap justify-center gap-10">
-            <Link
-              href="#"
-              className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm tracking-widest uppercase"
-            >
-              LinkedIn
-            </Link>
-            <Link
-              href="#"
-              className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm tracking-widest uppercase"
-            >
-              GitHub
-            </Link>
-            <Link
-              href="#"
-              className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm tracking-widest uppercase"
-            >
-              Proyectos
-            </Link>
-            <Link
-              href="#"
-              className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm tracking-widest uppercase"
-            >
-              Contacto
-            </Link>
-          </div>
+          <p className="text-on-surface-variant text-sm font-label uppercase tracking-widest">
+            © {currentYear} LumicaTech Industrial Systems. All rights reserved.
+          </p>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-outline-variant/15 mb-8"></div>
-
-        {/* Copyright */}
-        <div className="text-center">
-          <span className="text-[10px] text-outline tracking-[0.4em] uppercase">
-            Engineered for Excellence — All Rights Reserved
-          </span>
+        {/* Right: Links */}
+        <div className="flex flex-wrap justify-center gap-8">
+          <Link
+            href="#"
+            className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="#"
+            className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
+          >
+            Terms of Service
+          </Link>
+          <Link
+            href="#"
+            className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
+          >
+            Security
+          </Link>
+          <Link
+            href="#"
+            className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
+          >
+            Status
+          </Link>
         </div>
       </div>
     </footer>
