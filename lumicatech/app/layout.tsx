@@ -18,7 +18,11 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://cdnfonts.com/css/satoshi"
           rel="stylesheet"
         />
         <link
@@ -79,6 +83,7 @@ export default function RootLayout({
                   headline: ["Inter"],
                   body: ["Inter"],
                   label: ["Space Grotesk"],
+                  satoshi: ["Satoshi", "sans-serif"],
                   display: "Inter"
                 },
                 borderRadius: {
@@ -92,75 +97,109 @@ export default function RootLayout({
           };`}
         </script>
         <style>{`
-          /* Light mode overrides */
+          /* Light Mode Theme */
           .light {
             color-scheme: light;
           }
 
           .light {
-            --color-surface: #faf9f8;
-            --color-surface-container-low: #f3f1f0;
-            --color-surface-container: #ede9e8;
-            --color-surface-container-high: #e7e3e2;
-            --color-surface-container-highest: #e1dcd9;
+            --color-on-secondary-fixed: #001258;
+            --color-on-primary-fixed: #001258;
+            --color-on-secondary-container: #303f87;
+            --color-surface: #ffffff;
+            --color-surface-variant: #e2e1ef;
+            --color-tertiary-fixed: #ffdbd0;
+            --color-on-primary: #ffffff;
+            --color-surface-tint: #1b49ef;
+            --color-inverse-surface: #2e303a;
+            --color-background: #ffffff;
+            --color-primary-container: #2751f6;
+            --color-outline-variant: #c4c5d9;
+            --color-error-container: #ffdad6;
+            --color-on-background: #1a1b24;
+            --color-on-secondary: #ffffff;
+            --color-on-error: #ffffff;
+            --color-secondary-container: #a0afff;
+            --color-on-error-container: #93000a;
+            --color-on-primary-fixed-variant: #0032c3;
+            --color-secondary: #4a59a3;
+            --color-inverse-primary: #b9c3ff;
+            --color-surface-dim: #f3f4f6;
+            --color-on-secondary-fixed-variant: #324189;
+            --color-on-surface-variant: #444656;
+            --color-surface-container-low: #f8f9fa;
+            --color-on-tertiary-container: #ffdbd1;
+            --color-secondary-fixed-dim: #b9c3ff;
+            --color-on-primary-container: #dee1ff;
+            --color-outline: #747688;
+            --color-inverse-on-surface: #f0effd;
+            --color-primary-fixed: #dee1ff;
+            --color-surface-container-highest: #e2e1ef;
             --color-surface-container-lowest: #ffffff;
-            --color-surface-dim: #ede9e8;
-            --color-surface-bright: #fefdfb;
-            --color-on-surface: #1a1a1a;
-            --color-on-surface-variant: #49454f;
-            --color-outline-variant: #cac7c0;
-            --color-outline: #79747e;
+            --color-on-tertiary: #ffffff;
+            --color-secondary-fixed: #dee1ff;
+            --color-tertiary-fixed-dim: #ffb59e;
+            --color-error: #ba1a1a;
+            --color-tertiary: #8f2900;
+            --color-surface-bright: #ffffff;
+            --color-on-surface: #1a1b24;
+            --color-surface-container: #f8f9fa;
+            --color-on-tertiary-fixed-variant: #842500;
             --color-primary: #2751f6;
+            --color-primary-fixed-dim: #b9c3ff;
+            --color-on-tertiary-fixed: #3a0b00;
+            --color-tertiary-container: #b83700;
+            --color-surface-container-high: #e8e7f4;
           }
 
           .light .bg-surface {
-            background-color: #faf9f8;
-          }
-
-          .light .bg-surface-container-low {
-            background-color: #f3f1f0;
-          }
-
-          .light .bg-surface-container {
-            background-color: #ede9e8;
-          }
-
-          .light .bg-surface-container-high {
-            background-color: #e7e3e2;
-          }
-
-          .light .bg-surface-container-highest {
-            background-color: #e1dcd9;
-          }
-
-          .light .bg-surface-container-lowest {
             background-color: #ffffff;
           }
 
+          .light .bg-slate-50 {
+            background-color: #f8f9fa;
+          }
+
+          .light .bg-slate-100 {
+            background-color: #f3f4f6;
+          }
+
           .light .text-on-surface {
-            color: #1a1a1a;
+            color: #1a1b24;
           }
 
           .light .text-on-surface-variant {
-            color: #49454f;
+            color: #444656;
+          }
+
+          .light .text-primary-container {
+            color: #2751f6;
           }
 
           .light .border-outline-variant {
-            border-color: #cac7c0;
+            border-color: #c4c5d9;
           }
 
           .light .border-outline-variant\/20 {
-            border-color: rgba(202, 199, 192, 0.2);
+            border-color: rgba(196, 197, 217, 0.2);
           }
 
           .light .border-outline-variant\/30 {
-            border-color: rgba(202, 199, 192, 0.3);
+            border-color: rgba(196, 197, 217, 0.3);
+          }
+
+          .light .border-outline-variant\/10 {
+            border-color: rgba(196, 197, 217, 0.1);
+          }
+
+          .light .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
           }
 
           .light .glass-nav {
-            background: rgba(250, 249, 248, 0.8);
-            backdrop-filter: blur(24px);
-            border-bottom-color: rgba(79, 79, 79, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
           }
 
           .light .bg-gradient-to-br.from-primary.to-primary-container {
@@ -171,24 +210,24 @@ export default function RootLayout({
             background: linear-gradient(135deg, #2751f6 0%, #2751f6 100%);
           }
 
-          .light .text-primary-container {
-            color: #2751f6;
-          }
-
-          .light .border-primary-container {
-            border-color: #2751f6;
-          }
-
           .light .hover\:border-primary-container\/30:hover {
             border-color: rgba(39, 81, 246, 0.3);
           }
 
-          .light .text-on-surface-variant.group-hover\:text-primary-container {
-            color: #49454f;
-          }
-
           .light .group-hover\:text-primary-container:hover {
             color: #2751f6;
+          }
+
+          .light .hover\:opacity-95:hover {
+            opacity: 0.95;
+          }
+
+          .light .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+          }
+
+          .satoshi {
+            font-family: "Satoshi", sans-serif;
           }
 
           .material-symbols-outlined {
@@ -217,21 +256,12 @@ export default function RootLayout({
             background: radial-gradient(circle at 50% 50%, rgba(39, 81, 246, 0.06) 0%, transparent 70%);
           }
 
-          .glass-nav {
-            background: rgba(19, 19, 19, 0.6);
-            backdrop-filter: blur(24px);
-          }
-
           .card-glow-hover:hover {
             box-shadow: 0 0 30px rgba(0, 229, 255, 0.05);
           }
 
           .light .card-glow-hover:hover {
             box-shadow: 0 0 30px rgba(39, 81, 246, 0.05);
-          }
-
-          .gradient-primary {
-            background: linear-gradient(135deg, #c3f5ff 0%, #00e5ff 100%);
           }
 
           .glow-shadow {
@@ -241,9 +271,29 @@ export default function RootLayout({
           .light .glow-shadow {
             box-shadow: 0 40px 40px -15px rgba(39, 81, 246, 0.15);
           }
+
+          .light .hover\:bg-slate-50:hover {
+            background-color: #f8f9fa;
+          }
+
+          .light .border-error\/40 {
+            border-color: rgba(186, 26, 26, 0.4);
+          }
+
+          .light .border-tertiary\/40 {
+            border-color: rgba(143, 41, 0, 0.4);
+          }
+
+          .light .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+          }
+
+          .light .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+          }
         `}</style>
       </head>
-      <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col font-body bg-surface text-on-surface" suppressHydrationWarning>
         {children}
       </body>
     </html>
