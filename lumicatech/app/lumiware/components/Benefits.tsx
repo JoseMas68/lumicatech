@@ -3,58 +3,50 @@
 export default function Benefits() {
   const benefits = [
     {
-      metric: "85%",
-      title: "Reducción de Errores",
-      description: "Automatización elimina errores manuales en operaciones de almacén"
+      icon: "speed",
+      title: "Velocidad Operativa",
+      description: "Reducción del 60% en el tiempo de registro y localización de mercancía."
     },
     {
-      metric: "3x",
-      title: "Más Rápido",
-      description: "Velocidad de procesamiento triplicada en búsqueda y picking"
+      icon: "inventory_2",
+      title: "Control Total",
+      description: "Visibilidad 24/7 de existencias reales, m² disponibles y valor de stock."
     },
     {
-      metric: "45%",
-      title: "Menos Costos",
-      description: "Optimización operativa reduce significativamente gastos generales"
+      icon: "point_of_sale",
+      title: "Venta Ágil",
+      description: "Herramientas comerciales directas integradas con la realidad del almacén."
     },
     {
-      metric: "99.9%",
-      title: "Uptime Garantizado",
-      description: "Infraestructura cloud con disponibilidad enterprise-grade"
+      icon: "visibility",
+      title: "Sin Puntos Ciegos",
+      description: "Trazabilidad de cada producto desde que entra hasta que se factura."
     }
   ];
 
   return (
-    <section className="py-24 bg-surface-container-lowest">
-      <div className="max-w-7xl mx-auto px-8">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-headline font-bold text-on-surface mb-6">
-            Resultados Comprobados
+    <section className="py-32 bg-surface-container-lowest">
+      <div className="max-w-screen-xl mx-auto px-8">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-black font-headline text-on-surface">
+            Qué cambia en tu empresa.
           </h2>
-          <p className="text-lg text-on-surface-variant max-w-2xl mx-auto">
-            Empresas líderes ya optimizaron sus operaciones con WareFlow
-          </p>
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-outline-variant/10">
           {benefits.map((benefit, idx) => (
             <div
               key={idx}
-              className="bg-surface-container border border-outline-variant/20 rounded-xl p-8 text-center hover:border-primary-container/30 transition-all"
+              className="bg-surface-container-lowest p-10 space-y-4"
             >
-              {/* Metric */}
-              <div className="text-5xl font-headline font-bold gradient-primary bg-clip-text text-transparent mb-4">
-                {benefit.metric}
-              </div>
-
-              {/* Title */}
-              <h3 className="font-headline font-bold text-on-surface mb-2">
+              <span className="material-symbols-outlined text-primary-container text-4xl">
+                {benefit.icon}
+              </span>
+              <h4 className="text-xl font-bold font-headline text-on-surface">
                 {benefit.title}
-              </h3>
-
-              {/* Description */}
+              </h4>
               <p className="text-sm text-on-surface-variant leading-relaxed">
                 {benefit.description}
               </p>

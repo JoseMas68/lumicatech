@@ -8,8 +8,10 @@ import Solution from './components/Solution';
 import QRStock from './components/QRStock';
 import CommercialEngine from './components/CommercialEngine';
 import AIEngine from './components/AIEngine';
+import ERPIntegration from './components/ERPIntegration';
+import Benefits from './components/Benefits';
 import Pricing from './components/Pricing';
-import CTA from './components/CTA';
+import ClosingCTA from './components/ClosingCTA';
 
 export default function LumiwarePage() {
   return (
@@ -22,8 +24,10 @@ export default function LumiwarePage() {
         <QRStock />
         <CommercialEngine />
         <AIEngine />
+        <ERPIntegration />
+        <Benefits />
         <Pricing />
-        <CTA />
+        <ClosingCTA />
       </main>
       <Footer />
     </div>
