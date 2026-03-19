@@ -13,14 +13,14 @@ export default function Header() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-12">
-          <Link href="#projects" className="text-primary-container font-medium font-headline tracking-tight hover:text-primary transition-colors">
+          <Link href="#projects" className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight">
             Proyectos
           </Link>
           <Link href="#services" className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight">
             Servicios
           </Link>
           <Link href="#approach" className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight">
-            Enfoque
+            Filosofía
           </Link>
           <Link href="#contact" className="text-on-surface-variant hover:text-on-surface transition-colors font-headline tracking-tight">
             Contacto
@@ -28,9 +28,11 @@ export default function Header() {
         </div>
 
         {/* CTA Button */}
-        <button className="hidden md:inline-flex px-6 py-2.5 bg-primary-container text-on-primary-container font-headline font-medium rounded-full hover:bg-primary transition-colors duration-300">
-          Empezar
-        </button>
+        <div className="flex items-center gap-6">
+          <button className="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg text-sm font-bold tracking-tight hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] transition-all active:scale-95 duration-200">
+            Solicitar diagnóstico
+          </button>
+        </div>
 
         {/* Mobile Menu Button */}
         <button className="md:hidden text-on-surface-variant">

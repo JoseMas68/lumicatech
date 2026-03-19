@@ -3,75 +3,107 @@
 export default function ProjectsSection() {
   const projects = [
     {
+      category: "Logística & ERP",
+      icon: "inventory_2",
+      title: "Lumiware",
+      description: "Sistema de gestión de almacén: Optimización de inventarios y pedidos internos con arquitectura de baja latencia.",
+      tech: ["Next.js", "PostgreSQL", "Real-time Analytics"],
+      color: "from-primary"
+    },
+    {
+      category: "Reservas & Turismo",
+      icon: "calendar_month",
       title: "Delta Caravan",
-      description: "Plataforma de gestión de reservas con calendario avanzado y documentación integrada.",
-      tech: "Next.js, Prisma, PostgreSQL",
-      status: "En Producción"
+      description: "Plataforma integral de gestión de reservas: Calendario avanzado, documentación automática y reportería en tiempo real.",
+      tech: ["Next.js", "Prisma", "Stripe Integration"],
+      color: "from-primary"
     },
     {
+      category: "CRM Empresarial",
+      icon: "dashboard",
       title: "CRMDev",
-      description: "Sistema CRM empresarial con gestión de proyectos, tareas y soporte integrado.",
-      tech: "Next.js, Prisma, Neon DB",
-      status: "En Desarrollo"
+      description: "Sistema CRM escalable: Gestión de proyectos, tareas, soporte y webhooks para integraciones automáticas.",
+      tech: ["Next.js", "Neon DB", "MCP API"],
+      color: "from-primary"
     },
     {
+      category: "Eventos & Análisis",
+      icon: "analytics",
       title: "App Sphera",
-      description: "Aplicación de gestión de eventos con análisis y reportería en tiempo real.",
-      tech: "React, Node.js, MongoDB",
-      status: "Completado"
+      description: "Plataforma de gestión de eventos con análisis avanzados y reportería interactiva en tiempo real.",
+      tech: ["React", "Node.js", "MongoDB"],
+      color: "from-primary"
     }
   ];
 
   return (
-    <section id="projects" className="relative py-20 px-6 sm:px-8 bg-surface-container-low">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-32 bg-surface">
+      <div className="max-w-7xl mx-auto px-8">
         {/* Section Header */}
-        <div className="text-center mb-16 space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold font-headline text-on-surface">
-            Proyectos Destacados
-          </h2>
-          <p className="text-lg text-on-surface-variant max-w-2xl mx-auto">
-            Cada proyecto representa precisión técnica y impacto medible.
-          </p>
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-xl">
+            <h2 className="text-3xl font-headline font-bold text-on-surface mb-4">
+              Proyectos destacados
+            </h2>
+            <div className="h-1 w-12 bg-primary-container mb-6"></div>
+          </div>
+          <div className="font-label text-on-surface-variant tracking-widest uppercase text-xs">
+            Case Studies / 2024
+          </div>
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="card-glow-hover bg-surface-container border border-surface-container-high rounded-xl p-6 transition-all duration-300 hover:border-outline-variant"
+              className="group relative bg-surface-container-low p-8 md:p-12 transition-all duration-500 hover:bg-surface-container-high card-glow-hover overflow-hidden"
             >
-              {/* Project Badge */}
-              <div className="inline-block px-3 py-1 bg-primary-container bg-opacity-10 border border-primary-container border-opacity-20 rounded-full mb-4">
-                <span className="text-xs font-medium text-primary-container font-label">
-                  {project.status}
+              {/* Icon Background */}
+              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="material-symbols-outlined text-6xl text-primary-container">
+                  {project.icon}
                 </span>
               </div>
 
-              {/* Title */}
-              <h3 className="text-xl font-bold font-headline text-on-surface mb-3">
-                {project.title}
-              </h3>
+              {/* Content */}
+              <div className="relative z-10">
+                {/* Category Badge */}
+                <span className="font-label text-xs text-primary-container tracking-widest uppercase mb-4 block">
+                  {project.category}
+                </span>
 
-              {/* Description */}
-              <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">
-                {project.description}
-              </p>
+                {/* Title */}
+                <h3 className="text-3xl font-headline font-bold text-on-surface mb-4">
+                  {project.title}
+                </h3>
 
-              {/* Tech Stack */}
-              <div className="flex flex-wrap gap-2">
-                {project.tech.split(", ").map((tech, i) => (
-                  <span
-                    key={i}
-                    className="text-xs px-2 py-1 bg-surface-container-high text-on-surface-variant rounded-full border border-outline-variant border-opacity-30"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                {/* Description */}
+                <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-3 py-1.5 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded font-label"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 text-center">
+          <button className="px-8 py-4 rounded-lg text-base font-bold tracking-tight text-primary border border-outline-variant/20 hover:bg-surface-container transition-all">
+            Ver todos los proyectos
+          </button>
         </div>
       </div>
     </section>
