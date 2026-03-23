@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { X, Cookie, ChevronDown, ChevronUp } from "lucide-react";
+import { Cookie, ChevronDown, ChevronUp } from "lucide-react";
 
 type ConsentState = "pending" | "accepted" | "rejected" | "custom";
 
@@ -90,7 +90,7 @@ export default function CookieBanner() {
             </div>
           </div>
 
-          <div className="flex items-center gap-2 flex-shrink-0">
+          <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
             <button
               onClick={() => setShowDetails((v) => !v)}
               className="flex items-center gap-1 px-3 py-2 text-xs text-gray-400 hover:text-white border border-white/10 rounded-lg transition"
@@ -102,20 +102,13 @@ export default function CookieBanner() {
               onClick={rejectAll}
               className="px-3 py-2 text-xs text-gray-300 hover:text-white border border-white/10 rounded-lg transition"
             >
-              Solo necesarias
+              Rechazar todo
             </button>
             <button
               onClick={acceptAll}
               className="px-4 py-2 text-xs font-semibold bg-[#135bec] text-white rounded-lg hover:opacity-90 transition"
             >
-              Aceptar
-            </button>
-            <button
-              onClick={rejectAll}
-              className="p-2 text-gray-500 hover:text-white transition"
-              aria-label="Cerrar"
-            >
-              <X className="w-4 h-4" />
+              Aceptar todo
             </button>
           </div>
         </div>
