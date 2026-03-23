@@ -7,34 +7,57 @@ interface FormData {
   email: string;
   company: string;
   message: string;
+  consent: boolean;
 }
 
-export default function BookingForm() {
+interface Props {
+  selectedDate: string | null;
+  selectedTime: string | null;
+}
+
+export default function BookingForm({ selectedDate, selectedTime }: Props) {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
     company: "",
     message: "",
+    consent: false,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!selectedDate || !selectedTime) {
+      setError("Por favor selecciona un día y hora antes de continuar.");
+      return;
+    }
+    setError("");
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    const res = await fetch("/api/booking", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...formData, date: selectedDate, time: selectedTime, consentGiven: formData.consent }),
+    });
 
     setIsSubmitting(false);
-    setSubmitted(true);
+    if (res.ok) {
+      setSubmitted(true);
+    } else {
+      const data = await res.json();
+      setError(data.error || "Error al procesar la reserva. Inténtalo de nuevo.");
+    }
   };
 
   if (submitted) {
@@ -58,6 +81,25 @@ export default function BookingForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Resumen de selección */}
+      {(selectedDate || selectedTime) && (
+        <div className="p-3 rounded-xl bg-[#135bec]/10 border border-[#135bec]/20 text-sm text-on-surface flex items-center gap-2">
+          <span className="material-symbols-outlined text-[#135bec] text-base">event</span>
+          {selectedDate && selectedTime
+            ? <span><strong>{selectedDate}</strong> a las <strong>{selectedTime}</strong></span>
+            : selectedDate
+            ? <span>Fecha: <strong>{selectedDate}</strong> — elige una hora</span>
+            : <span>Hora: <strong>{selectedTime}</strong> — elige un día</span>}
+        </div>
+      )}
+
+      {/* Error */}
+      {error && (
+        <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-sm text-red-400">
+          {error}
+        </div>
+      )}
+
       {/* Name */}
       <div>
         <label className="block text-sm font-medium text-on-surface mb-2">
@@ -68,6 +110,7 @@ export default function BookingForm() {
           name="name"
           required
           value={formData.name}
+          onChange={handleChange}
           className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
         />
       </div>
@@ -82,6 +125,7 @@ export default function BookingForm() {
           name="email"
           required
           value={formData.email}
+          onChange={handleChange}
           className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
         />
       </div>
@@ -95,6 +139,7 @@ export default function BookingForm() {
           type="text"
           name="company"
           value={formData.company}
+          onChange={handleChange}
           className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
         />
       </div>
@@ -108,6 +153,7 @@ export default function BookingForm() {
           name="message"
           rows={3}
           value={formData.message}
+          onChange={handleChange}
           className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
         />
       </div>
@@ -133,9 +179,25 @@ export default function BookingForm() {
         )}
       </button>
 
-      <p className="text-xs text-on-surface-variant text-center">
-        Al reservar, aceptas recibir comunicaciones sobre tu cita.
-      </p>
+      {/* Consentimiento RGPD */}
+      <div className="flex items-start gap-3">
+        <input
+          type="checkbox"
+          id="consent"
+          name="consent"
+          required
+          checked={formData.consent}
+          onChange={handleChange}
+          className="mt-1 w-4 h-4 accent-[#135bec] cursor-pointer flex-shrink-0"
+        />
+        <label htmlFor="consent" className="text-xs text-on-surface-variant leading-relaxed cursor-pointer">
+          He leído y acepto la{" "}
+          <a href="/privacidad" target="_blank" className="text-[#135bec] underline hover:opacity-80">
+            Política de Privacidad
+          </a>
+          . Consiento el tratamiento de mis datos para gestionar la cita solicitada.
+        </label>
+      </div>
     </form>
   );
 }

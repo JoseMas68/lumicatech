@@ -1,138 +1,171 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-interface TimeSlot {
-  time: string;
-  available: boolean;
+const MONTH_NAMES = [
+  "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+  "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+];
+const DAY_LABELS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+
+function toDateStr(year: number, month: number, day: number): string {
+  return `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 }
 
-interface DaySlots {
-  date: Date;
-  formatted: string;
-  dayName: string;
-  slots: TimeSlot[];
+function firstWeekday(year: number, month: number): number {
+  const d = new Date(year, month, 1).getDay();
+  return d === 0 ? 6 : d - 1;
 }
 
-// Generate mock time slots
-function generateTimeSlots(): TimeSlot[] {
-  const slots: TimeSlot[] = [];
-  for (let hour = 9; hour < 18; hour++) {
-    slots.push({
-      time: `${hour}:00`,
-      available: Math.random() > 0.3,
-    });
-    slots.push({
-      time: `${hour}:30`,
-      available: Math.random() > 0.3,
-    });
+interface Props {
+  selectedDate: string | null;
+  selectedTime: string | null;
+  onDateSelect: (date: string) => void;
+  onTimeSelect: (time: string) => void;
+}
+
+export default function AvailabilityCalendar({
+  selectedDate,
+  selectedTime,
+  onDateSelect,
+  onTimeSelect,
+}: Props) {
+  const now = new Date();
+  const [calYear, setCalYear] = useState(now.getFullYear());
+  const [calMonth, setCalMonth] = useState(now.getMonth());
+  const [slots, setSlots] = useState<string[]>([]);
+  const [loadingSlots, setLoadingSlots] = useState(false);
+
+  const todayStr = toDateStr(now.getFullYear(), now.getMonth(), now.getDate());
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const firstDay = firstWeekday(calYear, calMonth);
+
+  useEffect(() => {
+    if (!selectedDate) return;
+    setLoadingSlots(true);
+    fetch(`/api/booking?date=${selectedDate}`)
+      .then((r) => r.json())
+      .then((data) => setSlots(data.availableSlots ?? []))
+      .catch(() => setSlots([]))
+      .finally(() => setLoadingSlots(false));
+  }, [selectedDate]);
+
+  function prevMonth() {
+    if (calMonth === 0) { setCalMonth(11); setCalYear((y) => y - 1); }
+    else setCalMonth((m) => m - 1);
   }
-  return slots;
-}
-
-function generateWeekDays(): DaySlots[] {
-  const days: DaySlots[] = [];
-  const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-  const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-  
-  const today = new Date();
-  
-  for (let i = 0; i < 7; i++) {
-    const date = new Date(today);
-    date.setDate(today.getDate() + i);
-    
-    days.push({
-      date,
-      formatted: `${date.getDate()} ${monthNames[date.getMonth()]}`,
-      dayName: dayNames[date.getDay()],
-      slots: generateTimeSlots(),
-    });
+  function nextMonth() {
+    if (calMonth === 11) { setCalMonth(0); setCalYear((y) => y + 1); }
+    else setCalMonth((m) => m + 1);
   }
-  
-  return days;
-}
 
-export default function AvailabilityCalendar() {
-  const [selectedDate, setSelectedDate] = useState<number | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [days] = useState<DaySlots[]>(generateWeekDays);
-  const [selectedDaySlots, setSelectedDaySlots] = useState<TimeSlot[]>([]);
-
-  const handleDaySelect = (index: number) => {
-    setSelectedDate(index);
-    setSelectedTime(null);
-    setSelectedDaySlots(days[index].slots);
-  };
-
-  const handleTimeSelect = (time: string) => {
-    setSelectedTime(time);
-  };
+  function handleDayClick(dateStr: string) {
+    if (dateStr < todayStr) return;
+    onDateSelect(dateStr);
+  }
 
   return (
     <div className="space-y-6">
-      {/* Day selector */}
-      <div className="grid grid-cols-7 gap-2">
-        {days.map((day, index) => (
-          <button
-            key={index}
-            onClick={() => handleDaySelect(index)}
-            className={`p-3 rounded-xl text-center transition-all duration-200 ${
-              selectedDate === index
-                ? "bg-[#135bec] text-white font-medium shadow-lg shadow-[#135bec]/30"
-                : "bg-transparent border border-outline-variant/20 hover:bg-surface-container-highest text-on-surface-variant"
-            }`}
-          >
-            <div className="text-xs mb-1">{day.dayName}</div>
-            <div className="text-sm font-semibold">{day.formatted.split(" ")[0]}</div>
-          </button>
-        ))}
+      {/* Cabecera mes */}
+      <div className="flex items-center justify-between">
+        <button
+          onClick={prevMonth}
+          className="p-2 rounded-lg hover:bg-surface-container-highest transition text-on-surface-variant"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <span className="font-semibold text-on-surface">
+          {MONTH_NAMES[calMonth]} {calYear}
+        </span>
+        <button
+          onClick={nextMonth}
+          className="p-2 rounded-lg hover:bg-surface-container-highest transition text-on-surface-variant"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
       </div>
 
-      {/* Time slots */}
-      {selectedDate !== null && (
-        <div className="space-y-4">
+      {/* Grid días de la semana */}
+      <div className="grid grid-cols-7 gap-1">
+        {DAY_LABELS.map((d) => (
+          <div key={d} className="text-center text-xs text-on-surface-variant py-1">{d}</div>
+        ))}
+        {Array(firstDay).fill(null).map((_, i) => (
+          <div key={`e-${i}`} />
+        ))}
+        {Array(daysInMonth).fill(null).map((_, i) => {
+          const dayNum = i + 1;
+          const dateStr = toDateStr(calYear, calMonth, dayNum);
+          const isPast = dateStr < todayStr;
+          const isSelected = selectedDate === dateStr;
+          const isToday = dateStr === todayStr;
+
+          return (
+            <button
+              key={dayNum}
+              onClick={() => handleDayClick(dateStr)}
+              disabled={isPast}
+              className={`aspect-square flex items-center justify-center rounded-lg text-sm font-medium transition-all ${
+                isSelected
+                  ? "bg-[#135bec] text-white shadow-lg shadow-[#135bec]/30"
+                  : isToday
+                  ? "border border-[#135bec] text-[#135bec]"
+                  : isPast
+                  ? "text-on-surface-variant/30 cursor-not-allowed"
+                  : "hover:bg-surface-container-highest text-on-surface-variant"
+              }`}
+            >
+              {dayNum}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Slots de hora */}
+      {selectedDate && (
+        <div className="space-y-3">
           <h3 className="text-sm font-medium text-on-surface-variant">
-            Horarios disponibles para el {days[selectedDate].formatted}
+            Horas disponibles — {selectedDate}
           </h3>
-          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
-            {selectedDaySlots.map((slot, index) => (
-              <button
-                key={index}
-                onClick={() => slot.available && handleTimeSelect(slot.time)}
-                disabled={!slot.available}
-                className={`py-2 px-3 rounded-lg text-sm transition-all duration-200 ${
-                  selectedTime === slot.time
-                    ? "bg-[#135bec] text-white font-medium shadow-lg shadow-[#135bec]/30"
-                    : slot.available
-                    ? "bg-transparent border border-outline-variant/60 hover:bg-surface-container-highest text-on-surface-variant"
-                    : "bg-transparent border border-outline-variant/10 text-on-surface-variant/30 cursor-not-allowed line-through"
-                }`}
-              >
-                {slot.time}
-              </button>
-            ))}
-          </div>
+          {loadingSlots ? (
+            <p className="text-sm text-on-surface-variant/50 text-center py-4">Cargando...</p>
+          ) : slots.length === 0 ? (
+            <p className="text-sm text-on-surface-variant/50 text-center py-4">
+              No hay horas disponibles este día
+            </p>
+          ) : (
+            <div className="grid grid-cols-4 gap-2">
+              {slots.map((slot) => (
+                <button
+                  key={slot}
+                  onClick={() => onTimeSelect(slot)}
+                  className={`py-2 px-3 rounded-lg text-sm transition-all ${
+                    selectedTime === slot
+                      ? "bg-[#135bec] text-white font-medium shadow-lg shadow-[#135bec]/30"
+                      : "bg-transparent border border-outline-variant/60 hover:bg-surface-container-highest text-on-surface-variant"
+                  }`}
+                >
+                  {slot}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
-      {/* No day selected message */}
-      {selectedDate === null && (
+      {!selectedDate && (
         <div className="text-center py-8 text-on-surface-variant">
-          <span className="material-symbols-outlined text-4xl mb-2 block text-primary/50">
-            calendar_today
-          </span>
+          <span className="material-symbols-outlined text-4xl mb-2 block text-primary/50">calendar_today</span>
           <p className="text-sm">Selecciona un día para ver los horarios disponibles</p>
         </div>
       )}
 
-      {/* Selected info */}
-      {selectedDate !== null && selectedTime && (
+      {selectedDate && selectedTime && (
         <div className="flex items-center gap-2 p-4 bg-[#135bec]/10 rounded-xl border border-[#135bec]/20">
-          <span className="material-symbols-outlined text-[#135bec]">
-            check_circle
-          </span>
+          <span className="material-symbols-outlined text-[#135bec]">check_circle</span>
           <span className="text-sm text-on-surface">
-            <strong>{days[selectedDate].formatted}</strong> a las <strong>{selectedTime}</strong>
+            <strong>{selectedDate}</strong> a las <strong>{selectedTime}</strong>
           </span>
         </div>
       )}

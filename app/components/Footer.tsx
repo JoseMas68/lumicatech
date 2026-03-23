@@ -23,28 +23,22 @@ export default function Footer() {
         {/* Right: Links */}
         <div className="flex flex-wrap justify-center gap-8">
           <Link
-            href="#"
+            href="/privacidad"
             className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
           >
-            Privacy Policy
+            Privacidad
           </Link>
           <Link
-            href="#"
+            href="/cookies"
             className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
           >
-            Terms of Service
+            Cookies
           </Link>
           <Link
-            href="#"
+            href="/aviso-legal"
             className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
           >
-            Security
-          </Link>
-          <Link
-            href="#"
-            className="text-on-surface-variant hover:text-primary-container transition-colors font-label text-sm uppercase tracking-widest"
-          >
-            Status
+            Aviso Legal
           </Link>
         </div>
       </div>

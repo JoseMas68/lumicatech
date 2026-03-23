@@ -1,8 +1,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import BookingHero from "./components/BookingHero";
-import AvailabilityCalendar from "./components/AvailabilityCalendar";
-import BookingForm from "./components/BookingForm";
+import BookingSection from "./components/BookingSection";
 import SocialLinks from "./components/SocialLinks";
 
 export const metadata = {
@@ -20,29 +19,7 @@ export default function BookingPage() {
         
         <div className="relative z-10">
           <BookingHero />
-          
-          <section className="py-16 px-4">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12">
-                {/* Calendar */}
-                <div className="border border-outline-variant/50 rounded-2xl p-8 bg-surface-container-lowest/50 backdrop-blur-md">
-                  <h2 className="text-2xl font-headline font-bold text-on-surface mb-6">
-                    Selecciona día y hora
-                  </h2>
-                  <AvailabilityCalendar />
-                </div>
-                
-                {/* Form */}
-                <div className="border border-outline-variant/50 rounded-2xl p-8 bg-surface-container-lowest/50 backdrop-blur-md">
-                  <h2 className="text-2xl font-headline font-bold text-on-surface mb-6">
-                    Tus datos
-                  </h2>
-                  <BookingForm />
-                </div>
-              </div>
-            </div>
-          </section>
-          
+          <BookingSection />
           <SocialLinks />
         </div>
       </main>

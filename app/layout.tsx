@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import CookieBanner from "./components/CookieBanner";
 
 export const metadata: Metadata = {
   title: "LumicaTech | Soluciones Tecnológicas de Alto Impacto",
@@ -326,6 +327,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col font-body bg-surface text-on-surface" suppressHydrationWarning>
         {children}
+        <CookieBanner />
       </body>
     </html>
   );

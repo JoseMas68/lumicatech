@@ -16,7 +16,7 @@ export default function HeroSection() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-variant/30 border border-outline-variant/15 mb-8">
             <span className="material-symbols-outlined text-primary-container text-sm">terminal</span>
-            <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">Standard 2024</span>
+            <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">Standard 2026</span>
           </div>
 
           {/* Main Headline */}
