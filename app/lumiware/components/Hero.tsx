@@ -1,5 +1,8 @@
 'use client';
 
+import Link from 'next/link';
+import Image from 'next/image';
+
 export default function Hero() {
   return (
     <section className="relative min-h-[921px] flex items-center px-8 overflow-hidden">
@@ -19,7 +22,7 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="text-6xl md:text-8xl font-black font-headline leading-[0.9] tracking-tighter text-on-surface">
+          <h1 className="text-5xl md:text-7xl font-black font-headline leading-[0.9] tracking-tighter text-on-surface">
             Gestión digital de <span className="text-primary-container">almacenes</span>.
           </h1>
 
@@ -33,9 +36,9 @@ export default function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
-            <button className="gradient-primary text-on-primary px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all active:scale-95">
+            <Link href="/booking" className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-8 py-4 rounded-lg font-bold text-lg hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] transition-all duration-200 hover:opacity-95 active:scale-95 flex items-center justify-center">
               Empezar ahora
-            </button>
+            </Link>
             <button className="px-8 py-4 rounded-lg border border-outline-variant/30 text-on-surface font-bold text-lg hover:bg-surface-container transition-all">
               Ver Demo
             </button>
@@ -44,19 +47,19 @@ export default function Hero() {
 
         {/* Right Column - Visual */}
         <div className="relative">
-          <div className="aspect-square rounded-xl bg-surface-container-low border border-outline-variant/10 p-4 relative overflow-hidden group">
-            <div className="w-full h-full bg-gradient-to-br from-primary-container/10 to-transparent rounded-lg flex items-center justify-center">
-              <div className="w-64 h-64 border-2 border-primary-container/30 rounded-xl relative">
-                <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-primary-container"></div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-primary-container"></div>
-                <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-primary-container"></div>
-                <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-primary-container"></div>
-                <div className="absolute inset-0 bg-primary-container/5 backdrop-blur-sm flex flex-col items-center justify-center gap-4">
-                  <span className="material-symbols-outlined text-5xl text-primary-container">qr_code_scanner</span>
-                  <span className="text-xs font-label tracking-widest text-primary-fixed uppercase">Scanning Layer Active</span>
-                </div>
-              </div>
+          <div className="aspect-square rounded-xl bg-surface-container-low border border-outline-variant/10 p-2 relative overflow-hidden group">
+            <div className="w-full h-full relative rounded-lg overflow-hidden border border-outline-variant/20">
+              <Image 
+                src="/images/lumiware_dashboard.png" 
+                alt="Lumiware Dashboard" 
+                fill 
+                className="object-cover"
+                priority
+              />
             </div>
+            
+            {/* Subtle floating glow effect behind image */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary-container/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
           </div>
         </div>
       </div>

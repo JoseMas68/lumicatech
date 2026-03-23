@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 export default function ProjectsSection() {
   const projects = [
     {
@@ -80,13 +82,13 @@ export default function ProjectsSection() {
                 </div>
 
                 {/* Link */}
-                <a
-                  href="#"
+                <Link
+                  href={idx === 0 ? "/lumiware" : "/en-construccion"}
                   className="inline-flex items-center gap-2 text-on-surface font-bold hover:text-primary-container transition-colors"
                 >
                   Ver detalles
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                </a>
+                </Link>
               </div>
             </div>
           ))}

@@ -237,6 +237,10 @@ export default function RootLayout({
 
           .light .text-gradient-primary {
             background: linear-gradient(135deg, #135bec 0%, #00daf3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
           }
 
           .light .group-hover\:text-primary-container:hover {
