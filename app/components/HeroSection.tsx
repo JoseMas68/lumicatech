@@ -33,7 +33,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap gap-4">
             <Link 
               href="/booking"
-              className="bg-primary text-white px-8 py-4 rounded-lg text-base font-bold tracking-tight hover:shadow-lg hover:shadow-primary/40 transition-all active:scale-95 inline-block"
+              className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-8 py-4 rounded-lg text-base font-bold tracking-tight transition-all duration-200 hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] hover:opacity-95 active:scale-95 inline-block"
             >
               Solicitar diagnóstico
             </Link>

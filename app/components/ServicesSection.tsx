@@ -17,7 +17,7 @@ export default function ServicesSection() {
         <div className="flex flex-col sm:flex-row justify-center gap-6">
           <Link 
             href="/booking"
-            className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-5 rounded-lg text-lg font-bold tracking-tight hover:shadow-[0_0_40px_rgba(156,240,255,0.4)] transition-all active:scale-95 inline-block"
+            className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-10 py-5 rounded-lg text-lg font-bold tracking-tight hover:shadow-[0_0_40px_rgba(156,240,255,0.4)] transition-all active:scale-95 inline-block"
           >
             Solicitar diagnóstico
           </Link>

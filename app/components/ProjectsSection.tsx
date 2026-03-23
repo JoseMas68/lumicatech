@@ -32,7 +32,7 @@ export default function ProjectsSection() {
             <div className="h-1 w-12 bg-primary-container mb-6"></div>
           </div>
           <div className="font-label text-on-surface-variant tracking-widest uppercase text-xs">
-            Case Studies / 2024
+            Case Studies / 2026
           </div>
         </div>
 

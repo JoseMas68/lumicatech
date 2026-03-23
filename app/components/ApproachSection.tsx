@@ -4,25 +4,25 @@ export default function ApproachSection() {
   const services = [
     {
       icon: "developer_mode_tv",
-      title: "Custom Software",
+      title: "Software a Medida",
       description: "Soluciones a medida para problemas complejos de arquitectura digital.",
       filled: true
     },
     {
       icon: "cloud_done",
-      title: "Cloud Infrastructure",
+      title: "Servicios Cloud",
       description: "Infraestructuras resilientes diseñadas para escalar masivamente.",
       filled: true
     },
     {
       icon: "auto_awesome",
-      title: "AI & Automation",
+      title: "IA & Automatización",
       description: "Integramos modelos inteligentes para potenciar la productividad operativa.",
       filled: true
     },
     {
       icon: "security",
-      title: "Cybersecurity",
+      title: "Seguridad",
       description: "Protección robusta para los activos digitales más críticos de tu empresa.",
       filled: true
     }
@@ -87,9 +87,8 @@ export default function ApproachSection() {
             {services.map((service, idx) => (
               <div
                 key={idx}
-                className={`bg-surface p-8 rounded-xl border border-outline-variant/5 hover:scale-[1.02] transition-transform duration-300 ${
-                  idx >= 2 ? 'sm:mt-8' : ''
-                }`}
+                className={`bg-surface p-8 rounded-xl border border-outline-variant/5 hover:scale-[1.02] transition-transform duration-300 ${idx >= 2 ? 'sm:mt-8' : ''
+                  }`}
               >
                 <span
                   className="material-symbols-outlined text-primary-container mb-4 text-3xl"

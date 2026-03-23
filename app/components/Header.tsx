@@ -74,7 +74,7 @@ export default function Header() {
           {/* CTA Button - Contraste máximo (texto blanco sobre azul) */}
           <Link 
             href="/booking"
-            className="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] hover:opacity-95 active:scale-95"
+            className="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-6 py-2.5 rounded-lg text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] hover:opacity-95 active:scale-95"
           >
             Solicitar diagnóstico
           </Link>
