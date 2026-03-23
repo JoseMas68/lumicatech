@@ -105,10 +105,10 @@ export default function Header() {
           />
 
           {/* Close button */}
-          <div className="relative z-10 flex justify-end pt-2">
+          <div className="relative z-50 flex justify-end pt-2">
             <button
               onClick={() => setMobileOpen(false)}
-              className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-indigo-600 hover:border-indigo-600 transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-indigo-600 hover:border-indigo-600 transition-all duration-300 hover:scale-110 active:scale-95 pointer-events-auto"
               aria-label="Cerrar menú"
             >
               <span className="material-symbols-outlined text-white transition-transform duration-300 group-hover:rotate-90">close</span>
