@@ -35,49 +35,49 @@ export default function RootLayout({
             theme: {
               extend: {
                 colors: {
-                  "primary-container": "#00e5ff",
-                  "secondary-container": "#4a4949",
-                  "on-error-container": "#ffdad6",
-                  "on-secondary-fixed": "#1c1b1b",
-                  "inverse-on-surface": "#313030",
-                  "on-primary-fixed-variant": "#004f58",
-                  "error-container": "#93000a",
-                  "surface-tint": "#00daf3",
-                  "on-tertiary-fixed-variant": "#474646",
-                  "tertiary-container": "#d3d0cf",
-                  "surface-dim": "#131313",
-                  primary: "#c3f5ff",
-                  "on-surface-variant": "#bac9cc",
-                  secondary: "#c8c6c5",
-                  "on-tertiary": "#313030",
-                  "on-error": "#690005",
-                  "on-secondary": "#313030",
-                  "primary-fixed-dim": "#00daf3",
-                  "on-tertiary-container": "#5a5959",
-                  "surface-container-highest": "#353534",
-                  "outline-variant": "#3b494c",
-                  "on-surface": "#e5e2e1",
-                  "on-primary-fixed": "#001f24",
-                  "primary-fixed": "#9cf0ff",
-                  surface: "#131313",
-                  "surface-container-high": "#2a2a2a",
-                  "tertiary-fixed": "#e5e2e1",
-                  "secondary-fixed-dim": "#c8c6c5",
-                  "surface-container": "#201f1f",
-                  "inverse-surface": "#e5e2e1",
-                  "surface-container-low": "#1c1b1b",
-                  "on-tertiary-fixed": "#1c1b1b",
-                  "on-background": "#e5e2e1",
-                  "on-secondary-container": "#bab8b7",
-                  "surface-bright": "#3a3939",
-                  "surface-container-lowest": "#0e0e0e",
-                  "inverse-primary": "#006875",
-                  "on-primary-container": "#00626e",
-                  outline: "#849396",
-                  "tertiary-fixed-dim": "#c9c6c5",
-                  "on-primary": "#00363d",
-                  error: "#ffb4ab",
-                  background: "#131313"
+                  "primary-container": "var(--color-primary-container, #00e5ff)",
+                  "secondary-container": "var(--color-secondary-container, #4a4949)",
+                  "on-error-container": "var(--color-on-error-container, #ffdad6)",
+                  "on-secondary-fixed": "var(--color-on-secondary-fixed, #1c1b1b)",
+                  "inverse-on-surface": "var(--color-inverse-on-surface, #313030)",
+                  "on-primary-fixed-variant": "var(--color-on-primary-fixed-variant, #004f58)",
+                  "error-container": "var(--color-error-container, #93000a)",
+                  "surface-tint": "var(--color-surface-tint, #00daf3)",
+                  "on-tertiary-fixed-variant": "var(--color-on-tertiary-fixed-variant, #474646)",
+                  "tertiary-container": "var(--color-tertiary-container, #d3d0cf)",
+                  "surface-dim": "var(--color-surface-dim, #131313)",
+                  primary: "var(--color-primary, #c3f5ff)",
+                  "on-surface-variant": "var(--color-on-surface-variant, #bac9cc)",
+                  secondary: "var(--color-secondary, #c8c6c5)",
+                  "on-tertiary": "var(--color-on-tertiary, #313030)",
+                  "on-error": "var(--color-on-error, #690005)",
+                  "on-secondary": "var(--color-on-secondary, #313030)",
+                  "primary-fixed-dim": "var(--color-primary-fixed-dim, #00daf3)",
+                  "on-tertiary-container": "var(--color-on-tertiary-container, #5a5959)",
+                  "surface-container-highest": "var(--color-surface-container-highest, #353534)",
+                  "outline-variant": "var(--color-outline-variant, #3b494c)",
+                  "on-surface": "var(--color-on-surface, #e5e2e1)",
+                  "on-primary-fixed": "var(--color-on-primary-fixed, #001f24)",
+                  "primary-fixed": "var(--color-primary-fixed, #9cf0ff)",
+                  surface: "var(--color-surface, #131313)",
+                  "surface-container-high": "var(--color-surface-container-high, #2a2a2a)",
+                  "tertiary-fixed": "var(--color-tertiary-fixed, #e5e2e1)",
+                  "secondary-fixed-dim": "var(--color-secondary-fixed-dim, #c8c6c5)",
+                  "surface-container": "var(--color-surface-container, #201f1f)",
+                  "inverse-surface": "var(--color-inverse-surface, #e5e2e1)",
+                  "surface-container-low": "var(--color-surface-container-low, #1c1b1b)",
+                  "on-tertiary-fixed": "var(--color-on-tertiary-fixed, #1c1b1b)",
+                  "on-background": "var(--color-on-background, #e5e2e1)",
+                  "on-secondary-container": "var(--color-on-secondary-container, #bab8b7)",
+                  "surface-bright": "var(--color-surface-bright, #3a3939)",
+                  "surface-container-lowest": "var(--color-surface-container-lowest, #0e0e0e)",
+                  "inverse-primary": "var(--color-inverse-primary, #006875)",
+                  "on-primary-container": "var(--color-on-primary-container, #00626e)",
+                  outline: "var(--color-outline, #849396)",
+                  "tertiary-fixed-dim": "var(--color-tertiary-fixed-dim, #c9c6c5)",
+                  "on-primary": "var(--color-on-primary, #00363d)",
+                  error: "var(--color-error, #ffb4ab)",
+                  background: "var(--color-background, #131313)"
                 },
                 fontFamily: {
                   headline: ["Inter"],
@@ -113,7 +113,7 @@ export default function RootLayout({
             --color-surface-tint: #1b49ef;
             --color-inverse-surface: #2e303a;
             --color-background: #ffffff;
-            --color-primary-container: #2751f6;
+            --color-primary-container: #00daf3; /* Cyan para degradados en modo claro */
             --color-outline-variant: #e0e1ed;
             --color-error-container: #ffdad6;
             --color-on-background: #1a1b24;
@@ -225,6 +225,18 @@ export default function RootLayout({
 
           .light .hover\:border-primary-container\/30:hover {
             border-color: rgba(39, 81, 246, 0.3);
+          }
+
+          .text-gradient-primary {
+            background: linear-gradient(135deg, #c3f5ff 0%, #00e5ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+          }
+
+          .light .text-gradient-primary {
+            background: linear-gradient(135deg, #135bec 0%, #00daf3 100%);
           }
 
           .light .group-hover\:text-primary-container:hover {

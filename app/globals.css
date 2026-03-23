@@ -210,7 +210,7 @@
 }
 
 .glow-button:hover {
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.5);
+  box-shadow: 0 0 30px rgba(19, 91, 236, 0.5);
 }
 
 /* Shadow utilities with opacity */
@@ -224,11 +224,20 @@
   --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
 }
 
-/* Base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@variant light (&:where(.light, .light *));
+
+/* Base styles for Light Mode variables */
+:root.light {
+  --color-primary: #2751f6;
+  --color-primary-container: #00daf3;
+  --color-surface: #ffffff;
+  --color-on-surface: #1a1b24;
+  --color-surface-container-low: #fafbfc;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface-variant: #49454f;
+  --color-outline-variant: #e0e1ed;
+  --color-background: #ffffff;
+  --color-foreground: #1a1b24;
 }
 
 html {

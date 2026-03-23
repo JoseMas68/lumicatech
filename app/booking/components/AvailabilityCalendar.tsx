@@ -78,8 +78,8 @@ export default function AvailabilityCalendar() {
             onClick={() => handleDaySelect(index)}
             className={`p-3 rounded-xl text-center transition-all duration-200 ${
               selectedDate === index
-                ? "bg-primary-container text-on-primary font-medium shadow-lg"
-                : "bg-surface-container hover:bg-surface-container-high text-on-surface-variant"
+                ? "bg-[#135bec] text-white font-medium shadow-lg shadow-[#135bec]/30"
+                : "bg-transparent border border-outline-variant/20 hover:bg-surface-container-highest text-on-surface-variant"
             }`}
           >
             <div className="text-xs mb-1">{day.dayName}</div>
@@ -102,10 +102,10 @@ export default function AvailabilityCalendar() {
                 disabled={!slot.available}
                 className={`py-2 px-3 rounded-lg text-sm transition-all duration-200 ${
                   selectedTime === slot.time
-                    ? "bg-primary-container text-on-primary font-medium shadow-lg"
+                    ? "bg-[#135bec] text-white font-medium shadow-lg shadow-[#135bec]/30"
                     : slot.available
-                    ? "bg-surface-container hover:bg-surface-container-high text-on-surface-variant border border-outline-variant/20"
-                    : "bg-surface-container-low text-on-surface-variant/40 cursor-not-allowed line-through"
+                    ? "bg-transparent border border-outline-variant/60 hover:bg-surface-container-highest text-on-surface-variant"
+                    : "bg-transparent border border-outline-variant/10 text-on-surface-variant/30 cursor-not-allowed line-through"
                 }`}
               >
                 {slot.time}
@@ -118,7 +118,7 @@ export default function AvailabilityCalendar() {
       {/* No day selected message */}
       {selectedDate === null && (
         <div className="text-center py-8 text-on-surface-variant">
-          <span className="material-symbols-outlined text-4xl mb-2 block text-primary-container/50">
+          <span className="material-symbols-outlined text-4xl mb-2 block text-primary/50">
             calendar_today
           </span>
           <p className="text-sm">Selecciona un día para ver los horarios disponibles</p>
@@ -127,8 +127,8 @@ export default function AvailabilityCalendar() {
 
       {/* Selected info */}
       {selectedDate !== null && selectedTime && (
-        <div className="flex items-center gap-2 p-4 bg-primary-container/10 rounded-xl border border-primary-container/20">
-          <span className="material-symbols-outlined text-primary-container">
+        <div className="flex items-center gap-2 p-4 bg-[#135bec]/10 rounded-xl border border-[#135bec]/20">
+          <span className="material-symbols-outlined text-[#135bec]">
             check_circle
           </span>
           <span className="text-sm text-on-surface">

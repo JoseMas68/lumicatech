@@ -1,3 +1,5 @@
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import BookingHero from "./components/BookingHero";
 import AvailabilityCalendar from "./components/AvailabilityCalendar";
 import BookingForm from "./components/BookingForm";
@@ -10,37 +12,41 @@ export const metadata = {
 
 export default function BookingPage() {
   return (
-    <main className="min-h-screen bg-surface technical-grid">
-      {/* Hero Glow */}
-      <div className="hero-glow top-0 left-1/2 -translate-x-1/2 -translate-y-1/2" />
-      
-      <div className="relative z-10">
-        <BookingHero />
+    <div className="min-h-screen flex flex-col bg-surface">
+      <Header />
+      <main className="flex-grow pt-24 technical-grid relative overflow-hidden">
+        {/* Hero Glow */}
+        <div className="hero-glow absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
         
-        <section className="py-16 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Calendar */}
-              <div className="glass-card rounded-2xl p-8">
-                <h2 className="text-2xl font-headline font-bold text-on-surface mb-6">
-                  Selecciona día y hora
-                </h2>
-                <AvailabilityCalendar />
-              </div>
-              
-              {/* Form */}
-              <div className="glass-card rounded-2xl p-8">
-                <h2 className="text-2xl font-headline font-bold text-on-surface mb-6">
-                  Tus datos
-                </h2>
-                <BookingForm />
+        <div className="relative z-10">
+          <BookingHero />
+          
+          <section className="py-16 px-4">
+            <div className="max-w-6xl mx-auto">
+              <div className="grid lg:grid-cols-2 gap-12">
+                {/* Calendar */}
+                <div className="border border-outline-variant/50 rounded-2xl p-8 bg-surface-container-lowest/50 backdrop-blur-md">
+                  <h2 className="text-2xl font-headline font-bold text-on-surface mb-6">
+                    Selecciona día y hora
+                  </h2>
+                  <AvailabilityCalendar />
+                </div>
+                
+                {/* Form */}
+                <div className="border border-outline-variant/50 rounded-2xl p-8 bg-surface-container-lowest/50 backdrop-blur-md">
+                  <h2 className="text-2xl font-headline font-bold text-on-surface mb-6">
+                    Tus datos
+                  </h2>
+                  <BookingForm />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-        
-        <SocialLinks />
-      </div>
-    </main>
+          </section>
+          
+          <SocialLinks />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }

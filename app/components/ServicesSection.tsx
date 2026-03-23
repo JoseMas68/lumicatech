@@ -1,5 +1,7 @@
 'use client';
 
+import Link from "next/link";
+
 export default function ServicesSection() {
   return (
     <section className="py-32 bg-surface text-center overflow-hidden relative">
@@ -13,12 +15,18 @@ export default function ServicesSection() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-6">
-          <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-5 rounded-lg text-lg font-bold tracking-tight hover:shadow-[0_0_40px_rgba(156,240,255,0.4)] transition-all active:scale-95">
+          <Link 
+            href="/booking"
+            className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-5 rounded-lg text-lg font-bold tracking-tight hover:shadow-[0_0_40px_rgba(156,240,255,0.4)] transition-all active:scale-95 inline-block"
+          >
             Solicitar diagnóstico
-          </button>
-          <button className="px-10 py-5 rounded-lg text-lg font-bold tracking-tight text-on-surface border border-outline-variant/30 hover:bg-surface-container transition-all">
+          </Link>
+          <Link 
+            href="#proyectos"
+            className="px-10 py-5 rounded-lg text-lg font-bold tracking-tight text-on-surface border border-outline-variant/30 hover:bg-surface-container transition-all inline-block"
+          >
             Ver proyectos
-          </button>
+          </Link>
         </div>
       </div>
 

@@ -1,5 +1,7 @@
 'use client';
 
+import Link from "next/link";
+
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-surface-container-lowest">
@@ -19,7 +21,7 @@ export default function HeroSection() {
 
           {/* Main Headline */}
           <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-[1.05] mb-8">
-            Aplicaciones que <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container">solucionan</span> problemas
+            Aplicaciones que <span className="text-gradient-primary">solucionan</span> problemas
           </h1>
 
           {/* Subtitle */}
@@ -29,12 +31,18 @@ export default function HeroSection() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-4">
-            <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-8 py-4 rounded-lg text-base font-bold tracking-tight hover:shadow-[0_0_30px_rgba(156,240,255,0.4)] transition-all active:scale-95">
+            <Link 
+              href="/booking"
+              className="bg-primary text-white px-8 py-4 rounded-lg text-base font-bold tracking-tight hover:shadow-lg hover:shadow-primary/40 transition-all active:scale-95 inline-block"
+            >
               Solicitar diagnóstico
-            </button>
-            <button className="px-8 py-4 rounded-lg text-base font-bold tracking-tight text-primary border border-outline-variant/20 hover:bg-surface-container transition-all">
+            </Link>
+            <Link 
+              href="#proyectos"
+              className="px-8 py-4 rounded-lg text-base font-bold tracking-tight text-primary border border-outline-variant/30 hover:bg-surface-container-highest transition-all inline-block"
+            >
               Ver proyectos
-            </button>
+            </Link>
           </div>
         </div>
       </div>

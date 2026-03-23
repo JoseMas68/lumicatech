@@ -24,8 +24,8 @@ export default function Header() {
   };
 
   const logoSrc = theme === 'light' 
-    ? 'https://lumicatech.b-cdn.net/Logos/h_dark.png'
-    : 'https://lumicatech.b-cdn.net/Logos/h_light.png';
+    ? 'https://lumicatech.b-cdn.net/Logos/logo_h_dark.png'
+    : 'https://lumicatech.b-cdn.net/Logos/logo_h_light.png';
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 glass-nav transition-colors duration-500 border-b border-outline-variant/30">
@@ -35,23 +35,23 @@ export default function Header() {
           <img 
             src={logoSrc}
             alt="LumicaTech" 
-            className="h-32 w-auto"
+            className="h-8 md:h-11 w-auto"
           />
         </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-12">
           {/* WCAG AA: 7.2:1 contraste en hover (azul sobre blanco/oscuro) */}
-          <Link href="#projects" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
+          <Link href="/#projects" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
             Proyectos
           </Link>
-          <Link href="#services" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
+          <Link href="/#services" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
             Servicios
           </Link>
-          <Link href="#approach" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
+          <Link href="/#approach" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
             Filosofía
           </Link>
-          <Link href="#contact" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
+          <Link href="/#contact" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">
             Contacto
           </Link>
         </div>
@@ -72,9 +72,12 @@ export default function Header() {
           )}
 
           {/* CTA Button - Contraste máximo (texto blanco sobre azul) */}
-          <button className="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] hover:opacity-95 active:scale-95">
+          <Link 
+            href="/booking"
+            className="hidden md:inline-flex bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-6 py-2.5 rounded-lg text-sm font-bold tracking-tight transition-all duration-200 hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] hover:opacity-95 active:scale-95"
+          >
             Solicitar diagnóstico
-          </button>
+          </Link>
 
           {/* Mobile Menu Button - Contraste suficiente */}
           <button className="md:hidden text-on-surface-variant hover:text-primary-container transition-colors duration-200">

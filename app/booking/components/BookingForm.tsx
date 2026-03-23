@@ -40,8 +40,8 @@ export default function BookingForm() {
   if (submitted) {
     return (
       <div className="text-center py-12">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-container/20 mb-4">
-          <span className="material-symbols-outlined text-3xl text-primary-container">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-4">
+          <span className="material-symbols-outlined text-3xl text-primary">
             check_circle
           </span>
         </div>
@@ -68,9 +68,7 @@ export default function BookingForm() {
           name="name"
           required
           value={formData.name}
-          onChange={handleChange}
-          className="w-full px-4 py-3 bg-surface-container border border-outline-variant/20 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
-          placeholder="Tu nombre"
+          className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
         />
       </div>
 
@@ -84,9 +82,7 @@ export default function BookingForm() {
           name="email"
           required
           value={formData.email}
-          onChange={handleChange}
-          className="w-full px-4 py-3 bg-surface-container border border-outline-variant/20 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
-          placeholder="tu@email.com"
+          className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
         />
       </div>
 
@@ -99,9 +95,7 @@ export default function BookingForm() {
           type="text"
           name="company"
           value={formData.company}
-          onChange={handleChange}
-          className="w-full px-4 py-3 bg-surface-container border border-outline-variant/20 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all"
-          placeholder="Nombre de tu empresa"
+          className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all"
         />
       </div>
 
@@ -114,9 +108,7 @@ export default function BookingForm() {
           name="message"
           rows={3}
           value={formData.message}
-          onChange={handleChange}
-          className="w-full px-4 py-3 bg-surface-container border border-outline-variant/20 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary-container focus:ring-1 focus:ring-primary-container transition-all resize-none"
-          placeholder="Cuéntanos brevemente sobre tu proyecto..."
+          className="w-full px-4 py-3 bg-transparent border border-outline-variant/60 rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none"
         />
       </div>
 
@@ -124,7 +116,7 @@ export default function BookingForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-4 px-6 bg-primary-container text-on-primary font-medium rounded-xl glow-button hover:opacity-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        className="w-full py-4 px-6 bg-[#135bec] text-white font-medium rounded-xl hover:opacity-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg shadow-[#135bec]/30"
       >
         {isSubmitting ? (
           <>
