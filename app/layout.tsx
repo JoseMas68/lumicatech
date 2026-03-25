@@ -2,9 +2,48 @@ import type { Metadata } from "next";
 import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
 
+const baseUrl = "https://lumicatech.es";
+
 export const metadata: Metadata = {
-  title: "LumicaTech | Soluciones Tecnológicas de Alto Impacto",
-  description: "Diseñamos sistemas que funcionan. Ingeniería de precisión y mentalidad de producto.",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "LumicaTech | Software a Medida y Desarrollo de Aplicaciones en Castellón",
+    template: "%s | LumicaTech",
+  },
+  description: "Desarrollamos software a medida para empresas en Castellón y Valencia. Aplicaciones web, sistemas de gestión, integración ERP y soluciones cloud. Calidad, precisión y resultados reales.",
+  keywords: [
+    "software a medida",
+    "desarrollo software Castellón",
+    "aplicaciones web Valencia",
+    "software personalizado empresa",
+    "integración ERP",
+    "desarrollo aplicaciones",
+    "soluciones cloud España",
+    "software gestión almacén",
+    "LumicaTech",
+  ],
+  authors: [{ name: "LumicaTech" }],
+  creator: "LumicaTech",
+  publisher: "LumicaTech",
+  formatDetection: { email: false, address: false, telephone: false },
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    url: baseUrl,
+    siteName: "LumicaTech",
+    title: "LumicaTech | Software a Medida en Castellón",
+    description: "Desarrollamos software a medida para empresas. Aplicaciones web, sistemas de gestión, integración ERP y soluciones cloud.",
+    images: [{ url: `${baseUrl}/og-image.png`, width: 1200, height: 630, alt: "LumicaTech - Software a Medida" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LumicaTech | Software a Medida",
+    description: "Desarrollamos software a medida para empresas en Castellón y Valencia.",
+    images: [`${baseUrl}/og-image.png`],
+  },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  alternates: { canonical: baseUrl },
+  verification: { google: "TU_GOOGLE_VERIFICATION_CODE" },
 };
 
 export default function RootLayout({
@@ -326,6 +365,51 @@ export default function RootLayout({
         `}</style>
       </head>
       <body className="min-h-full flex flex-col font-body bg-surface text-on-surface" suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "LumicaTech",
+              "url": "https://lumicatech.es",
+              "logo": "https://lumicatech.es/logo.png",
+              "description": "Empresa de desarrollo de software a medida en Castellón, España. Aplicaciones web, sistemas de gestión, integración ERP y soluciones cloud.",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Castellón de la Plana",
+                "addressRegion": "Valencia",
+                "addressCountry": "ES"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "info@lumicatech.es",
+                "contactType": "customer service",
+                "availableLanguage": ["Spanish", "English"]
+              },
+              "sameAs": [
+                "https://linkedin.com/company/lumicatech",
+                "https://twitter.com/lumicatech"
+              ],
+              "areaServed": {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 39.9864,
+                  "longitude": -0.0367
+                },
+                "geoRadius": "100000"
+              },
+              "serviceType": [
+                "Desarrollo de software a medida",
+                "Aplicaciones web",
+                "Integración ERP",
+                "Soluciones cloud",
+                "Software de gestión"
+              ]
+            })
+          }}
+        />
         {children}
         <CookieBanner />
       </body>
