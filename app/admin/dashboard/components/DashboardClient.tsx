@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Calendar, Mail, Send, LogOut, BookOpen, Users, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { AvailabilityConfig } from "@/src/lib/availability-config";
@@ -22,7 +22,7 @@ export default function DashboardClient({ initialConfig }: Props) {
   const [activeTab, setActiveTab] = useState<Tab>("schedule");
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
-  const tabsRef = useState<HTMLDivElement>(null)[0];
+  const tabsRef = useRef<HTMLDivElement>(null);
 
   async function handleLogout() {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -40,9 +40,9 @@ export default function DashboardClient({ initialConfig }: Props) {
 
   // Scroll navigation for mobile
   const scrollTabs = (direction: 'left' | 'right') => {
-    if (tabsRef) {
+    if (tabsRef.current) {
       const scrollAmount = 150;
-      tabsRef.scrollBy({
+      tabsRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
@@ -50,23 +50,23 @@ export default function DashboardClient({ initialConfig }: Props) {
   };
 
   const checkScrollButtons = () => {
-    if (tabsRef) {
-      setCanScrollLeft(tabsRef.scrollLeft > 0);
-      setCanScrollRight(tabsRef.scrollLeft < tabsRef.scrollWidth - tabsRef.clientWidth - 10);
+    if (tabsRef.current) {
+      setCanScrollLeft(tabsRef.current.scrollLeft > 0);
+      setCanScrollRight(tabsRef.current.scrollLeft < tabsRef.current.scrollWidth - tabsRef.current.clientWidth - 10);
     }
   };
 
   useEffect(() => {
     checkScrollButtons();
-    if (tabsRef) {
-      tabsRef.addEventListener('scroll', checkScrollButtons);
+    if (tabsRef.current) {
+      tabsRef.current.addEventListener('scroll', checkScrollButtons);
       window.addEventListener('resize', checkScrollButtons);
       return () => {
-        tabsRef.removeEventListener('scroll', checkScrollButtons);
+        tabsRef.current?.removeEventListener('scroll', checkScrollButtons);
         window.removeEventListener('resize', checkScrollButtons);
       };
     }
-  }, [tabsRef]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#1a1b24] text-white">
