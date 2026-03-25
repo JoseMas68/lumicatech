@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario LinkedIn - WareFlow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        h1 {
+            color: #1a1a2e;
+            font-size: 28px;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #4361ee;
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: #1a1a2e;
+            font-size: 20px;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #4361ee 0%, #7209b7 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        h3 {
+            color: #4361ee;
+            font-size: 16px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+        .week-intro {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #4361ee;
+            font-weight: 600;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #eee;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .hashtag {
+            color: #4361ee;
+            font-size: 12px;
+        }
+        .post-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.8;
+            border-left: 4px solid #4361ee;
+        }
+        .video-script {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .video-script h3 {
+            color: #fff;
+        }
+        .scene {
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+        .scene-title {
+            color: #4cc9f0;
+            font-weight: bold;
+        }
+        .tips {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .tips h3 {
+            color: #4361ee;
+            margin-top: 0;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .kpi-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .kpi-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4361ee;
+        }
+        .kpi-label {
+            font-size: 12px;
+            color: #666;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 12px;
+            text-align: center;
+        }
+        .emoji {
+            font-size: 18px;
+        }
+        @media print {
+            body {
+                padding: 20px;
+            }
+            h2 {
+                break-after: avoid;
+            }
+            table {
+                break-inside: avoid;
+            }
+            .post-content {
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>📅 CALENDARIO LINKEDIN - WAREFLOW</h1>
+<p class="subtitle">4 posts/semana | 5 semanas | 17 posts</p>
+
+<!-- SEMANA 1 -->
+<h2>🔥 SEMANA 1: CASOS DE USO</h2>
+<p class="week-intro">Conectar con problemas reales de clientes</p>
+
+<table>
+    <tr>
+        <th>Día</th>
+        <th>Post</th>
+        <th>Tema</th>
+        <th>Hashtags</th>
+    </tr>
+    <tr>
+        <td>📌 Lunes</td>
+        <td>#13</td>
+        <td>Tienda cerámica Castellón + cliente internacional</td>
+        <td class="hashtag">#Castellón #Cerámica #Exportación</td>
+    </tr>
+    <tr>
+        <td>📌 Miércoles</td>
+        <td>#12</td>
+        <td>Tienda muebles + catálogo instantáneo</td>
+        <td class="hashtag">#Muebles #Ventas #CatálogoDigital</td>
+    </tr>
+    <tr>
+        <td>📌 Viernes</td>
+        <td>#14</td>
+        <td>Almacén industrial + piezas urgentes</td>
+        <td class="hashtag">#Industrial #Logística #Almacén</td>
+    </tr>
+    <tr>
+        <td>📌 Sábado</td>
+        <td>#15</td>
+        <td>Productividad del equipo</td>
+        <td class="hashtag">#Productividad #Gestión #PYME</td>
+    </tr>
+</table>
+
+<!-- SEMANA 2 -->
+<h2>🚀 SEMANA 2: QUÉ ES WAREFLOW</h2>
+<p class="week-intro">Presentar el producto y sus diferenciadores</p>
+
+<table>
+    <tr>
+        <th>Día</th>
+        <th>Post</th>
+        <th>Tema</th>
+        <th>Hashtags</th>
+    </tr>
+    <tr>
+        <td>📌 Lunes</td>
+        <td>#1</td>
+        <td>Intro: QR único + stock en segundos</td>
+        <td class="hashtag">#Logística #Software #TransformaciónDigital</td>
+    </tr>
+    <tr>
+        <td>📌 Miércoles</td>
+        <td>#2</td>
+        <td>Campos editables + personalización</td>
+        <td class="hashtag">#Personalización #Software #TuMedida</td>
+    </tr>
+    <tr>
+        <td>📌 Viernes</td>
+        <td>#3</td>
+        <td>Sin formación previa</td>
+        <td class="hashtag">#Usabilidad #Software #Simplicidad</td>
+    </tr>
+    <tr>
+        <td>📌 Sábado</td>
+        <td>#16</td>
+        <td>Fácil desde el primer momento</td>
+        <td class="hashtag">#Facilidad #Software #SinComplicaciones</td>
+    </tr>
+</table>
+
+<!-- SEMANA 3 -->
+<h2>💡 SEMANA 3: BENEFICIOS CLAVE</h2>
+<p class="week-intro">Mostrar valor concreto</p>
+
+<table>
+    <tr>
+        <th>Día</th>
+        <th>Post</th>
+        <th>Tema</th>
+        <th>Hashtags</th>
+    </tr>
+    <tr>
+        <td>📌 Lunes</td>
+        <td>#4 v2</td>
+        <td>Catálogos en 1 clic</td>
+        <td class="hashtag">#Catálogos #Ventas #Comerciales</td>
+    </tr>
+    <tr>
+        <td>📌 Miércoles</td>
+        <td>#5</td>
+        <td>Exportación + traducción automática</td>
+        <td class="hashtag">#Exportación #Internacional #Cerámica</td>
+    </tr>
+    <tr>
+        <td>📌 Viernes</td>
+        <td>#6</td>
+        <td>Ahorro de tiempo equipo</td>
+        <td class="hashtag">#Tiempo #Productividad #Equipo</td>
+    </tr>
+    <tr>
+        <td>📌 Sábado</td>
+        <td>#7</td>
+        <td>Integración con ERP</td>
+        <td class="hashtag">#ERP #Integración #Sistemas</td>
+    </tr>
+</table>
+
+<!-- SEMANA 4 -->
+<h2>📦 SEMANA 4: MÁS BENEFICIOS</h2>
+<p class="week-intro">Profundizar en ventajas</p>
+
+<table>
+    <tr>
+        <th>Día</th>
+        <th>Post</th>
+        <th>Tema</th>
+        <th>Hashtags</th>
+    </tr>
+    <tr>
+        <td>📌 Lunes</td>
+        <td>#9</td>
+        <td>Horas → Segundos</td>
+        <td class="hashtag">#AhorroTiempo #Eficiencia #Almacén</td>
+    </tr>
+    <tr>
+        <td>📌 Miércoles</td>
+        <td>#10</td>
+        <td>Reducción de errores</td>
+        <td class="hashtag">#Errores #Precisión #Stock</td>
+    </tr>
+    <tr>
+        <td>📌 Viernes</td>
+        <td>#11</td>
+        <td>Catálogos + exportación</td>
+        <td class="hashtag">#Catálogos #Exportación #Ventas</td>
+    </tr>
+    <tr>
+        <td>📌 Sábado</td>
+        <td>#17</td>
+        <td>Todo personalizable</td>
+        <td class="hashtag">#Personalización #Flexibilidad #TuMedida</td>
+    </tr>
+</table>
+
+<!-- SEMANA 5 -->
+<h2>✅ SEMANA 5: CIERRE + RESUMEN</h2>
+<p class="week-intro">Reafirmar todos los beneficios</p>
+
+<table>
+    <tr>
+        <th>Día</th>
+        <th>Post</th>
+        <th>Tema</th>
+        <th>Hashtags</th>
+    </tr>
+    <tr>
+        <td>📌 Lunes</td>
+        <td>#8</td>
+        <td>Resumen 6 beneficios</td>
+        <td class="hashtag">#Beneficios #Resumen #Software</td>
+    </tr>
+</table>
+
+<!-- VÍDEOS -->
+<h2>🎬 VÍDEOS (Jueves alternos)</h2>
+
+<table>
+    <tr>
+        <th>Semana</th>
+        <th>Duración</th>
+        <th>Tema</th>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>45s</td>
+        <td>WareFlow general: QR + stock + catálogos</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>40s</td>
+        <td>Exportación internacional + traducción</td>
+    </tr>
+</table>
+
+<!-- HORARIOS -->
+<h2>⏰ HORARIOS RECOMENDADOS</h2>
+
+<table>
+    <tr>
+        <th>Horario</th>
+        <th>Razón</th>
+    </tr>
+    <tr>
+        <td>🌅 09:00 - 10:00</td>
+        <td>Inicio jornada, café, scroll matutino</td>
+    </tr>
+    <tr>
+        <td>🌆 18:00 - 19:00</td>
+        <td>Fin jornada, relax, más engagement</td>
+    </tr>
+</table>
+
+<!-- KPIs -->
+<h2>📊 KPIs A MEDIR</h2>
+
+<div class="kpi-grid">
+    <div class="kpi-card">
+        <div class="kpi-value">+500</div>
+        <div class="kpi-label">Impresiones/post</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-value">+3%</div>
+        <div class="kpi-label">Engagement</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-value">+5</div>
+        <div class="kpi-label">Comentarios/post</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-value">+3</div>
+        <div class="kpi-label">Mensajes/semana</div>
+    </div>
+    <div class="kpi-card">
+        <div class="kpi-value">+10</div>
+        <div class="kpi-label">Conexiones nuevas/semana</div>
+    </div>
+</div>
+
+<!-- TIPS -->
+<h2>💡 TIPS DE PUBLICACIÓN</h2>
+
+<div class="tips">
+    <ol>
+        <li><strong>Responder comentarios</strong> en las primeras 2 horas</li>
+        <li><strong>Mencionar</strong> a conexiones relevantes cuando aplique</li>
+        <li><strong>Variar CTA:</strong> "escríbeme" / "comenta" / "¿te suena esto?"</li>
+        <li><strong>Añadir foto/vídeo</strong> siempre que sea posible</li>
+        <li><strong>Publicar en horarios óptimos:</strong> 9-10h o 18-19h</li>
+    </ol>
+</div>
+
+<!-- POSTS COMPLETOS -->
+<h2>📝 POSTS LISTOS PARA COPIAR</h2>
+
+<h3>SEMANA 1 - LUNES (Post #13) - Tienda de cerámica</h3>
+<div class="post-content">Una tienda de cerámica en Castellón recibe un cliente internacional.
+
+Antes, preparar un catálogo en otro idioma era lento y propenso a errores.
+
+Con WareFlow, en cuestión de segundos se genera un catálogo con traducción automática al idioma del cliente.
+
+El cliente puede ver todos los productos que le interesan, elegir lo que quiere y marcharse con información clara y profesional.
+
+Y tu equipo recibe los datos del cliente para seguimiento inmediato.
+
+Todo sin perder tiempo, sin complicaciones y sin depender de manuales o formación.
+
+Si quieres que tu tienda de cerámica venda más y trabaje de forma internacional sin esfuerzo, escríbeme y te enseño cómo funciona.
+
+<span class="hashtag">#Castellón #Cerámica #Exportación #SoftwareAlmacén #WareFlow</span></div>
+
+<h3>SEMANA 1 - MIÉRCOLES (Post #12) - Tienda de muebles</h3>
+<div class="post-content">Imagina que tienes una tienda de muebles.
+
+Llega un cliente y empieza a mirar productos.
+
+Sin agobios, sin presionar, va escaneando algunos códigos QR que le llaman la atención… o el mismo vendedor lo hace por él mientras le asesora.
+
+Al final de la visita, normalmente el cliente se va de vacío, sin llevarse nada.
+
+Pero con WareFlow, eso no pasa.
+
+Antes de salir de la tienda, el cliente ya tiene su catálogo personalizado, con todos los productos que le interesaron, listo para consultar en casa.
+
+Y el vendedor tiene todos los datos necesarios para hacer seguimiento y enviar el catálogo en el momento.
+
+El resultado: cliente satisfecho, ventas potenciales aseguradas y procesos más eficientes.
+
+Si quieres que tus clientes nunca más se vayan sin llevar su catálogo y que tu equipo trabaje más eficazmente, escríbeme y te muestro cómo funciona WareFlow.
+
+<span class="hashtag">#Muebles #Ventas #CatálogoDigital #SoftwareAlmacén #WareFlow</span></div>
+
+<h3>SEMANA 2 - LUNES (Post #1) - Intro WareFlow</h3>
+<div class="post-content">La mayoría de sistemas de gestión de almacén fallan en lo mismo:
+
+Son complejos.
+Lentos.
+Y nadie los usa bien.
+
+Por eso WareFlow funciona diferente.
+
+👉 Cada producto tiene un QR único
+👉 Ese QR te lleva directamente a su ficha
+
+¿Resultado?
+
+Puedes etiquetar TODO tu almacén y, con un móvil, saber en segundos:
+
+📦 Qué producto es
+📊 Cuánto stock hay
+📍 Información clara y actualizada
+
+Sin buscar.
+Sin preguntar.
+Sin depender de nadie.
+
+Cualquier operario puede, en menos de 15 segundos, saber el stock real de cualquier producto.
+
+Pero hay más.
+
+Con un solo clic puedes crear un catálogo de productos directamente desde tu almacén.
+
+Sin Excel.
+Sin copiar datos.
+Sin perder tiempo.
+
+Seleccionas productos → catálogo listo.
+
+Así de simple.
+Así de útil.
+Así es como debería funcionar un almacén en 2026.
+
+Si gestionas stock y quieres ver cómo aplicarlo en tu caso, escríbeme.
+
+<span class="hashtag">#Logística #Software #Almacén #TransformaciónDigital #WareFlow</span></div>
+
+<!-- GUIONES VÍDEO -->
+<h2>🎬 GUIONES DE VÍDEO</h2>
+
+<div class="video-script">
+<h3>VÍDEO 1 - WAREFLOW GENERAL (45s)</h3>
+
+<div class="scene">
+<span class="scene-title">ESCENA 1 – GANCHO (0–3s)</span><br>
+"Si tienes un almacén y no sabes exactamente qué stock tienes… este vídeo te interesa."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 2 – PROBLEMA (3–8s)</span><br>
+"Esto es lo normal: productos sin identificar, stock que no cuadra y tiempo perdido buscando cosas."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 3 – SOLUCIÓN (8–15s)</span><br>
+"Con WareFlow, cada producto tiene un QR único. Lo escaneas… y tienes toda la información al instante."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 4 – DEMO (15–25s)</span><br>
+"Stock en tiempo real, información clara y sin depender de nadie. Cualquier operario puede saber lo que hay en menos de 15 segundos."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 5 – EXTRA (25–35s)</span><br>
+"Y además, con un clic puedes generar un catálogo con los productos que quieras. Directamente desde tu almacén."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 6 – CIERRE (35–45s)</span><br>
+"Así de simple debería ser gestionar un almacén. Si quieres verlo en tu empresa, escríbeme."
+</div>
+</div>
+
+<div class="video-script">
+<h3>VÍDEO 2 - EXPORTACIÓN INTERNACIONAL (40s)</h3>
+
+<div class="scene">
+<span class="scene-title">ESCENA 1 – GANCHO (0–3s)</span><br>
+"¿Vendes cerámica fuera de España y pierdes tiempo traduciendo catálogos y correos?"
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 2 – PROBLEMA (3–8s)</span><br>
+"Muchos comerciales pasan horas traduciendo fichas de productos, catálogos y correos. Tiempo perdido y errores que podrían evitarse."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 3 – SOLUCIÓN (8–20s)</span><br>
+"Con WareFlow, todo se hace en 1 clic. Tus catálogos y correos se adaptan automáticamente al idioma de tu cliente. Español, inglés, francés… todo listo para enviar."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 4 – DEMO (20–30s)</span><br>
+"Todo desde tu almacén, sin complicaciones, sin errores y sin perder tiempo. Así puedes exportar cerámica a cualquier país en segundos."
+</div>
+
+<div class="scene">
+<span class="scene-title">ESCENA 5 – CIERRE (30–40s)</span><br>
+"Si quieres ver cómo funciona en tu empresa y empezar a ahorrar tiempo, escríbeme. WareFlow: control, eficiencia y exportación internacional en un solo sistema."
+</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+<p>📅 Calendario creado: 25/03/2026</p>
+<p>🎯 Próxima revisión: tras 2 semanas de publicación</p>
+<p>📧 WareFlow - Software de gestión de almacenes</p>
+</div>
+
+</body>
+</html>
