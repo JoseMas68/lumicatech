@@ -7,3 +7,4 @@ Sitemap: https://lumicatech.es/sitemap.xml
 
 # Disallow admin/api routes
 Disallow: /api/
+Disallow: /admin/
