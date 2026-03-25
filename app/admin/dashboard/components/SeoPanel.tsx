@@ -625,7 +625,15 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
       const res = await fetch('/api/admin/seo/page', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ path: page.path, ...form }),
+        body: JSON.stringify({ 
+          path: page.path, 
+          title: form.title,
+          description: form.description,
+          keywords: form.keywords,
+          ogImage: form.ogImage,
+          canonical: form.canonical,
+          noIndex: form.noIndex,
+        }),
       });
       
       if (res.ok) {
