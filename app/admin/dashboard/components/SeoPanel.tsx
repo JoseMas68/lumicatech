@@ -506,9 +506,16 @@ function PageEditor({
           <div className="bg-[#1a1b24] rounded-lg p-3">
             <div className="text-xs text-gray-500 mb-2">📱 Preview Facebook/LinkedIn:</div>
             <div className="bg-white rounded-lg overflow-hidden">
-              <div className="h-32 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+              <div className="h-32 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">
                 {form.ogImage || defaultOgImage ? (
-                  <span className="text-gray-500 text-xs">📷 Imagen OG</span>
+                  <img 
+                    src={form.ogImage || defaultOgImage} 
+                    alt="OG Preview"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
                 ) : (
                   <span className="text-gray-400 text-xs">❌ Sin imagen</span>
                 )}
@@ -525,9 +532,16 @@ function PageEditor({
           <div className="bg-[#1a1b24] rounded-lg p-3">
             <div className="text-xs text-gray-500 mb-2">🐦 Preview Twitter/X:</div>
             <div className="border border-gray-600 rounded-xl overflow-hidden">
-              <div className="h-32 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
+              <div className="h-32 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center relative overflow-hidden">
                 {form.ogImage || defaultOgImage ? (
-                  <span className="text-gray-400 text-xs">📷 Imagen</span>
+                  <img 
+                    src={form.ogImage || defaultOgImage}
+                    alt="Twitter Preview"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
+                  />
                 ) : (
                   <span className="text-gray-500 text-xs">❌ Sin imagen</span>
                 )}
@@ -778,18 +792,22 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
               <span>📘</span> Facebook / LinkedIn
             </h4>
             <div className="max-w-md bg-white rounded-lg overflow-hidden shadow-lg">
-              <div className="h-52 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
+              <div className="h-52 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center relative overflow-hidden">
                 {(editing ? form.ogImage : page.ogImage) || config.defaultOgImage ? (
-                  <div className="text-center text-gray-500">
-                    <div className="text-4xl mb-2">🖼️</div>
-                    <div className="text-xs">1200 x 630</div>
-                  </div>
-                ) : (
-                  <div className="text-center text-red-400">
-                    <div className="text-4xl mb-2">❌</div>
-                    <div className="text-xs">Sin OG Image</div>
-                  </div>
-                )}
+                  <img 
+                    src={(editing ? form.ogImage : page.ogImage) || config.defaultOgImage} 
+                    alt="OG Preview"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                      (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                ) : null}
+                <div className={`text-center ${((editing ? form.ogImage : page.ogImage) || config.defaultOgImage) ? 'hidden' : ''}`}>
+                  <div className="text-4xl mb-2">❌</div>
+                  <div className="text-xs text-red-500">Sin OG Image</div>
+                </div>
               </div>
               <div className="p-4">
                 <div className="text-xs text-gray-500 uppercase tracking-wide">{config.siteUrl.replace('https://', '')}</div>
@@ -805,18 +823,22 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
               <span>🐦</span> Twitter / X
             </h4>
             <div className="max-w-md border border-gray-600 rounded-xl overflow-hidden">
-              <div className="h-52 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
+              <div className="h-52 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center relative overflow-hidden">
                 {(editing ? form.ogImage : page.ogImage) || config.defaultOgImage ? (
-                  <div className="text-center text-gray-400">
-                    <div className="text-4xl mb-2">🖼️</div>
-                    <div className="text-xs">Imagen grande</div>
-                  </div>
-                ) : (
-                  <div className="text-center text-red-400">
-                    <div className="text-4xl mb-2">❌</div>
-                    <div className="text-xs">Sin imagen</div>
-                  </div>
-                )}
+                  <img 
+                    src={(editing ? form.ogImage : page.ogImage) || config.defaultOgImage}
+                    alt="Twitter Preview"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = 'none';
+                      (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                ) : null}
+                <div className={`text-center ${((editing ? form.ogImage : page.ogImage) || config.defaultOgImage) ? 'hidden' : ''}`}>
+                  <div className="text-4xl mb-2">❌</div>
+                  <div className="text-xs text-red-400">Sin imagen</div>
+                </div>
               </div>
               <div className="p-4 bg-[#1a1b24]">
                 <div className="text-white font-medium">{editing ? form.title : page.title}</div>
