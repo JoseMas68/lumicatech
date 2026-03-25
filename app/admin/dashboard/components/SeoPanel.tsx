@@ -611,6 +611,33 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
   onSelectPage: (page: SeoPage) => void;
 }) {
   const page = selectedPage || config.pages[0];
+  const [editing, setEditing] = useState(false);
+  const [form, setForm] = useState(page);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    setForm(page);
+  }, [page]);
+
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      const res = await fetch('/api/admin/seo/page', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path: page.path, ...form }),
+      });
+      
+      if (res.ok) {
+        setEditing(false);
+        // Refresh config would happen via parent
+      }
+    } catch {
+      console.error('Error saving');
+    } finally {
+      setSaving(false);
+    }
+  };
   
   return (
     <div className="space-y-6">
@@ -619,7 +646,7 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
         {config.pages.map((p) => (
           <button
             key={p.path}
-            onClick={() => onSelectPage(p)}
+            onClick={() => { onSelectPage(p); setEditing(false); }}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition ${
               page?.path === p.path
                 ? 'bg-indigo-600 text-white'
@@ -631,6 +658,78 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
         ))}
       </div>
 
+      {/* Edit button */}
+      <div className="flex justify-end">
+        <button
+          onClick={() => setEditing(!editing)}
+          className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
+            editing 
+              ? 'bg-red-500/20 text-red-400 border border-red-500/30' 
+              : 'bg-indigo-600 text-white'
+          }`}
+        >
+          {editing ? 'Cancelar' : '✏️ Editar'}
+        </button>
+      </div>
+
+      {/* Edit form */}
+      {editing && (
+        <div className="bg-[#23242f] border border-indigo-500/30 rounded-xl p-4 space-y-4">
+          <h4 className="font-bold text-sm text-indigo-400">Editando: {page.path}</h4>
+          
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">Título</label>
+              <input
+                type="text"
+                value={form.title}
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
+                className="w-full bg-[#1a1b24] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+              />
+            </div>
+            
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">OG Image</label>
+              <input
+                type="text"
+                value={form.ogImage || ''}
+                onChange={(e) => setForm({ ...form, ogImage: e.target.value })}
+                className="w-full bg-[#1a1b24] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+                placeholder={config.defaultOgImage || '/og-image.png'}
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">Descripción</label>
+            <textarea
+              value={form.description}
+              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              rows={2}
+              className="w-full bg-[#1a1b24] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none resize-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">Keywords</label>
+            <input
+              type="text"
+              value={form.keywords.join(', ')}
+              onChange={(e) => setForm({ ...form, keywords: e.target.value.split(',').map(k => k.trim()).filter(Boolean) })}
+              className="w-full bg-[#1a1b24] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:border-indigo-500 outline-none"
+            />
+          </div>
+
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="w-full py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg text-sm font-medium transition disabled:opacity-50"
+          >
+            {saving ? 'Guardando...' : '✓ Guardar cambios'}
+          </button>
+        </div>
+      )}
+
       {page && (
         <>
           {/* Google Desktop Preview */}
@@ -640,11 +739,11 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
             </h4>
             <div className="bg-white rounded-lg p-4">
               <div className="text-blue-700 text-xl hover:underline cursor-pointer truncate max-w-2xl">
-                {page.title}
+                {editing ? form.title : page.title}
               </div>
               <div className="text-green-700 text-sm">{config.siteUrl}{page.path}</div>
               <div className="text-gray-600 text-sm mt-2 line-clamp-2 max-w-2xl">
-                {page.description}
+                {editing ? form.description : page.description}
               </div>
             </div>
           </div>
@@ -656,11 +755,11 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
             </h4>
             <div className="max-w-xs mx-auto bg-white rounded-2xl p-4 border-4 border-gray-800">
               <div className="text-blue-700 text-base truncate">
-                {page.title}
+                {editing ? form.title : page.title}
               </div>
               <div className="text-green-700 text-xs truncate">{config.siteUrl}{page.path}</div>
               <div className="text-gray-600 text-xs mt-2 line-clamp-3">
-                {page.description}
+                {editing ? form.description : page.description}
               </div>
             </div>
           </div>
@@ -672,7 +771,7 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
             </h4>
             <div className="max-w-md bg-white rounded-lg overflow-hidden shadow-lg">
               <div className="h-52 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center">
-                {page.ogImage || config.defaultOgImage ? (
+                {(editing ? form.ogImage : page.ogImage) || config.defaultOgImage ? (
                   <div className="text-center text-gray-500">
                     <div className="text-4xl mb-2">🖼️</div>
                     <div className="text-xs">1200 x 630</div>
@@ -686,8 +785,8 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
               </div>
               <div className="p-4">
                 <div className="text-xs text-gray-500 uppercase tracking-wide">{config.siteUrl.replace('https://', '')}</div>
-                <div className="font-bold text-base text-gray-900 mt-1">{page.title}</div>
-                <div className="text-sm text-gray-600 mt-2 line-clamp-2">{page.description}</div>
+                <div className="font-bold text-base text-gray-900 mt-1">{editing ? form.title : page.title}</div>
+                <div className="text-sm text-gray-600 mt-2 line-clamp-2">{editing ? form.description : page.description}</div>
               </div>
             </div>
           </div>
@@ -699,7 +798,7 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
             </h4>
             <div className="max-w-md border border-gray-600 rounded-xl overflow-hidden">
               <div className="h-52 bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-                {page.ogImage || config.defaultOgImage ? (
+                {(editing ? form.ogImage : page.ogImage) || config.defaultOgImage ? (
                   <div className="text-center text-gray-400">
                     <div className="text-4xl mb-2">🖼️</div>
                     <div className="text-xs">Imagen grande</div>
@@ -712,7 +811,7 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
                 )}
               </div>
               <div className="p-4 bg-[#1a1b24]">
-                <div className="text-white font-medium">{page.title}</div>
+                <div className="text-white font-medium">{editing ? form.title : page.title}</div>
                 <div className="text-gray-500 text-sm mt-1">{config.siteUrl}{page.path}</div>
               </div>
             </div>
@@ -725,9 +824,9 @@ function PreviewTab({ config, selectedPage, onSelectPage }: {
             </h4>
             <div className="max-w-sm bg-[#075e54] rounded-lg p-3 ml-auto">
               <div className="bg-[#005c4b] rounded-lg p-3">
-                <div className="text-white text-sm">{page.title}</div>
+                <div className="text-white text-sm">{editing ? form.title : page.title}</div>
                 <div className="text-gray-300 text-xs mt-1 truncate">{config.siteUrl}{page.path}</div>
-                <div className="text-gray-300 text-xs mt-1">{page.description.substring(0, 100)}...</div>
+                <div className="text-gray-300 text-xs mt-1">{(editing ? form.description : page.description).substring(0, 100)}...</div>
               </div>
             </div>
           </div>
