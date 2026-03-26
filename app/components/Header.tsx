@@ -48,7 +48,7 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <img src={logoSrc} alt="LumicaTech" className="h-8 md:h-11 w-auto" />
+            <img src={logoSrc} alt="LumicaTech" width={180} height={44} className="h-8 md:h-11 w-auto" />
           </Link>
 
           {/* Desktop Menu */}
@@ -110,6 +110,8 @@ export default function Header() {
             <img
               src="https://lumicatech.b-cdn.net/Logos/logo_h_light.png"
               alt="LumicaTech"
+              width={180}
+              height={32}
               className="h-8 w-auto"
             />
             <button
