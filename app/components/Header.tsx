@@ -105,7 +105,13 @@ export default function Header() {
           />
 
           {/* Close button */}
-          <div className="relative z-50 flex justify-end pt-2">
+          <div className="relative z-50 flex justify-between items-center pt-2">
+            {/* Logo en menú móvil */}
+            <img
+              src="https://lumicatech.b-cdn.net/Logos/logo_h_light.png"
+              alt="LumicaTech"
+              className="h-8 w-auto"
+            />
             <button
               onClick={() => setMobileOpen(false)}
               className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-white/5 border border-white/10 hover:bg-indigo-600 hover:border-indigo-600 transition-all duration-300 hover:scale-110 active:scale-95 pointer-events-auto"
