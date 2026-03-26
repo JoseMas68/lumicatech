@@ -158,7 +158,10 @@ function ContactForm() {
     >
       <input type="hidden" name="_subject" value="Nuevo mensaje desde lumicatech.es/contacto" />
       <input type="hidden" name="_next" value="https://lumicatech.es/contacto?enviado=true" />
-      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_captcha" value="true" />
+      <input type="hidden" name="_template" value="table" />
+      {/* Honeypot - los bots lo rellenan, los humanos no lo ven */}
+      <input type="text" name="_honey" style={{ display: 'none' }} />
 
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
