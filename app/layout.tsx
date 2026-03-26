@@ -56,11 +56,7 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* Preconnect para fuentes externas */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdnfonts.com" />
-        <link rel="preconnect" href="https://lumicatech.b-cdn.net" />
+        <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
           rel="stylesheet"
@@ -73,6 +69,73 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
+        <script id="tailwind-config">
+          {`tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                colors: {
+                  "primary-container": "var(--color-primary-container, #00e5ff)",
+                  "secondary-container": "var(--color-secondary-container, #4a4949)",
+                  "on-error-container": "var(--color-on-error-container, #ffdad6)",
+                  "on-secondary-fixed": "var(--color-on-secondary-fixed, #1c1b1b)",
+                  "inverse-on-surface": "var(--color-inverse-on-surface, #313030)",
+                  "on-primary-fixed-variant": "var(--color-on-primary-fixed-variant, #004f58)",
+                  "error-container": "var(--color-error-container, #93000a)",
+                  "surface-tint": "var(--color-surface-tint, #00daf3)",
+                  "on-tertiary-fixed-variant": "var(--color-on-tertiary-fixed-variant, #474646)",
+                  "tertiary-container": "var(--color-tertiary-container, #d3d0cf)",
+                  "surface-dim": "var(--color-surface-dim, #131313)",
+                  primary: "var(--color-primary, #c3f5ff)",
+                  "on-surface-variant": "var(--color-on-surface-variant, #bac9cc)",
+                  secondary: "var(--color-secondary, #c8c6c5)",
+                  "on-tertiary": "var(--color-on-tertiary, #313030)",
+                  "on-error": "var(--color-on-error, #690005)",
+                  "on-secondary": "var(--color-on-secondary, #313030)",
+                  "primary-fixed-dim": "var(--color-primary-fixed-dim, #00daf3)",
+                  "on-tertiary-container": "var(--color-on-tertiary-container, #5a5959)",
+                  "surface-container-highest": "var(--color-surface-container-highest, #353534)",
+                  "outline-variant": "var(--color-outline-variant, #3b494c)",
+                  "on-surface": "var(--color-on-surface, #e5e2e1)",
+                  "on-primary-fixed": "var(--color-on-primary-fixed, #001f24)",
+                  "primary-fixed": "var(--color-primary-fixed, #9cf0ff)",
+                  surface: "var(--color-surface, #131313)",
+                  "surface-container-high": "var(--color-surface-container-high, #2a2a2a)",
+                  "tertiary-fixed": "var(--color-tertiary-fixed, #e5e2e1)",
+                  "secondary-fixed-dim": "var(--color-secondary-fixed-dim, #c8c6c5)",
+                  "surface-container": "var(--color-surface-container, #201f1f)",
+                  "inverse-surface": "var(--color-inverse-surface, #e5e2e1)",
+                  "surface-container-low": "var(--color-surface-container-low, #1c1b1b)",
+                  "on-tertiary-fixed": "var(--color-on-tertiary-fixed, #1c1b1b)",
+                  "on-background": "var(--color-on-background, #e5e2e1)",
+                  "on-secondary-container": "var(--color-on-secondary-container, #bab8b7)",
+                  "surface-bright": "var(--color-surface-bright, #3a3939)",
+                  "surface-container-lowest": "var(--color-surface-container-lowest, #0e0e0e)",
+                  "inverse-primary": "var(--color-inverse-primary, #006875)",
+                  "on-primary-container": "var(--color-on-primary-container, #00626e)",
+                  outline: "var(--color-outline, #849396)",
+                  "tertiary-fixed-dim": "var(--color-tertiary-fixed-dim, #c9c6c5)",
+                  "on-primary": "var(--color-on-primary, #00363d)",
+                  error: "var(--color-error, #ffb4ab)",
+                  background: "var(--color-background, #131313)"
+                },
+                fontFamily: {
+                  headline: ["Inter"],
+                  body: ["Inter"],
+                  label: ["Space Grotesk"],
+                  satoshi: ["Satoshi", "sans-serif"],
+                  display: "Inter"
+                },
+                borderRadius: {
+                  DEFAULT: "0.125rem",
+                  lg: "0.25rem",
+                  xl: "0.5rem",
+                  full: "0.75rem"
+                }
+              }
+            }
+          };`}
+        </script>
         <style>{`
           /* Light Mode Theme - Colores MÁS CLAROS */
           .light {
