@@ -17,7 +17,7 @@ export async function sendBookingConfirmation(booking: BookingDetails): Promise<
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   await resend.emails.send({
-    from: "LumicaTech <onboarding@resend.dev>",
+    from: "LumicaTech <info@lumicatech.es>",
     to: booking.email,
     subject: "✅ Reserva confirmada - LumicaTech",
     html: generateClientEmailTemplate(booking),
@@ -33,7 +33,7 @@ export async function sendNotificationToOwner(booking: BookingDetails): Promise<
   if (!ownerEmail) return false;
 
   await resend.emails.send({
-    from: "LumicaTech Bookings <onboarding@resend.dev>",
+    from: "LumicaTech Bookings <info@lumicatech.es>",
     to: ownerEmail,
     subject: `📅 Nueva reserva: ${booking.name}${booking.company ? ` - ${booking.company}` : ""}`,
     html: generateOwnerEmailTemplate(booking),
@@ -75,7 +75,7 @@ export async function sendReminderEmail(booking: BookingDetails): Promise<boolea
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   await resend.emails.send({
-    from: "LumicaTech <onboarding@resend.dev>",
+    from: "LumicaTech <info@lumicatech.es>",
     to: booking.email,
     subject: "⏰ Recordatorio: tienes una reunión mañana - LumicaTech",
     html: generateReminderEmailTemplate(booking),
