@@ -49,65 +49,13 @@ export default function QRStock() {
             </div>
           </div>
 
-          {/* Right: Technical UI */}
-          <div className="relative p-8 rounded-2xl bg-surface-container-high/50 border border-outline-variant/10 glow-shadow">
-            <div className="bg-surface rounded-lg overflow-hidden border border-outline-variant/20 shadow-2xl">
-              {/* Header */}
-              <div className="bg-surface-container px-4 py-3 flex justify-between items-center border-b border-outline-variant/10">
-                <div className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full bg-error/30"></span>
-                  <span className="w-3 h-3 rounded-full bg-primary-fixed/30"></span>
-                  <span className="w-3 h-3 rounded-full bg-primary-container/30"></span>
-                </div>
-                <span className="text-[10px] font-label text-on-surface-variant">
-                  WAREFLOW_V2.4_DASHBOARD
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 space-y-6">
-                <div className="flex justify-between items-end">
-                  <div>
-                    <h5 className="text-sm font-label text-on-surface-variant mb-1">
-                      PRODUCT_ID: WF-9920-X
-                    </h5>
-                    <p className="text-xl font-bold text-on-surface">
-                      Porcelánico Grey Stone 60x120
-                    </p>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-xs font-label text-primary-container">CURRENT_STOCK</span>
-                    <p className="text-3xl font-black text-primary-container">
-                      42.5 <span className="text-sm font-normal text-on-surface-variant">m²</span>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Progress Bar */}
-                <div className="h-1 bg-surface-container-low w-full rounded-full overflow-hidden">
-                  <div className="h-full bg-primary-container w-[70%]"></div>
-                </div>
-
-                {/* Info Grid */}
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-3 bg-surface-container rounded border border-outline-variant/10">
-                    <span className="text-[10px] text-on-surface-variant block mb-1">LOCATION</span>
-                    <span className="text-sm font-bold text-on-surface">Aisle B - Row 4</span>
-                  </div>
-                  <div className="p-3 bg-surface-container rounded border border-outline-variant/10">
-                    <span className="text-[10px] text-on-surface-variant block mb-1">LAST_SCAN</span>
-                    <span className="text-sm font-bold text-on-surface">2m ago by J. Smith</span>
-                  </div>
-                </div>
-
-                {/* QR Code */}
-                <div className="pt-4 flex justify-center">
-                  <div className="p-2 border-2 border-primary-container/20 rounded-lg">
-                    <span className="material-symbols-outlined text-6xl text-on-surface/80">qr_code_2</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Right: Image */}
+          <div className="relative rounded-2xl overflow-hidden glow-shadow">
+            <img
+              src="https://lumicatech.b-cdn.net/LumiwareImages/grok_image_1773938972210.jpg"
+              alt="Escaneo de código QR en showroom"
+              className="w-full h-full object-cover rounded-2xl"
+            />
           </div>
         </div>
       </div>
