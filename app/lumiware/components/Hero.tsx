@@ -46,16 +46,14 @@ export default function Hero() {
 
         {/* Right Column - Visual */}
         <div className="relative">
-          <div className="aspect-square rounded-xl bg-surface-container-low border border-outline-variant/10 p-2 relative overflow-hidden group">
-            <div className="w-full h-full relative rounded-lg overflow-hidden border border-outline-variant/20">
-              <iframe
-                src="https://player.mediadelivery.net/play/628770/7837e254-3596-4666-919d-07113032fd5e"
-                title="Demo Lumiware"
-                className="w-full h-full"
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                allowFullScreen
-              />
-            </div>
+          <div className="relative h-[420px] md:h-[560px] rounded-xl bg-surface-container-low border border-outline-variant/10 overflow-hidden group">
+            <iframe
+              src="https://player.mediadelivery.net/play/628770/7837e254-3596-4666-919d-07113032fd5e"
+              title="Demo Lumiware"
+              className="absolute inset-0 w-full h-full"
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+              allowFullScreen
+            />
             
             {/* Subtle floating glow effect behind image */}
             <div className="absolute inset-0 bg-gradient-to-tr from-primary-container/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
