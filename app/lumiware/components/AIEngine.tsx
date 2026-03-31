@@ -3,8 +3,8 @@
 export default function AIEngine() {
   return (
     <section className="py-32 bg-surface-container-low relative">
-      <div className="max-w-screen-xl mx-auto px-8">
-        <div className="bg-surface rounded-2xl p-12 border border-outline-variant/10 overflow-hidden relative">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-surface rounded-2xl p-6 sm:p-8 lg:p-12 border border-outline-variant/10 overflow-hidden relative">
           {/* Background Glow */}
           <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
             <div className="w-full h-full bg-gradient-to-br from-primary-container/40 to-transparent blur-3xl rounded-full"></div>
@@ -27,12 +27,12 @@ export default function AIEngine() {
               </div>
 
               {/* Headline */}
-              <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface leading-tight break-words">
                 Encuentra productos similares automáticamente.
               </h2>
 
               {/* Description */}
-              <p className="text-xl text-on-surface-variant">
+              <p className="text-lg sm:text-xl text-on-surface-variant break-words">
                 ¿Stock agotado de una referencia? Nuestro motor de IA sugiere variantes y productos similares basados en características técnicas para que nunca pierdas una venta.
               </p>
 
@@ -43,11 +43,11 @@ export default function AIEngine() {
                   "Gestión inteligente de variantes",
                   "Propuestas comerciales mejoradas"
                 ].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
+                  <li key={idx} className="flex items-start gap-3 min-w-0">
                     <span className="material-symbols-outlined text-primary-container text-sm">
                       check_circle
                     </span>
-                    <span>{item}</span>
+                    <span className="break-words">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -67,7 +67,7 @@ export default function AIEngine() {
                       image
                     </span>
                   </div>
-                  <span className="text-[10px] font-label text-primary-container block">
+                  <span className="text-[10px] font-label text-primary-container block break-all leading-tight">
                     SIMILAR_MATCH_{85 + idx * 2}%
                   </span>
                 </div>

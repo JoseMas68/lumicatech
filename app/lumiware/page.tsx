@@ -14,9 +14,9 @@ import ClosingCTA from './components/ClosingCTA';
 
 export default function LumiwarePage() {
   return (
-    <div className="min-h-screen flex flex-col bg-surface">
+    <div className="min-h-screen flex flex-col bg-surface overflow-x-hidden">
       <Header />
-      <main className="flex-grow pt-24">
+      <main className="flex-grow pt-24 break-words">
         <Hero />
         <Problem />
         <Solution />

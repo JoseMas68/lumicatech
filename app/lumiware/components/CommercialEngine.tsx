@@ -9,7 +9,7 @@ export default function CommercialEngine() {
     },
     {
       icon: "receipt_long",
-      title: "Albaranes & Presupuestos",
+      title: "Presupuestos y Albaranes",
       description: "Selecciona productos del catálogo, valida disponibilidad y genera el documento en segundos. Sincronización comercial total."
     }
   ];

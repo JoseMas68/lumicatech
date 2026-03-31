@@ -28,7 +28,7 @@ export default function ClosingCTA() {
 
           {/* Description */}
           <p className="text-xl text-on-surface-variant mb-12 leading-relaxed max-w-2xl mx-auto relative z-10">
-            LumiFlow transforma la gestión de inventario en un proceso ágil, visual y altamente eficiente. Empieza a optimizar tu flujo de trabajo de la mano de expertos.
+            Lumiware transforma la gestión de inventario en un proceso ágil, visual y altamente eficiente. Empieza a optimizar tu flujo de trabajo de la mano de expertos.
           </p>
 
           {/* CTA Button */}
