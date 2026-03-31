@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Hero() {
@@ -47,12 +48,13 @@ export default function Hero() {
         {/* Right Column - Visual */}
         <div className="relative">
           <div className="relative h-[420px] md:h-[560px] rounded-xl bg-surface-container-low border border-outline-variant/10 overflow-hidden group">
-            <iframe
-              src="https://player.mediadelivery.net/play/628770/7837e254-3596-4666-919d-07113032fd5e"
-              title="Demo Lumiware"
-              className="absolute inset-0 w-full h-full"
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-              allowFullScreen
+            <Image
+              src="https://lumicatech.b-cdn.net/LumiWare%20Portada/interior-of-warehouse-with-racks-full-of-boxes-2026-03-16-23-00-10-utc.webp"
+              alt="Interior de almacén con estanterías y cajas"
+              fill
+              sizes="(min-width: 768px) 50vw, 100vw"
+              className="object-cover"
+              priority
             />
             
             {/* Subtle floating glow effect behind image */}
