@@ -8,16 +8,16 @@ export default function ProjectsSection() {
       category: "Logística & ERP",
       icon: "inventory_2",
       title: "Lumiware",
-      description: "Sistema de gestión de almacén: Optimización de inventarios y pedidos internos con arquitectura de baja latencia.",
-      tech: ["Next.js", "PostgreSQL", "Real-time Analytics"],
+      description: "Sistema de gestión de almacén: Optimización de inventarios y pedidos internos con códigos QR y catálogos automáticos.",
+      tech: ["Next.js", "PostgreSQL", "Real-time Analytics", "Integración ERP"],
       color: "from-primary"
     },
     {
-      category: "Automatización",
+      category: "optimización de procesos",
       icon: "settings_suggest",
       title: "Eficiencia Operativa",
-      description: "Reducción de tareas manuales y optimización de flujos de trabajo mediante pipelines de datos inteligentes.",
-      tech: ["Python", "Node.js", "Apache Airflow"],
+      description: "Aumento de la comunicación y colaboración entre equipos mediante procesos inteligentes.",
+      tech: [ "Node.js", "Multidispositivo", "Integración API"],
       color: "from-primary"
     }
   ];

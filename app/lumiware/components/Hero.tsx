@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function Hero() {
   return (
@@ -49,12 +48,12 @@ export default function Hero() {
         <div className="relative">
           <div className="aspect-square rounded-xl bg-surface-container-low border border-outline-variant/10 p-2 relative overflow-hidden group">
             <div className="w-full h-full relative rounded-lg overflow-hidden border border-outline-variant/20">
-              <Image 
-                src="/images/lumiware_dashboard.png" 
-                alt="Lumiware Dashboard" 
-                fill 
-                className="object-cover"
-                priority
+              <iframe
+                src="https://player.mediadelivery.net/play/628770/7837e254-3596-4666-919d-07113032fd5e"
+                title="Demo Lumiware"
+                className="w-full h-full"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowFullScreen
               />
             </div>
             
