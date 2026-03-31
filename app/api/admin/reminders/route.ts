@@ -1,20 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getBookingsDueReminder, markReminderSent } from "@/src/lib/bookings-store";
 import { sendReminderEmail } from "@/src/lib/email";
-import { cookies } from "next/headers";
+import { isAuthorizedWithCron } from "@/src/lib/auth";
 
 // Protegido por cookie de admin O por CRON_SECRET (para cron jobs externos del VPS)
-async function isAuthorized(request: NextRequest): Promise<boolean> {
-  const cronSecret = request.headers.get("x-cron-secret");
-  if (cronSecret && cronSecret === process.env.CRON_SECRET) return true;
-
-  const cookieStore = await cookies();
-  const token = cookieStore.get("admin_token")?.value;
-  return token === process.env.ADMIN_TOKEN;
-}
-
 export async function POST(request: NextRequest) {
-  if (!(await isAuthorized(request))) {
+  if (!(await isAuthorizedWithCron(request))) {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
 

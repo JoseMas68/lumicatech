@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAllBookings, deleteBooking, updateBooking } from "@/src/lib/bookings-store";
-import { cookies } from "next/headers";
-
-async function isAuthorized(): Promise<boolean> {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("admin_token")?.value;
-  return token === process.env.ADMIN_TOKEN;
-}
+import { requireAuth } from "@/src/lib/auth";
 
 export async function GET() {
-  if (!(await isAuthorized())) {
-    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-  }
+  const authError = await requireAuth();
+  if (authError) return authError;
+
   const bookings = getAllBookings();
   // Ordenar por fecha descendente (más recientes primero)
   bookings.sort((a, b) => (a.date + a.time < b.date + b.time ? 1 : -1));
@@ -19,9 +13,9 @@ export async function GET() {
 }
 
 export async function DELETE(request: NextRequest) {
-  if (!(await isAuthorized())) {
-    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-  }
+  const authError = await requireAuth();
+  if (authError) return authError;
+
   const { id } = await request.json();
   if (!id) {
     return NextResponse.json({ error: "Se requiere el campo 'id'" }, { status: 400 });
@@ -34,9 +28,9 @@ export async function DELETE(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-  if (!(await isAuthorized())) {
-    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
-  }
+  const authError = await requireAuth();
+  if (authError) return authError;
+
   const { id, status, notes } = await request.json();
   if (!id) {
     return NextResponse.json({ error: "Se requiere el campo 'id'" }, { status: 400 });

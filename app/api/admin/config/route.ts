@@ -3,14 +3,44 @@ import {
   getAvailabilityConfig,
   saveAvailabilityConfig,
 } from "@/src/lib/availability-config";
+import { cookies } from "next/headers";
+
+// Middleware de autenticación
+async function isAuthorized(): Promise<boolean> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("admin_token")?.value;
+  return token === process.env.ADMIN_TOKEN;
+}
 
 export async function GET() {
+  // Verificar autenticación
+  if (!(await isAuthorized())) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
   const config = getAvailabilityConfig();
   return NextResponse.json(config);
 }
 
 export async function POST(request: NextRequest) {
+  // Verificar autenticación
+  if (!(await isAuthorized())) {
+    return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  }
+
+  // Limitar el tamaño del payload
+  const contentLength = request.headers.get('content-length');
+  if (contentLength && parseInt(contentLength) > 10240) { // 10KB max
+    return NextResponse.json({ error: "Payload demasiado grande" }, { status: 413 });
+  }
+
   const config = await request.json();
+
+  // Validar que el config tenga la estructura esperada
+  if (!config || typeof config !== 'object') {
+    return NextResponse.json({ error: "Formato de configuración inválido" }, { status: 400 });
+  }
+
   saveAvailabilityConfig(config);
   return NextResponse.json({ success: true });
 }
