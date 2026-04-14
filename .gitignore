@@ -42,3 +42,9 @@ claudekit-marketing/
 claudekit-engineer/
 .claude/skills/.venv/
 .claude/skills/node_modules/
+
+# Security - Sensitive configuration files
+docs/*PRODUCTION*.md
+docs/*QUICKSTART*.md
+docs/*SETUP*.md
+docs/*.md.bak
