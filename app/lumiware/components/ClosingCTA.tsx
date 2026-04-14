@@ -10,7 +10,7 @@ export default function ClosingCTA() {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary-container/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
       <div className="max-w-5xl mx-auto px-8 relative z-10">
-        <div className="bg-surface-container-low border border-outline-variant/10 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden group">
+        <div className="bg-surface-container-low border border-outline-variant/10 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden group cta-glow-border">
           
           {/* subtle glow inside card */}
           <div className="absolute inset-0 bg-gradient-to-b from-primary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>

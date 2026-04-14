@@ -51,7 +51,7 @@ export default function CommercialEngine() {
               {features.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-4 hover:border-primary-container/30 transition-all"
+                  className="p-6 rounded-xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-4 hover:border-primary-container/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-container/5 transition-all duration-300"
                 >
                   <span className="material-symbols-outlined text-3xl text-primary-container">
                     {feature.icon}

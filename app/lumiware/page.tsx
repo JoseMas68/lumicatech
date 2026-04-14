@@ -3,6 +3,7 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Hero from './components/Hero';
+import SocialProof from './components/SocialProof';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
 import HowItWorks from './components/HowItWorks';
@@ -23,6 +24,7 @@ export default function LumiwarePage() {
       <Header />
       <main className="flex-grow pt-24 break-words">
         <Hero />
+        <SocialProof />
         <Problem />
         <Solution />
         <HowItWorks />

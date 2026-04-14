@@ -52,10 +52,12 @@ export default function QRStock() {
           {/* Right: Image */}
           <div className="relative rounded-2xl overflow-hidden glow-shadow">
             <img
-              src="https://lumicatech.b-cdn.net/LumiwareImages/grok_image_1773938972210.jpg"
-              alt="Escaneo de código QR en showroom"
+              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+              alt="Sistema de gestión de inventario con tecnología QR"
               className="w-full h-full object-cover rounded-2xl"
             />
+            {/* QR code pattern overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50"></div>
           </div>
         </div>
       </div>

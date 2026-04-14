@@ -64,7 +64,10 @@ export default function AnalyticsEngine() {
                 {/* Fake Analytics Dashboard */}
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="font-label text-sm text-on-surface-variant">KPIs PRINCIPALES</h3>
-                  <span className="text-xs text-primary-container">TIEMPO REAL</span>
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                    <span className="text-xs text-green-400 font-label">EN VIVO</span>
+                  </div>
                 </div>
 
                 {/* Stats Grid */}
@@ -90,8 +93,8 @@ export default function AnalyticsEngine() {
                     {[40, 65, 45, 80, 55, 90, 70, 85, 60, 75, 50, 95].map((height, idx) => (
                       <div
                         key={idx}
-                        className="flex-1 bg-primary-container/30 rounded-t"
-                        style={{ height: `${height}%` }}
+                        className="flex-1 bg-primary-container/30 rounded-t chart-bar-animate"
+                        style={{ height: `${height}%`, animationDelay: `${idx * 0.08}s` }}
                       />
                     ))}
                   </div>

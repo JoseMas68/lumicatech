@@ -45,8 +45,12 @@ export default function HowItWorks() {
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 hover:border-primary-container/30 transition-all duration-300"
+              className="bg-surface-container-low p-8 rounded-xl border border-outline-variant/10 hover:border-primary-container/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-container/5 transition-all duration-300 relative"
             >
+              {/* Step Number */}
+              <span className="absolute -top-3 -right-3 w-8 h-8 bg-primary-container/15 border border-primary-container/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-container backdrop-blur-sm">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
               {/* Icon */}
               <div className="w-16 h-16 bg-primary-container/10 rounded-xl flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined text-3xl text-primary-container">

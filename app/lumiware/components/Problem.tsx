@@ -35,7 +35,7 @@ export default function Problem() {
             {issues.map((issue, idx) => (
               <div
                 key={idx}
-                className="p-8 bg-surface-container rounded-xl border-l-4 border-error/50 space-y-4"
+                className="p-8 bg-surface-container rounded-xl border-l-4 border-error/50 space-y-4 hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
               >
                 <h3 className="text-xl font-bold text-on-surface">
                   {issue.title}
@@ -48,7 +48,7 @@ export default function Problem() {
           </div>
 
           {/* Callout Section */}
-          <div className="bg-gradient-to-br from-error/10 to-error/5 rounded-2xl p-12 border border-error/20">
+          <div className="bg-gradient-to-br from-error/10 to-error/5 rounded-2xl p-12 border border-error/20 hover:border-error/40 transition-all duration-300">
             <div className="space-y-6">
               <h3 className="text-3xl font-bold text-on-surface">
                 Elimina el caos de los sistemas aislados

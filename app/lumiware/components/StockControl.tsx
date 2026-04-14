@@ -63,7 +63,7 @@ export default function StockControl() {
               {stockFeatures.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="bg-surface border border-outline-variant/10 rounded-xl p-6 hover:border-primary-container/30 transition-all duration-300"
+                  className="bg-surface border border-outline-variant/10 rounded-xl p-6 hover:border-primary-container/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-container/5 transition-all duration-300"
                 >
                   <div className="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center mb-4 border border-primary-container/30">
                     <span className="material-symbols-outlined text-xl text-primary-container">
@@ -95,7 +95,7 @@ export default function StockControl() {
               {documentFeatures.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="bg-surface-container-low border border-outline-variant/10 rounded-xl p-6 hover:border-primary/30 transition-all duration-300"
+                  className="bg-surface-container-low border border-outline-variant/10 rounded-xl p-6 hover:border-primary/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 border border-primary/20">
                     <span className="material-symbols-outlined text-xl text-primary">

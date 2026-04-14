@@ -47,7 +47,7 @@ export default function Benefits() {
           {benefits.map((benefit, idx) => (
             <div
               key={idx}
-              className="bg-surface border border-outline-variant/10 rounded-xl p-8 hover:border-primary-container/30 transition-all duration-300"
+              className="bg-surface border border-outline-variant/10 rounded-xl p-8 hover:border-primary-container/30 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-container/5 transition-all duration-300"
             >
               <div className="w-14 h-14 bg-primary-container/10 rounded-lg flex items-center justify-center mb-6">
                 <span className="material-symbols-outlined text-3xl text-primary-container">
