@@ -149,7 +149,7 @@ export default function AnalyticsEngine() {
                   
                   <div className="flex items-end justify-between h-32 gap-3 mt-4">
                     {chartData.map((height, idx) => (
-                      <div key={idx} className="w-full relative group/bar flex justify-center">
+                      <div key={idx} className="w-full h-full relative group/bar flex items-end justify-center">
                         <motion.div
                           initial={{ height: 0 }}
                           whileInView={{ height: `${height}%` }}
