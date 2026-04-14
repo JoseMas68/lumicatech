@@ -58,8 +58,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        {/* Favicon - Todas las variantes para máxima compatibilidad */}
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Favicon - Solo PNG con tu logo real */}
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
         <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
