@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { num: '01', label: 'Inicio',     href: '/',          indent: 'pl-2' },
@@ -12,6 +13,8 @@ const navItems = [
 ];
 
 export default function Header() {
+  const pathname = usePathname();
+  const isLumiwarePage = pathname === '/lumiware';
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
   const [mounted, setMounted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -24,6 +27,14 @@ export default function Header() {
     setTheme(initialTheme);
     document.documentElement.classList.toggle('light', initialTheme === 'light');
   }, []);
+
+  // Forzar modo oscuro si estamos en Lumiware
+  useEffect(() => {
+    if (isLumiwarePage) {
+      setTheme('dark');
+      document.documentElement.classList.remove('light');
+    }
+  }, [isLumiwarePage]);
 
   // Bloquear scroll cuando el menú está abierto
   useEffect(() => {
@@ -61,7 +72,7 @@ export default function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            {mounted && (
+            {!isLumiwarePage && mounted && (
               <button
                 onClick={toggleTheme}
                 className="relative w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/20 transition-all flex items-center justify-center group hover:bg-surface-container-high hover:border-primary-container/50"
