@@ -15,7 +15,7 @@ export default function Solution() {
     {
       icon: "share",
       title: "Compartir",
-      description: "Envía catálogos o albaranes digitales directamente desde la aplicación al cliente final."
+      description: "Crea catálogos, presupuestos, documentación de envío y comparte directamente a tus clientes."
     }
   ];
 
@@ -25,10 +25,10 @@ export default function Solution() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20 space-y-6">
           <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter">
-            Una nueva forma de <span className="text-primary-container">gestionar</span>.
+            La respuesta <span className="text-primary-container">integral</span>.
           </h2>
           <p className="text-xl text-on-surface-variant">
-            Todo comienza escaneando un código QR. Hemos simplificado la complejidad industrial en una interfaz intuitiva y potente.
+            Lumiware es un motor digital escalable y flexible que transforma la gestión de almacenes. Tecnología probada que se adapta a tu operación.
           </p>
         </div>
 

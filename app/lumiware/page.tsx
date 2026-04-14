@@ -6,6 +6,7 @@ import Hero from './components/Hero';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
 import QRStock from './components/QRStock';
+import AnalyticsEngine from './components/AnalyticsEngine';
 import CommercialEngine from './components/CommercialEngine';
 import AIEngine from './components/AIEngine';
 import ERPIntegration from './components/ERPIntegration';
@@ -21,6 +22,7 @@ export default function LumiwarePage() {
         <Problem />
         <Solution />
         <QRStock />
+        <AnalyticsEngine />
         <CommercialEngine />
         <AIEngine />
         <ERPIntegration />

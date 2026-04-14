@@ -4,13 +4,18 @@ export default function CommercialEngine() {
   const features = [
     {
       icon: "picture_as_pdf",
-      title: "Auto-Catálogos PDF",
-      description: "Organiza por colecciones o gamas y exporta catálogos visuales listos para enviar a arquitectos o tiendas (Ceramotecas)."
+      title: "Catálogos Automatizados",
+      description: "Genera catálogos visuales profesionales en segundos basados en tu stock real."
     },
     {
       icon: "receipt_long",
       title: "Presupuestos y Albaranes",
-      description: "Selecciona productos del catálogo, valida disponibilidad y genera el documento en segundos. Sincronización comercial total."
+      description: "Crea documentos de venta instantáneos con validación de disponibilidad."
+    },
+    {
+      icon: "sync",
+      title: "Sincronización Comercial",
+      description: "Conexión directa entre stock disponible y capacidad de venta."
     }
   ];
 
@@ -31,13 +36,13 @@ export default function CommercialEngine() {
           <div className="space-y-10">
             <div className="space-y-6">
               <span className="text-primary-container font-label tracking-[0.2em] text-sm uppercase block">
-                Commercial Engine
+                Motor Comercialización
               </span>
               <h2 className="text-4xl font-black font-headline text-on-surface leading-tight">
-                De producto a venta en segundos.
+                Automatización de ventas.
               </h2>
               <p className="text-on-surface-variant leading-relaxed text-lg">
-                WareFlow no es solo logística; es una herramienta comercial. Genera catálogos, presupuestos y albaranes basados en lo que realmente tienes en el suelo.
+                Lumiware no es solo logística; es una herramienta comercial que conecta el almacén con las ventas. Automatiza catálogos, presupuestos y albaranes.
               </p>
             </div>
 

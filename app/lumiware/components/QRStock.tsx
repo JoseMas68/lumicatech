@@ -9,13 +9,13 @@ export default function QRStock() {
           <div className="space-y-12">
             <div>
               <span className="text-primary-container font-label tracking-[0.2em] text-sm uppercase mb-4 block">
-                Core Technology
+                Motor Digital
               </span>
               <h2 className="text-4xl font-black font-headline mb-6 leading-tight">
-                Gestión de inventario basada en QR & Stock Real.
+                Escalable. Flexible. Tecnológico.
               </h2>
               <p className="text-on-surface-variant text-lg">
-                Trazabilidad absoluta de cada movimiento. Olvida los recuentos manuales trimestrales; vive en un inventario perpetuo y preciso.
+                Un motor digital diseñado para crecer con tu negocio. Tecnología probada que se adapta a cualquier operación de almacenaje.
               </p>
             </div>
 
@@ -24,18 +24,18 @@ export default function QRStock() {
               {[
                 {
                   number: "01",
-                  title: "QR Único por Producto",
-                  desc: "Cada pallet o caja tiene su propia identidad digital inmutable."
+                  title: "Gestión por QR",
+                  desc: "Identificación única de cada producto mediante códigos QR para trazabilidad total."
                 },
                 {
                   number: "02",
-                  title: "Escaneo en Tiempo Real",
-                  desc: "Cualquier operario con un smartphone se convierte en un sensor de datos."
+                  title: "Escalabilidad Sin Límites",
+                  desc: "Sistema que crece contigo sin restricciones de capacidad o complejidad."
                 },
                 {
                   number: "03",
-                  title: "Registro de Movimientos",
-                  desc: "Logs automáticos de entrada, salida y ubicación interna sin errores."
+                  title: "Flexibilidad Operativa",
+                  desc: "Se adapta a cualquier tipo de almacén, producto o proceso de gestión."
                 }
               ].map((feat, idx) => (
                 <div key={idx} className="flex gap-6 items-start">

@@ -22,26 +22,27 @@ export default function AIEngine() {
                   bolt
                 </span>
                 <span className="text-xs font-label uppercase tracking-widest text-primary-container">
-                  AI Engine Enabled
+                  Motor AI
                 </span>
               </div>
 
               {/* Headline */}
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface leading-tight break-words">
-                Encuentra productos similares automáticamente.
+                Funcionalidades avanzadas.
               </h2>
 
               {/* Description */}
               <p className="text-lg sm:text-xl text-on-surface-variant break-words">
-                ¿Stock agotado de una referencia? Nuestro motor de IA sugiere variantes y productos similares basados en características técnicas para que nunca pierdas una venta.
+                Inteligencia artificial que analiza patrones de consumo, optimiza stock y genera recomendaciones inteligentes para maximizar tus ventas.
               </p>
 
               {/* Features List */}
               <ul className="space-y-4 text-on-surface-variant">
                 {[
-                  "Recomendaciones basadas en atributos",
-                  "Gestión inteligente de variantes",
-                  "Propuestas comerciales mejoradas"
+                  "Análisis predictivo de demanda",
+                  "Optimización automática de stock",
+                  "Recomendaciones inteligentes",
+                  "Detección de anomalías"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 min-w-0">
                     <span className="material-symbols-outlined text-primary-container text-sm">

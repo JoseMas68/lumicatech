@@ -23,14 +23,14 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 className="text-5xl md:text-7xl font-black font-headline leading-[0.9] tracking-tighter text-on-surface">
-            Gestión digital de <span className="text-primary-container">almacenes</span>.
+            Transformación digital de <span className="text-primary-container">almacenes</span>
           </h1>
 
           {/* Subtitle */}
           <div className="space-y-4">
             <h2 className="text-2xl font-label text-on-surface-variant font-light tracking-tight">Lumiware</h2>
             <p className="text-xl text-on-surface-variant max-w-md">
-              Convierte tu almacén en un sistema inteligente
+              La respuesta integral para la gestión eficiente de almacenes
             </p>
           </div>
 

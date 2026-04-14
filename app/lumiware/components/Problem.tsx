@@ -2,10 +2,10 @@
 
 export default function Problem() {
   const issues = [
-    { number: "ISSUE_01", title: "Excel & Procesos manuales lentos" },
-    { number: "ISSUE_02", title: "Catálogos obsoletos y desactualizados" },
-    { number: "ISSUE_03", title: "Nula visibilidad de stock real" },
-    { number: "ISSUE_04", title: "Alta tasa de error humano" }
+    { number: "ISSUE_01", title: "Operaciones manuales e ineficientes" },
+    { number: "ISSUE_02", title: "Errores humanos en la gestión" },
+    { number: "ISSUE_03", title: "Falta de visibilidad del stock" },
+    { number: "ISSUE_04", title: "Procesos lentos y obsoletos" }
   ];
 
   return (
@@ -34,15 +34,15 @@ export default function Problem() {
           {/* Right: Content */}
           <div className="order-1 md:order-2 space-y-6">
             <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tight">
-              La gestión de almacenes sigue siendo <span className="text-error">ineficiente</span>.
+              ¿Operas en un almacén <span className="text-error">ineficiente</span>?
             </h2>
             <p className="text-xl text-on-surface-variant leading-relaxed">
-              El almacén es el cuello de botella de tu empresa cuando carece de digitalización. Sin datos en tiempo real, las decisiones comerciales se basan en suposiciones, no en realidades.
+              Sin digitalización, tu almacén es un cuello de botella. Los procesos manuales generan errores, la falta de visibilidad del stock impide decisiones informadas, y las operaciones se vuelven lentas y costosas.
             </p>
             <div className="pt-4">
               <div className="flex items-center gap-4 text-error/80 font-label tracking-wide text-sm">
                 <span className="material-symbols-outlined">warning</span>
-                <span>SYSTEM_BOTTLENECK_DETECTED</span>
+                <span>WAREHOUSE_INEFFICIENCY_DETECTED</span>
               </div>
             </div>
           </div>

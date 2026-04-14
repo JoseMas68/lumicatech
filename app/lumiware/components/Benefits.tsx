@@ -3,24 +3,34 @@
 export default function Benefits() {
   const benefits = [
     {
-      icon: "speed",
-      title: "Velocidad Operativa",
-      description: "Reducción del 60% en el tiempo de registro y localización de mercancía."
+      icon: "error",
+      title: "Menos Errores",
+      description: "Reducción del 60% en errores humanos mediante automatización y validación de procesos."
     },
     {
       icon: "inventory_2",
-      title: "Control Total",
-      description: "Visibilidad 24/7 de existencias reales, m² disponibles y valor de stock."
+      title: "Stock Optimizado",
+      description: "Maximización del espacio de almacenamiento y reducción de stock obsoleto."
     },
     {
-      icon: "point_of_sale",
-      title: "Venta Ágil",
-      description: "Herramientas comerciales directas integradas con la realidad del almacén."
+      icon: "schedule",
+      title: "Ahorro de Tiempo",
+      description: "Ahorro del 40% en tiempo operativo gracias a la eliminación de procesos manuales."
     },
     {
       icon: "visibility",
-      title: "Sin Puntos Ciegos",
-      description: "Trazabilidad de cada producto desde que entra hasta que se factura."
+      title: "Visibilidad Total",
+      description: "Conocimiento exacto del stock en tiempo real, ubicación y estado de cada producto."
+    },
+    {
+      icon: "insights",
+      title: "Decisiones Informadas",
+      description: "Toma de decisiones basada en datos reales y analytics avanzado."
+    },
+    {
+      icon: "trending_up",
+      title: "Escalabilidad",
+      description: "Sistema que crece con tu negocio sin límites de capacidad."
     }
   ];
 
@@ -35,7 +45,7 @@ export default function Benefits() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-outline-variant/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-outline-variant/10">
           {benefits.map((benefit, idx) => (
             <div
               key={idx}
