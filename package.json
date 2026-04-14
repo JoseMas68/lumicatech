@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:migrate": "ts-node scripts/start-with-migrations.ts",
     "lint": "eslint",
     "db:migrate": "ts-node scripts/migrate-to-postgres.ts",
     "db:test": "ts-node -e \"import('./src/lib/db').then(m => m.testConnection())\"",
