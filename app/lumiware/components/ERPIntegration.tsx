@@ -100,7 +100,7 @@ export default function ERPIntegration() {
             <div className="relative rounded-3xl overflow-hidden p-2 bg-gradient-to-br from-white/10 to-transparent shadow-2xl backdrop-blur">
               <div className="relative rounded-[20px] overflow-hidden bg-black border border-white/10 aspect-[4/3]">
                 <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda8e89f0d?w=800&q=80"
+                  src="https://lumicatech.b-cdn.net/LumiwareImages/business-team-analyzing-income-charts-and-graphs-w-2026-01-05-00-21-33-utc.webp"
                   alt="Dashboard de ERP"
                   className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
                 />
