@@ -65,7 +65,7 @@ export default function AdaptableTool() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl shadow-blue-500/10">
               <div className="aspect-[4/3] relative">
                 <img
-                  src="https://images.unsplash.com/photo-1551288049-beebdedf1c9ee8?w=800&q=80"
+                  src="https://lumicatech.b-cdn.net/LumiwareImages/trabando%20en%20lumiware.webp"
                   alt="Trabajador usando ordenador en almacén"
                   className="w-full h-full object-cover"
                 />
