@@ -22,13 +22,13 @@ export default function HeroSection() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-10 backdrop-blur-md"
+            className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 mb-10 backdrop-blur-md"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-container opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-cyan-600 dark:text-cyan-400 font-bold">Estándar de calidad 2026</span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary dark:text-primary-container font-bold">Estándar de calidad 2026</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -39,7 +39,7 @@ export default function HeroSection() {
             className="text-5xl md:text-7xl lg:text-[5.5rem] font-headline font-black tracking-tighter text-black dark:text-white leading-[1.05] mb-8"
           >
             Software que <br className="hidden md:block" />
-            <span className="text-cyan-600 dark:text-cyan-400 font-bold italic">soluciona</span> problemas
+            <span className="text-gradient-primary font-bold italic">soluciona</span> problemas
           </motion.h1>
 
           {/* Subtitle */}
@@ -61,7 +61,7 @@ export default function HeroSection() {
           >
             <Link 
               href="/booking"
-              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black px-8 py-4 font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(0,229,255,0.3)]"
             >
               <span>Solicitar un diagnóstico</span>
               <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,7 +70,7 @@ export default function HeroSection() {
             </Link>
             <Link 
               href="#projects"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold tracking-tight text-cyan-600 dark:text-cyan-400 border border-cyan-500/30 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 transition-all active:scale-95"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold tracking-tight text-primary dark:text-primary-container border border-primary/30 hover:bg-primary/5 dark:hover:bg-primary-container/10 transition-all active:scale-95"
             >
               Ver ecosistema
             </Link>
