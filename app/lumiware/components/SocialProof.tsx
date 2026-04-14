@@ -5,7 +5,7 @@ import AnimatedCounter from './AnimatedCounter';
 
 export default function SocialProof() {
   const stats = [
-    { end: 500, suffix: "+", decimals: 0, label: "Almacenes digitalizados" },
+    { end: 20, suffix: "+", decimals: 0, label: "Proyectos en marcha" },
     { end: 23, suffix: "%", decimals: 0, label: "Ahorro medio en costes" },
     { end: 47, suffix: "s", decimals: 0, label: "Tiempo medio de escaneo" },
     { end: 99.9, suffix: "%", decimals: 1, label: "Uptime garantizado" }
