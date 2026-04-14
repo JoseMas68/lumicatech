@@ -1,54 +1,82 @@
 'use client';
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-surface-container-lowest">
-      {/* Background Grid */}
-      <div className="absolute inset-0 technical-grid pointer-events-none"></div>
+    <section className="relative min-h-[92vh] flex items-center pt-24 pb-16 overflow-hidden bg-white dark:bg-[#050505] transition-colors duration-500">
+      
+      {/* Background Grid - Minimalist */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
 
-      {/* Glow Effect */}
-      <div className="absolute inset-0 hero-glow pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-8 w-full relative z-10">
-        <div className="max-w-3xl">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10 flex flex-col items-center text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="max-w-4xl flex flex-col items-center"
+        >
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-variant/30 border border-outline-variant/15 mb-8">
-            <span className="material-symbols-outlined text-primary-container text-sm">terminal</span>
-            <span className="font-label text-xs uppercase tracking-[0.2em] text-on-surface-variant">Standard 2026</span>
-          </div>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 mb-10 backdrop-blur-md"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-400 dark:bg-slate-300 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-slate-500 dark:bg-slate-400"></span>
+            </span>
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-slate-600 dark:text-slate-300 font-bold">Estándar de calidad 2026</span>
+          </motion.div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl md:text-7xl font-headline font-extrabold tracking-tighter text-on-surface leading-[1.05] mb-8">
-            Aplicaciones que <span className="text-gradient-primary">solucionan</span> problemas
-          </h1>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+            className="text-5xl md:text-7xl lg:text-[5.5rem] font-headline font-black tracking-tighter text-black dark:text-white leading-[1.05] mb-8"
+          >
+            Software que <br className="hidden md:block" />
+            <span className="text-slate-400 dark:text-slate-500 font-light italic">soluciona</span> problemas
+          </motion.h1>
 
           {/* Subtitle */}
-          <p className="text-xl text-on-surface-variant leading-relaxed max-w-2xl mb-12">
-            Diseñamos y desarrollamos sistemas, aplicaciones y soluciones tecnológicas que optimizan procesos y generan crecimiento real.
-          </p>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-xl md:text-2xl text-slate-600 dark:text-slate-300/80 leading-relaxed max-w-2xl mb-12 font-light"
+          >
+            Diseñamos y desarrollamos soluciones tecnológicas de alto rendimiento que optimizan procesos y escalan tu negocio.
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          >
             <Link 
               href="/booking"
-              className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-8 py-4 rounded-lg text-base font-bold tracking-tight transition-all duration-200 hover:shadow-[0_0_20px_rgba(156,240,255,0.3)] hover:opacity-95 active:scale-95 inline-block"
+              className="w-full sm:w-auto group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-black dark:bg-white text-white dark:text-black px-8 py-4 font-bold tracking-tight transition-all hover:scale-[1.02] active:scale-95 shadow-[0_0_20px_rgba(0,0,0,0.1)] dark:shadow-[0_0_20px_rgba(255,255,255,0.1)]"
             >
-              Solicitar diagnóstico
+              <span>Solicitar un diagnóstico</span>
+              <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
             </Link>
             <Link 
-              href="#proyectos"
-              className="px-8 py-4 rounded-lg text-base font-bold tracking-tight text-primary border border-outline-variant/30 hover:bg-surface-container-highest transition-all inline-block"
+              href="#projects"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold tracking-tight text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 transition-all active:scale-95"
             >
-              Ver proyectos
+              Ver ecosistema
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
-
-      {/* Floating Decorative Element */}
-      <div className="absolute right-[-10%] top-[20%] hidden lg:block w-[600px] h-[600px] rounded-full border border-primary-container/10 bg-gradient-to-br from-primary-container/5 to-transparent blur-3xl"></div>
     </section>
   );
 }

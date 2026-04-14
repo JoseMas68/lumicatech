@@ -1,37 +1,55 @@
 'use client';
 
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function ServicesSection() {
   return (
-    <section className="py-32 bg-surface text-center overflow-hidden relative">
-      <div className="max-w-4xl mx-auto px-8 relative z-10">
-        <h2 className="text-4xl md:text-6xl font-headline font-extrabold text-on-surface mb-8 tracking-tighter leading-tight">
+    <section className="py-32 bg-slate-50 dark:bg-[#0a0a0a] text-center overflow-hidden relative transition-colors duration-500">
+      <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-6xl font-headline font-black text-black dark:text-white mb-8 tracking-tighter leading-tight"
+        >
           Listos para transformar tu empresa
-        </h2>
-        <p className="text-xl text-on-surface-variant mb-12 max-w-2xl mx-auto">
-          Contacta con nosotros y descubre cómo nuestras soluciones tecnológicas pueden optimizar tus procesos y escalar tu negocio.
-        </p>
+        </motion.h2>
+        
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto font-light"
+        >
+          Contacta con nosotros y descubre cómo nuestra infraestructura tecnológica puede optimizar tus procesos operativos.
+        </motion.p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row justify-center gap-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="flex flex-col sm:flex-row justify-center gap-4"
+        >
           <Link 
             href="/booking"
-            className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-10 py-5 rounded-lg text-lg font-bold tracking-tight hover:shadow-[0_0_40px_rgba(156,240,255,0.4)] transition-all active:scale-95 inline-block"
+            className="group relative bg-black dark:bg-white text-white dark:text-black px-10 py-5 rounded-xl text-lg font-bold tracking-tight hover:shadow-[0_0_30px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all active:scale-95 inline-flex items-center justify-center gap-2"
           >
-            Solicitar diagnóstico
+            Acelerar ahora
+            <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </Link>
-          <Link 
-            href="#proyectos"
-            className="px-10 py-5 rounded-lg text-lg font-bold tracking-tight text-on-surface border border-outline-variant/30 hover:bg-surface-container transition-all inline-block"
-          >
-            Ver proyectos
-          </Link>
-        </div>
+        </motion.div>
       </div>
 
-      {/* Background Glow */}
-      <div className="absolute bottom-[-20%] left-1/2 -translate-x-1/2 w-full h-[500px] bg-primary-container/10 blur-[120px] rounded-full pointer-events-none"></div>
+      {/* Subtle Background Elements */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-black/5 dark:border-white/5 rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-black/5 dark:border-white/5 rounded-full pointer-events-none"></div>
     </section>
   );
 }

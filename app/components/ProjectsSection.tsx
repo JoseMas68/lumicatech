@@ -1,96 +1,99 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function ProjectsSection() {
   const projects = [
     {
-      category: "Logística & ERP",
-      icon: "inventory_2",
+      category: "SaaS / Logística",
       title: "Lumiware",
-      description: "Sistema de gestión de almacén: Optimización de inventarios y pedidos internos con códigos QR y catálogos automáticos.",
-      tech: ["Next.js", "PostgreSQL", "Real-time Analytics", "Integración ERP"],
-      color: "from-primary"
+      description: "Sistema de gestión de almacén. Optimización de inventarios y pedidos con tecnología móvil de escaneo.",
+      tech: ["Next.js", "PostgreSQL", "Real-time", "Movilidad"],
+      link: "/lumiware"
     },
     {
-      category: "optimización de procesos",
-      icon: "settings_suggest",
-      title: "Eficiencia Operativa",
-      description: "Aumento de la comunicación y colaboración entre equipos mediante procesos inteligentes.",
-      tech: [ "Node.js", "Multidispositivo", "Integración API"],
-      color: "from-primary"
+      category: "Gestión & Reservas",
+      title: "Delta Caravan",
+      description: "Ecosistema integral para gestión de flotas y reservas de vehículos de recreo con panel de control avanzado.",
+      tech: ["Plataforma Base", "Gestor Documental", "Pasarela Pagos"],
+      link: "/en-construccion"
+    },
+    {
+      category: "Sector Restauración",
+      title: "FoodZinder",
+      description: "Digitalización premium corporativa para restaurantes y franquicias gastronómicas orientadas al alto nivel.",
+      tech: ["Punto de Venta", "QR Dinámicos", "App Cliente"],
+      link: "/en-construccion"
     }
   ];
 
   return (
-    <section id="projects" className="py-32 bg-surface">
-      <div className="max-w-7xl mx-auto px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div className="max-w-xl">
-            <h2 className="text-3xl font-headline font-bold text-on-surface mb-4">
-              Proyectos destacados
+    <section id="projects" className="py-32 bg-slate-50 dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-slate-200 dark:border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"
+        >
+          <div className="max-w-2xl">
+            <h2 className="text-4xl md:text-5xl font-headline font-black text-black dark:text-white tracking-tight mb-6">
+              El ecosistema.
             </h2>
-            <div className="h-1 w-12 bg-primary-container mb-6"></div>
+            <p className="text-xl text-slate-500 dark:text-slate-400 font-light">
+              Desarrollamos infraestructura digital especializada. Estos son algunos de los motores que construimos.
+            </p>
           </div>
-          <div className="font-label text-on-surface-variant tracking-widest uppercase text-xs">
-            Case Studies / 2026
-          </div>
-        </div>
+        </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="group relative bg-surface-container-low p-8 md:p-12 transition-all duration-500 hover:bg-surface-container-high card-glow-hover overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              className="group relative bg-white dark:bg-white/5 p-8 lg:p-10 rounded-2xl border border-slate-200 dark:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/5 dark:hover:shadow-white/5 overflow-hidden flex flex-col items-start backdrop-blur-sm"
             >
-              {/* Icon Background */}
-              <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="material-symbols-outlined text-6xl text-primary-container">
-                  {project.icon}
-                </span>
+              <span className="font-mono text-xs text-slate-500 dark:text-slate-400 tracking-widest uppercase mb-6 block">
+                {String(idx + 1).padStart(2, '0')} // {project.category}
+              </span>
+
+              <h3 className="text-3xl font-headline font-bold text-black dark:text-white mb-4">
+                {project.title}
+              </h3>
+
+              <p className="text-slate-600 dark:text-slate-300 font-light leading-relaxed mb-8 flex-grow">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-10 mt-auto">
+                {project.tech.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="text-[11px] px-3 py-1.5 bg-slate-100 dark:bg-black/50 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 rounded font-mono"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
 
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Category Badge */}
-                <span className="font-label text-xs text-primary-container tracking-widest uppercase mb-4 block">
-                  {project.category}
-                </span>
-
-                {/* Title */}
-                <h3 className="text-3xl font-headline font-bold text-on-surface mb-4">
-                  {project.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-on-surface-variant text-lg leading-relaxed mb-8">
-                  {project.description}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1.5 bg-surface-container border border-outline-variant/30 text-on-surface-variant rounded font-label"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Link */}
-                <Link
-                  href={idx === 0 ? "/lumiware" : "/en-construccion"}
-                  className="inline-flex items-center gap-2 text-on-surface font-bold hover:text-primary-container transition-colors"
-                >
-                  Ver detalles
-                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                </Link>
-              </div>
-            </div>
+              <Link
+                href={project.link}
+                className="inline-flex items-center gap-2 text-black dark:text-white font-bold text-sm tracking-wide group-hover:gap-4 transition-all"
+              >
+                Explorar proyecto
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
