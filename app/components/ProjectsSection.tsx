@@ -22,7 +22,7 @@ export default function ProjectsSection() {
   ];
 
   return (
-    <section id="projects" className="py-32 bg-slate-50 dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-slate-200 dark:border-white/5">
+    <section id="projects" className="py-20 md:py-32 bg-slate-50 dark:bg-[#0a0a0a] transition-colors duration-500 border-t border-slate-200 dark:border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         
         {/* Header */}

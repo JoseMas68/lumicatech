@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function ServicesSection() {
   return (
-    <section className="py-32 bg-slate-50 dark:bg-[#0a0a0a] text-center overflow-hidden relative transition-colors duration-500">
+    <section className="py-20 md:py-32 bg-slate-50 dark:bg-[#0a0a0a] text-center overflow-hidden relative transition-colors duration-500">
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-28 px-6 bg-white dark:bg-[#050505] transition-colors duration-500 border-t border-slate-200 dark:border-white/10">
+    <section id="contact" className="py-16 md:py-28 px-6 bg-white dark:bg-[#050505] transition-colors duration-500 border-t border-slate-200 dark:border-white/10">
       <div className="max-w-4xl mx-auto text-center">
         <p className="text-primary font-mono font-bold uppercase tracking-widest text-xs mb-6">
           Contacto
