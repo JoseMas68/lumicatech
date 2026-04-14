@@ -66,9 +66,9 @@ export default function Solution() {
             transition={{ duration: 0.8 }}
             className="space-y-12"
           >
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-6 font-headline leading-tight">
+            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
               <span className="font-bold text-cyan-400">LUMIWARE</span> digitaliza el inventario mediante códigos QR y una interfaz simple que permite acceder a toda la información del producto en segundos.
-            </h2>
+            </p>
 
             {/* Features List */}
             <div className="space-y-8">
