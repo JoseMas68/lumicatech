@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>LumicaTech</ShortName>
+  <Description>Software a Medida en Castellón - Desarrollo de aplicaciones web</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/png">/favicon-16x16.png</Image>
+  <Image width="32" height="32" type="image/png">/favicon-32x32.png</Image>
+  <Url type="text/html" method="get" template="https://lumicatech.es/search?q={searchTerms}"/>
+  <LongName>LumicaTech - Desarrollo de Software</LongName>
+  <Developer>LumicaTech</Developer>
+  <Attribution>© 2024 LumicaTech</Attribution>
+  <SyndicationRight>© 2024 LumicaTech</SyndicationRight>
+  <AdultContent>false</AdultContent>
+  <Language>es-es</Language>
+  <OutputEncoding>UTF-8</OutputEncoding>
+  <Queries>
+    <Context prefix="software">Búsqueda de software</Context>
+  </Queries>
+</OpenSearchDescription>

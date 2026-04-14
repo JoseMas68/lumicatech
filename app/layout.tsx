@@ -58,11 +58,45 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        {/* Favicon */}
+        {/* Favicon - Todas las variantes para máxima compatibilidad */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
+        <link rel="icon" href="/icon-512.png" sizes="512x512" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
+        <link rel="apple-touch-icon" sizes="167x167" href="/apple-touch-icon-167.png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
+        <link rel="apple-touch-icon" sizes="128x128" href="/icon-128.png" />
+
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#135bec" />
+
+        {/* OpenGraph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/icon-512.png" />
+        <meta property="og:image:width" content="512" />
+        <meta property="og:image:height" content="512" />
+
+        {/* Twitter */}
+        <meta name="twitter:image" content="/icon-512.png" />
+
+        {/* Android Chrome */}
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="LumicaTech" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192.png" />
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512.png" />
+
+        {/* iOS Safari */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="LumiTech" />
+
+        {/* OpenSearch */}
+        <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="LumicaTech" />
 
         <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
         <link
