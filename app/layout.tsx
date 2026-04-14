@@ -61,15 +61,13 @@ export default function RootLayout({
         {/* Favicon - Todas las variantes para máxima compatibilidad */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
         <link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png" />
         <link rel="icon" href="/icon-512.png" sizes="512x512" type="image/png" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/apple-touch-icon-167.png" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144.png" />
-        <link rel="apple-touch-icon" sizes="128x128" href="/icon-128.png" />
 
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
