@@ -5,7 +5,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const SEO_CONFIG_PATH = path.join(process.cwd(), 'seo-config.json');
+const SEO_CONFIG_PATH = path.join(process.cwd(), 'data', 'seo-config.json');
 
 export interface SeoPageConfig {
   path: string;
