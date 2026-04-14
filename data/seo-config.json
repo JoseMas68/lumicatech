@@ -1,0 +1,73 @@
+{
+  "siteName": "LumicaTech",
+  "siteUrl": "https://lumicatech.es",
+  "defaultOgImage": "/og-image.png",
+  "googleVerificationCode": "",
+  "pages": [
+    {
+      "path": "/",
+      "title": "LumicaTech | Software a Medida y Desarrollo de Aplicaciones en Castellón",
+      "description": "Desarrollamos software a medida para empresas en Castellón y Valencia. Aplicaciones web, sistemas de gestión, integración ERP y soluciones cloud.",
+      "keywords": [
+        "software a medida",
+        "desarrollo software",
+        "Castellón",
+        "Valencia"
+      ],
+      "noIndex": false,
+      "lastModified": "2026-04-14T16:57:07.224Z"
+    },
+    {
+      "path": "/servicios/software-a-medida",
+      "title": "Software a Medida en Castellón | Desarrollo de Aplicaciones Personalizadas",
+      "description": "Desarrollamos software a medida para empresas en Castellón y Valencia. Aplicaciones web, sistemas de gestión, integración ERP y soluciones cloud.",
+      "keywords": [
+        "software a medida Castellón",
+        "desarrollo software Valencia",
+        "aplicaciones web"
+      ],
+      "noIndex": false,
+      "lastModified": "2026-04-14T16:57:07.260Z"
+    },
+    {
+      "path": "/lumiware",
+      "title": "Lumiware | Software de Gestión de Almacenes con QR",
+      "description": "Lumiware es un software de gestión de almacenes con códigos QR, control de stock en tiempo real y generación automática de catálogos.",
+      "keywords": [
+        "software almacén",
+        "WMS",
+        "control stock",
+        "QR",
+        "gestión almacén"
+      ],
+      "noIndex": false,
+      "lastModified": "2026-04-14T16:57:07.260Z"
+    },
+    {
+      "path": "/booking",
+      "title": "Solicitar Diagnóstico Gratuito | LumicaTech",
+      "description": "Agenda una consultoría gratuita con LumicaTech. Analizamos tus necesidades y te proponemos la mejor solución tecnológica para tu empresa.",
+      "keywords": [
+        "consultoría tecnológica",
+        "presupuesto software",
+        "diagnóstico gratuito"
+      ],
+      "noIndex": false,
+      "lastModified": "2026-04-14T16:57:07.260Z"
+    }
+  ],
+  "globalKeywords": [
+    "software a medida",
+    "desarrollo software",
+    "aplicaciones web",
+    "Castellón",
+    "Valencia",
+    "ERP",
+    "cloud",
+    "LumicaTech"
+  ],
+  "socialLinks": {
+    "linkedin": "https://linkedin.com/company/lumicatech",
+    "twitter": "https://twitter.com/lumicatech"
+  }
+}
