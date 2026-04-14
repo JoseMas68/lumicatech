@@ -5,6 +5,7 @@ import HeroSection from './components/HeroSection';
 import ProjectsSection from './components/ProjectsSection';
 import ServicesSection from './components/ServicesSection';
 import ApproachSection from './components/ApproachSection';
+import CTASection from './components/CTASection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
@@ -17,6 +18,7 @@ export default function Home() {
         <ProjectsSection />
         <ServicesSection />
         <ApproachSection />
+        <CTASection />
         <ContactSection />
       </main>
       <Footer />
