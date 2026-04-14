@@ -18,7 +18,7 @@ export async function GET() {
     return NextResponse.json({ error: "No autorizado" }, { status: 401 });
   }
 
-  const config = getAvailabilityConfig();
+  const config = await getAvailabilityConfig();
   return NextResponse.json(config);
 }
 
@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Formato de configuración inválido" }, { status: 400 });
     }
 
-    saveAvailabilityConfig(config);
+    await saveAvailabilityConfig(config);
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('[CONFIG] Error saving availability:', error);

@@ -82,7 +82,7 @@ export async function createCalendarEvent(booking: BookingDetails): Promise<{
 }
 
 export async function getAvailableSlots(date: string): Promise<string[]> {
-  const config = getAvailabilityConfig();
+  const config = await getAvailabilityConfig();
 
   // Los slots disponibles para este día los define el admin
   const configuredSlots = config.slots[date] ?? [];

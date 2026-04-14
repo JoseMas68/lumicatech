@@ -18,7 +18,8 @@ export async function runMigrations() {
 
     // Leer todas las migraciones
     const migrations = [
-      '001_create_bookings_table'
+      '001_create_bookings_table',
+      '002_create_availability_table'
     ];
 
     // Ejecutar cada migración si no se ha ejecutado
@@ -59,22 +60,34 @@ export async function runMigrations() {
           await pool.query('CREATE INDEX IF NOT EXISTS idx_bookings_email ON bookings(email)');
           await pool.query('CREATE INDEX IF NOT EXISTS idx_bookings_created_at ON bookings(created_at)');
 
-          // Crear tabla de availability_config
+          // Marcar migración como ejecutada
+          await pool.query(
+            'INSERT INTO schema_migrations (migration_name) VALUES ($1)',
+            [migration]
+          );
+
+          console.log(`✅ Migración ${migration} completada`);
+        } else if (migration === '002_create_availability_table') {
+          // Crear tabla de disponibilidad
           await pool.query(`
             CREATE TABLE IF NOT EXISTS availability_config (
               id SERIAL PRIMARY KEY,
-              config JSONB NOT NULL DEFAULT '{}',
-              created_at TEXT DEFAULT NOW(),
-              updated_at TEXT DEFAULT NOW()
+              meeting_duration INTEGER NOT NULL DEFAULT 60,
+              slots JSONB NOT NULL DEFAULT '{}',
+              updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
           `);
 
-          // Insertar configuración inicial
+          // Insertar configuración por defecto si no existe
           await pool.query(`
-            INSERT INTO availability_config (config)
-            VALUES ('{}')
+            INSERT INTO availability_config (meeting_duration, slots)
+            VALUES (60, '{}')
             ON CONFLICT DO NOTHING
           `);
+
+          // Crear índice
+          await pool.query('CREATE INDEX IF NOT EXISTS idx_availability_config_updated ON availability_config(updated_at)');
 
           // Marcar migración como ejecutada
           await pool.query(
@@ -105,7 +118,7 @@ export async function checkMigrations(): Promise<boolean> {
   try {
     const result = await pool.query(
       'SELECT * FROM schema_migrations WHERE migration_name = $1',
-      ['001_create_bookings_table']
+      ['002_create_availability_table']
     );
     return result.rows.length > 0;
   } catch {
