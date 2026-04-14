@@ -101,7 +101,7 @@ export default function ApproachSection() {
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
                 className={`bg-slate-50 dark:bg-white/5 p-8 lg:p-10 rounded-2xl border border-slate-200 dark:border-white/10 hover:bg-slate-100 dark:hover:bg-primary/10 hover:border-primary/40 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-xl hover:shadow-primary/10 group ${idx === 1 || idx === 3 ? 'sm:mt-8' : ''}`}
               >
-                <div className="w-14 h-14 rounded-xl bg-white/80 dark:bg-white/5 flex items-center justify-center mb-8 text-primary border border-slate-100 dark:border-white/10 group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-300 shadow-sm">
+                <div className="w-14 h-14 rounded-xl bg-white/80 dark:bg-white/5 flex items-center justify-center mb-8 text-primary border border-slate-100 dark:border-white/10 group-hover:bg-primary group-hover:text-white dark:group-hover:text-[#050505] group-hover:scale-110 transition-all duration-300 shadow-sm">
                   <span
                     className="material-symbols-outlined text-2xl font-light"
                     style={{ fontVariationSettings: "'FILL' 0" }}
