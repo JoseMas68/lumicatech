@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Save, Check, X } from "lucide-react";
 import { AvailabilityConfig } from "@/src/lib/availability-config";
 
@@ -37,6 +37,22 @@ export default function ScheduleConfig({ initialConfig }: Props) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+
+  // Recargar configuración desde el servidor cuando el componente se monta
+  useEffect(() => {
+    async function loadConfig() {
+      try {
+        const response = await fetch("/api/admin/config");
+        if (response.ok) {
+          const serverConfig = await response.json();
+          setConfig(serverConfig);
+        }
+      } catch (error) {
+        console.error("Error loading config:", error);
+      }
+    }
+    loadConfig();
+  }, []);
 
   const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
   const firstDay = firstWeekday(calYear, calMonth);
