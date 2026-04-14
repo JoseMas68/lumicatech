@@ -5,6 +5,10 @@ import Footer from '../components/Footer';
 import Hero from './components/Hero';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
+import HowItWorks from './components/HowItWorks';
+import AutomaticCatalogs from './components/AutomaticCatalogs';
+import AdaptableTool from './components/AdaptableTool';
+import StockControl from './components/StockControl';
 import QRStock from './components/QRStock';
 import AnalyticsEngine from './components/AnalyticsEngine';
 import CommercialEngine from './components/CommercialEngine';
@@ -21,6 +25,10 @@ export default function LumiwarePage() {
         <Hero />
         <Problem />
         <Solution />
+        <HowItWorks />
+        <AutomaticCatalogs />
+        <AdaptableTool />
+        <StockControl />
         <QRStock />
         <AnalyticsEngine />
         <CommercialEngine />

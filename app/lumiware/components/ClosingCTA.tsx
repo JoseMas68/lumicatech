@@ -23,22 +23,22 @@ export default function ClosingCTA() {
 
           {/* Main Headline */}
           <h2 className="text-5xl md:text-6xl font-black font-headline tracking-tighter text-on-surface mb-6 relative z-10">
-            Digitaliza tu <span className="text-gradient-primary">almacén</span> hoy.
+            Digitaliza tu <span className="text-primary-container">almacén</span>
           </h2>
 
           {/* Description */}
           <p className="text-xl text-on-surface-variant mb-12 leading-relaxed max-w-2xl mx-auto relative z-10">
-            Lumiware transforma la gestión de inventario en un proceso ágil, visual y altamente eficiente. Empieza a optimizar tu flujo de trabajo de la mano de expertos.
+            LUMIWARE transforma la gestión del inventario en un proceso ágil, visual y conectado con la realidad del negocio.
           </p>
 
           {/* CTA Button */}
           <div className="flex justify-center relative z-10">
-            <Link 
-              href="/booking" 
+            <Link
+              href="/booking"
               className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container border border-current px-10 py-5 rounded-xl font-bold text-lg hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all duration-300 hover:opacity-95 active:scale-95 flex items-center gap-3"
             >
-              Solicitar diagnóstico
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+              Pide tu cita
+              <span className="material-symbols-outlined text-sm">calendar_month</span>
             </Link>
           </div>
 

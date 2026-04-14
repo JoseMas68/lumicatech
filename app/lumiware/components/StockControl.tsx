@@ -1,39 +1,39 @@
 'use client';
 
-export default function AIEngine() {
-  const aiFeatures = [
+export default function StockControl() {
+  const stockFeatures = [
     {
-      icon: "lightbulb",
-      title: "Recomendaciones similares",
-      description: "La IA sugiere productos de características equivalentes o complementarias."
+      icon: "qr_code_scanner",
+      title: "Registro de movimientos 100% digital",
+      description: "Digitaliza tus salidas, automatiza tu éxito. Ofrece a tus clientes la libertad de autogestionar."
     },
     {
-      icon: "category",
-      title: "Variantes de la misma gama",
-      description: "Localiza alternativas dentro del catálogo propio de forma instantánea."
+      icon: "sync",
+      title: "Actualización automática",
+      description: "El stock se ajusta en tiempo real con cada operación. Siempre sabes lo que tienes."
     },
     {
-      icon: "trending_up",
-      title: "Mejora de propuestas comerciales",
-      description: "El equipo de ventas trabaja con más información y más rapidez."
+      icon: "history",
+      title: "Trazabilidad de movimientos",
+      description: "Historial completo de quién movió qué y cuándo. Documentos y movimientos vinculados."
     }
   ];
 
-  const budgetFeatures = [
+  const documentFeatures = [
     {
-      icon: "shopping_cart",
-      title: "Selección desde catálogo",
-      description: "El cliente registrado o un comercial selecciona productos directamente del inventario actualizado."
+      icon: "receipt_long",
+      title: "Generación de pedidos y albaranes",
+      description: "Crea pedidos y/o albaranes directamente desde el inventario escaneado, sin reescribir datos."
     },
     {
-      icon: "check_circle",
-      title: "Validación de disponibilidad",
-      description: "El sistema confirma que cada producto presupuestado existe en stock."
+      icon: "request_quote",
+      title: "Facturación asociada",
+      description: "Vincula la factura al albarán de forma automática y coherente."
     },
     {
-      icon: "verified",
-      title: "Sin errores comerciales",
-      description: "Elimina propuestas con productos agotados o descatalogados."
+      icon: "save",
+      title: "Registro automático en el sistema",
+      description: "Todo queda guardado sin intervención manual adicional. De producto a albarán en segundos."
     }
   ];
 
@@ -43,19 +43,24 @@ export default function AIEngine() {
         {/* Section Header */}
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter mb-6">
-            Inteligencia Artificial
+            Control de Stock
           </h2>
           <p className="text-2xl text-on-surface-variant leading-relaxed font-medium">
-            Encuentra productos similares <span className="text-primary-container">automáticamente</span>
+            Inventario siempre <span className="text-primary-container">actualizado</span>
           </p>
         </div>
 
         {/* Two Groups */}
         <div className="space-y-16">
-          {/* Group 1: AI Features */}
+          {/* Group 1: Stock Features */}
           <div>
+            <div className="mb-8">
+              <h3 className="text-2xl font-bold text-on-surface mb-6">
+                Digitaliza tus salidas, automatiza tu éxito
+              </h3>
+            </div>
             <div className="grid md:grid-cols-3 gap-6">
-              {aiFeatures.map((feature, idx) => (
+              {stockFeatures.map((feature, idx) => (
                 <div
                   key={idx}
                   className="bg-surface border border-outline-variant/10 rounded-xl p-6 hover:border-primary-container/30 transition-all duration-300"
@@ -76,21 +81,21 @@ export default function AIEngine() {
             </div>
           </div>
 
-          {/* Group 2: Smart Budgets */}
+          {/* Group 2: Documents */}
           <div>
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-on-surface mb-6">
-                Presupuestos Inteligentes
+                Documentos Comerciales
               </h3>
               <p className="text-xl text-primary-container font-medium">
-                Presupuestos basados en stock real
+                De producto a albarán en segundos
               </p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
-              {budgetFeatures.map((feature, idx) => (
+              {documentFeatures.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="bg-surface-container-lowest border border-outline-variant/10 rounded-xl p-6 hover:border-primary/30 transition-all duration-300"
+                  className="bg-surface-container-low border border-outline-variant/10 rounded-xl p-6 hover:border-primary/30 transition-all duration-300"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4 border border-primary/20">
                     <span className="material-symbols-outlined text-xl text-primary">
@@ -105,11 +110,6 @@ export default function AIEngine() {
                   </p>
                 </div>
               ))}
-            </div>
-            <div className="mt-6 text-center">
-              <p className="text-lg font-medium text-primary-container">
-                Vendes lo que realmente tienes.
-              </p>
             </div>
           </div>
         </div>
