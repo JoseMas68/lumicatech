@@ -25,7 +25,13 @@ export default function Header() {
     const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     const initialTheme = savedTheme || systemTheme;
     setTheme(initialTheme);
-    document.documentElement.classList.toggle('light', initialTheme === 'light');
+    if (initialTheme === 'light') {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
   // Forzar modo oscuro si estamos en Lumiware
@@ -33,6 +39,7 @@ export default function Header() {
     if (isLumiwarePage) {
       setTheme('dark');
       document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
     }
   }, [isLumiwarePage]);
 
@@ -46,7 +53,13 @@ export default function Header() {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('light', newTheme === 'light');
+    if (newTheme === 'light') {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    } else {
+      document.documentElement.classList.remove('light');
+      document.documentElement.classList.add('dark');
+    }
   };
 
   const logoSrc = theme === 'light'
