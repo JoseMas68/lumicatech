@@ -7,7 +7,7 @@ const pool = new Pool({
   database: process.env.PG_DATABASE || 'lumicatech',
   user: process.env.PG_USER || 'postgres',
   password: process.env.PG_PASSWORD,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  ssl: false, // Deshabilitar SSL para conexiones externas
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
