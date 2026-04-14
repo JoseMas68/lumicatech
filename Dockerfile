@@ -46,8 +46,8 @@ COPY --from=builder /app/.next/static ./.next/static
 # Crear directorio de data con permisos
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
 
-# Crear archivo seo-config.json con permisos si no existe
-RUN touch /app/data/seo-config.json && chown nextjs:nodejs /app/data/seo-config.json
+# Crear archivos de configuración con permisos si no existen
+RUN touch /app/data/seo-config.json /app/data/availability.json && chown nextjs:nodejs /app/data/*.json
 
 USER nextjs
 

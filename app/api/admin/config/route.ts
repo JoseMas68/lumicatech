@@ -34,13 +34,21 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Payload demasiado grande" }, { status: 413 });
   }
 
-  const config = await request.json();
+  try {
+    const config = await request.json();
 
-  // Validar que el config tenga la estructura esperada
-  if (!config || typeof config !== 'object') {
-    return NextResponse.json({ error: "Formato de configuración inválido" }, { status: 400 });
+    // Validar que el config tenga la estructura esperada
+    if (!config || typeof config !== 'object') {
+      return NextResponse.json({ error: "Formato de configuración inválido" }, { status: 400 });
+    }
+
+    saveAvailabilityConfig(config);
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('[CONFIG] Error saving availability:', error);
+    return NextResponse.json(
+      { error: "Error al guardar configuración", details: error instanceof Error ? error.message : 'Unknown error' },
+      { status: 500 }
+    );
   }
-
-  saveAvailabilityConfig(config);
-  return NextResponse.json({ success: true });
 }

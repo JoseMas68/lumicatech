@@ -21,9 +21,14 @@ export function getAvailabilityConfig(): AvailabilityConfig {
 }
 
 export function saveAvailabilityConfig(config: AvailabilityConfig): void {
-  const dir = path.dirname(CONFIG_PATH);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+  try {
+    const dir = path.dirname(CONFIG_PATH);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), "utf-8");
+  } catch (error) {
+    console.error('Error saving availability config:', error);
+    throw new Error(`Failed to save availability config: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
-  fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2), "utf-8");
 }
