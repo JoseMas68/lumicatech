@@ -44,7 +44,7 @@ export default function QRStock() {
                 </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-black font-headline mb-6 text-white leading-tight">
-                Escalable. Flexible. <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Tecnológico.</span>
+                Escalable. Flexible. <span className="text-cyan-400">Tecnológico.</span>
               </h2>
               <p className="text-slate-300 text-xl leading-relaxed font-light">
                 Un motor digital diseñado para crecer con tu negocio. Tecnología probada que se adapta a cualquier operación de almacenaje.

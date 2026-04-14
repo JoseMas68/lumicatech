@@ -60,7 +60,7 @@ export default function HowItWorks() {
           </h2>
           <div className="space-y-4">
             <p className="text-3xl text-slate-300 leading-relaxed font-light">
-              Toda la tienda en un <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">solo escaneo</span>
+              Toda la tienda en un <span className="font-bold text-cyan-400">solo escaneo</span>
             </p>
           </div>
         </motion.div>

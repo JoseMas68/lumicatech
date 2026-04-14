@@ -89,7 +89,7 @@ export default function CommercialEngine() {
                 </span>
               </div>
               <h2 className="text-4xl lg:text-5xl font-black font-headline text-white leading-tight">
-                Automatización de <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-500">ventas.</span>
+                Automatización de <span className="text-pink-400">ventas.</span>
               </h2>
               <p className="text-slate-300 leading-relaxed text-xl font-light">
                 Lumiware no es solo logística; es una herramienta comercial que conecta el almacén con las ventas. Automatiza catálogos, presupuestos y albaranes.

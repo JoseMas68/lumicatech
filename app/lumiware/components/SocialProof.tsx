@@ -27,7 +27,7 @@ export default function SocialProof() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className={`text-center ${idx !== 0 ? 'pl-8' : ''}`}
             >
-              <p className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-3 drop-shadow-[0_0_15px_rgba(0,196,217,0.3)]">
+              <p className="text-4xl md:text-5xl font-black text-cyan-400 mb-3 drop-shadow-[0_0_15px_rgba(0,196,217,0.3)]">
                 <AnimatedCounter end={stat.end} suffix={stat.suffix} decimals={stat.decimals} />
               </p>
               <p className="text-sm text-slate-400 font-label tracking-wide">

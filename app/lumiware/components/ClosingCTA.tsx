@@ -32,7 +32,7 @@ export default function ClosingCTA() {
 
           {/* Main Headline */}
           <h2 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-white mb-8 relative z-10 leading-tight">
-            Digitaliza tu <br className="hidden md:block" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]">almacén</span>
+            Digitaliza tu <br className="hidden md:block" /><span className="text-cyan-400 drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]">almacén</span>
           </h2>
 
           {/* Description */}

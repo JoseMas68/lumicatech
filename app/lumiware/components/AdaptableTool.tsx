@@ -48,7 +48,7 @@ export default function AdaptableTool() {
           className="mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-white mb-6">
-            La Herramienta que se Adapta a Ti <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">no al Revés</span>
+            La Herramienta que se Adapta a Ti <span className="text-blue-400">no al Revés</span>
           </h2>
         </motion.div>
 

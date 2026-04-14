@@ -80,7 +80,7 @@ export default function StockControl() {
             Control de Stock
           </h2>
           <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-            Inventario siempre <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400">actualizado</span>
+            Inventario siempre <span className="font-bold text-cyan-400">actualizado</span>
           </p>
         </motion.div>
 
@@ -134,7 +134,7 @@ export default function StockControl() {
               <h3 className="text-2xl md:text-3xl font-bold text-white">
                 Documentos Comerciales
               </h3>
-              <p className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+              <p className="text-xl font-medium text-blue-400">
                 De producto a albarán en segundos
               </p>
             </div>

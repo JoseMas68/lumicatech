@@ -34,7 +34,7 @@ export default function AnalyticsEngine() {
                 </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-black font-headline text-white leading-tight mb-6">
-                Inteligencia de <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500">datos.</span>
+                Inteligencia de <span className="text-emerald-400">datos.</span>
               </h2>
               <p className="text-slate-300 text-xl leading-relaxed font-light">
                 Convierte los datos de tu almacén en información estratégica. Analiza patrones, optimiza procesos y toma decisiones basadas en datos reales.

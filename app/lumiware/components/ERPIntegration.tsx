@@ -57,7 +57,7 @@ export default function ERPIntegration() {
                 </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-black font-headline text-white leading-tight mb-6">
-                Complemento para tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-indigo-500">ERP</span>
+                Complemento para tu <span className="text-sky-400">ERP</span>
               </h2>
               <p className="text-slate-300 text-xl leading-relaxed font-light">
                 <span className="font-bold text-white">LUMIWARE</span> no sustituye tu sistema de gestión actual. Se integra con él para añadir la capa de agilidad y usabilidad que le falta al almacén.

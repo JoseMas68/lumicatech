@@ -66,9 +66,9 @@ export default function Solution() {
             transition={{ duration: 0.8 }}
             className="space-y-12"
           >
-            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-              <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">LUMIWARE</span> digitaliza el inventario mediante códigos QR y una interfaz simple que permite acceder a toda la información del producto en segundos.
-            </p>
+            <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter mb-6 font-headline leading-tight">
+              <span className="font-bold text-cyan-400">LUMIWARE</span> digitaliza el inventario mediante códigos QR y una interfaz simple que permite acceder a toda la información del producto en segundos.
+            </h2>
 
             {/* Features List */}
             <div className="space-y-8">
@@ -85,9 +85,10 @@ export default function Solution() {
                     {feature.icon}
                   </div>
                   <div className="flex-1 pt-1">
-                    <h4 className="text-xl font-bold mb-2 text-white group-hover:text-cyan-50 transition-colors">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-cyan-50 transition-colors">
+                      <span className="font-mono text-cyan-400 mr-2 opacity-50">&gt;_</span>
                       {feature.title}
-                    </h4>
+                    </h3>
                     <p className="text-slate-400 leading-relaxed font-light">
                       {feature.description}
                     </p>
@@ -97,10 +98,10 @@ export default function Solution() {
             </div>
 
             {/* CTA Callout */}
-            <div className="pt-8 border-t border-white/10">
-              <p className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 inline-block">
-                Todo empieza con escanear un QR.
-              </p>
+            <div className="pt-8 border-t">
+                <p className="text-xl font-medium text-cyan-400 inline-block">
+                  Escanea para operar
+                </p>
             </div>
           </motion.div>
 

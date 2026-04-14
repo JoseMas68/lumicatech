@@ -80,7 +80,7 @@ export default function AIEngine() {
             Inteligencia Artificial
           </h2>
           <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-            Encuentra productos similares <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-fuchsia-400">automáticamente</span>
+            Encuentra productos similares <span className="font-bold text-violet-400">automáticamente</span>
           </p>
         </motion.div>
 
@@ -132,7 +132,7 @@ export default function AIEngine() {
               <h3 className="text-2xl md:text-3xl font-bold text-white">
                 Presupuestos Inteligentes
               </h3>
-              <p className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-orange-400">
+              <p className="text-xl font-medium text-amber-400">
                 Presupuestos basados en stock real
               </p>
             </div>

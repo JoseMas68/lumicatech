@@ -69,7 +69,7 @@ export default function Benefits() {
             Beneficios
           </h2>
           <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-            Qué cambia en tu empresa con <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">LUMIWARE</span>
+            Qué cambia en tu empresa con <span className="font-bold text-cyan-400">LUMIWARE</span>
           </p>
         </motion.div>
 

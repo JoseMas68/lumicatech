@@ -45,12 +45,9 @@ export default function Problem() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-6"
           >
-            <h2 className="text-xl md:text-2xl font-light tracking-widest text-[#f43f5e] uppercase">
-              El Problema
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-white font-headline leading-tight">
+              La gestión de almacenes sigue siendo <span className="text-rose-500">ineficiente</span>
             </h2>
-            <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-white">
-              La gestión de almacenes sigue siendo <span className="text-transparent bg-clip-text bg-gradient-to-r from-rose-500 to-orange-500">ineficiente</span>
-            </h3>
           </motion.div>
 
           {/* Issues Grid */}
@@ -120,9 +117,9 @@ export default function Problem() {
                 <p className="text-lg text-slate-300 leading-relaxed font-light">
                   ¿Sistemas que no se hablan entre sí? Eso es cosa del pasado. Unifica tus procesos, elimina el error humano y transforma tu almacén de un obstáculo en un motor de alta velocidad.
                 </p>
-                <div className="pt-6 border-t border-white/10 inline-block w-full">
-                  <p className="text-xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-400">
-                    Un almacén es un obstáculo si no se digitaliza.
+                <div className="pt-6 border-t border-white/10">
+                  <p className="text-xl font-medium text-rose-400">
+                    El resultado son costes invisibles.
                   </p>
                 </div>
               </div>
