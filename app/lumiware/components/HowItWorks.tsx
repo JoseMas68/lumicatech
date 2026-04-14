@@ -58,12 +58,9 @@ export default function HowItWorks() {
           <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-white">
             Cómo Funciona
           </h2>
-          <div className="space-y-2">
-            <p className="text-2xl text-slate-300 leading-relaxed font-light">
-              Gestión de inventario basada en <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">QR</span>
-            </p>
-            <p className="text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto font-light">
-              Toda la tienda en un simple escaneo
+          <div className="space-y-4">
+            <p className="text-3xl text-slate-300 leading-relaxed font-light">
+              Toda la tienda en un <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">solo escaneo</span>
             </p>
           </div>
         </motion.div>

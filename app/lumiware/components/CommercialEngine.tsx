@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function CommercialEngine() {
   const features = [
@@ -120,20 +121,22 @@ export default function CommercialEngine() {
                 </motion.div>
               ))}
               {/* Added a filler card to balance 2x2 grid since there are 3 items */}
-              <motion.div
+              <Link href="/booking" className="block h-full">
+                <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 3 * 0.15 }}
-                  className="p-6 rounded-2xl bg-gradient-to-br from-pink-500/10 to-purple-600/10 border border-pink-500/20 flex flex-col items-center justify-center gap-4 hover:border-pink-400/50 transition-all duration-300 group cursor-pointer"
+                  className="p-6 h-full rounded-2xl bg-gradient-to-br from-pink-500/10 to-purple-600/10 border border-pink-500/20 flex flex-col items-center justify-center gap-4 hover:border-pink-400/50 transition-all duration-300 group cursor-pointer text-center"
                 >
                   <div className="w-12 h-12 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 group-hover:bg-pink-400 group-hover:text-black transition-colors duration-300">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </div>
-                  <span className="text-pink-300 font-bold text-sm">Prueba el motor</span>
+                  <span className="text-pink-300 font-bold text-sm">Automatización del proceso comercial</span>
                 </motion.div>
+              </Link>
             </div>
           </motion.div>
         </div>
