@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Benefits() {
   const benefits = [
@@ -95,20 +96,22 @@ export default function Benefits() {
             </motion.div>
           ))}
           {/* Add a filler card to maintain grid layout perfectly if needed. Since it's 5 items in a 3 col layout, let's add an action card to complete it */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.5, delay: 5 * 0.1 }}
-            className="hidden lg:flex bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 flex-col justify-center items-center text-center cursor-pointer group hover:bg-cyan-500/10 transition-colors duration-300"
-          >
-            <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
-              <svg className="w-6 h-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-            <h4 className="text-lg font-bold text-cyan-300">Descubre más beneficios</h4>
-          </motion.div>
+          <Link href="/booking" className="hidden lg:block">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: 5 * 0.1 }}
+              className="h-full w-full flex bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 flex-col justify-center items-center text-center cursor-pointer group hover:bg-cyan-500/10 transition-colors duration-300"
+            >
+              <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+                <svg className="w-6 h-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+              <h4 className="text-lg font-bold text-cyan-300">Descubre más beneficios</h4>
+            </motion.div>
+          </Link>
         </div>
       </div>
     </section>
