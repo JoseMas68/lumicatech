@@ -37,7 +37,7 @@ export default function ServicesSection() {
         >
           <Link 
             href="/booking"
-            className="group relative bg-black dark:bg-white text-white dark:text-black px-10 py-5 rounded-xl text-lg font-bold tracking-tight hover:shadow-[0_0_30px_rgba(0,0,0,0.15)] dark:hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all active:scale-95 inline-flex items-center justify-center gap-2"
+            className="group relative bg-cyan-500 hover:bg-cyan-400 text-black px-10 py-5 rounded-xl text-lg font-bold tracking-tight hover:shadow-[0_0_30px_rgba(0,229,255,0.3)] transition-all active:scale-95 inline-flex items-center justify-center gap-2"
           >
             Acelerar ahora
             <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -48,8 +48,8 @@ export default function ServicesSection() {
       </div>
 
       {/* Subtle Background Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-black/5 dark:border-white/5 rounded-full pointer-events-none"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-black/5 dark:border-white/5 rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-cyan-500/5 dark:border-cyan-500/10 rounded-full pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-cyan-500/5 dark:border-cyan-500/10 rounded-full pointer-events-none"></div>
     </section>
   );
 }

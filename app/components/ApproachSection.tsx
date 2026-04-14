@@ -43,7 +43,7 @@ export default function ApproachSection() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-5 sticky top-32"
           >
-            <div className="font-mono text-xs text-slate-500 tracking-[0.3em] uppercase mb-6">
+            <div className="font-mono text-xs text-cyan-600 dark:text-cyan-400 tracking-[0.3em] uppercase mb-6 font-bold">
               El Enfoque
             </div>
             <h2 className="text-4xl md:text-5xl font-headline font-black text-black dark:text-white tracking-tighter mb-8 leading-tight">
@@ -55,8 +55,8 @@ export default function ApproachSection() {
 
             <div className="space-y-8">
               {/* Point A */}
-              <div className="flex gap-6">
-                <div className="w-12 h-12 shrink-0 bg-slate-50 dark:bg-white/5 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-black dark:text-white backdrop-blur-md">
+              <div className="flex gap-6 group">
+                <div className="w-12 h-12 shrink-0 bg-cyan-50 dark:bg-cyan-500/10 flex items-center justify-center rounded-xl border border-cyan-100 dark:border-cyan-500/20 text-cyan-600 dark:text-cyan-400 backdrop-blur-md group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined font-light">
                     precision_manufacturing
                   </span>
@@ -72,8 +72,8 @@ export default function ApproachSection() {
               </div>
 
               {/* Point B */}
-              <div className="flex gap-6">
-                <div className="w-12 h-12 shrink-0 bg-slate-50 dark:bg-white/5 flex items-center justify-center rounded-xl border border-slate-200 dark:border-white/10 text-black dark:text-white backdrop-blur-md">
+              <div className="flex gap-6 group">
+                <div className="w-12 h-12 shrink-0 bg-cyan-50 dark:bg-cyan-500/10 flex items-center justify-center rounded-xl border border-cyan-100 dark:border-cyan-500/20 text-cyan-600 dark:text-cyan-400 backdrop-blur-md group-hover:scale-110 transition-transform">
                   <span className="material-symbols-outlined font-light">
                     lightbulb
                   </span>
@@ -99,9 +99,9 @@ export default function ApproachSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
-                className={`bg-slate-50 dark:bg-[#0a0a0a] p-8 lg:p-10 rounded-2xl border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-white/5 hover:border-slate-300 dark:hover:border-white/20 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-xl dark:shadow-none group ${idx === 1 || idx === 3 ? 'sm:mt-8' : ''}`}
+                className={`bg-slate-50 dark:bg-[#0a0a0a] p-8 lg:p-10 rounded-2xl border border-slate-200 dark:border-white/10 hover:bg-white dark:hover:bg-cyan-950/10 hover:border-cyan-200 dark:hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-xl hover:shadow-cyan-900/10 dark:shadow-none group ${idx === 1 || idx === 3 ? 'sm:mt-8' : ''}`}
               >
-                <div className="w-14 h-14 rounded-xl bg-white dark:bg-white/5 flex items-center justify-center mb-8 text-black dark:text-white border border-slate-100 dark:border-white/10 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-14 h-14 rounded-xl bg-white dark:bg-cyan-500/5 flex items-center justify-center mb-8 text-black dark:text-cyan-400 border border-slate-100 dark:border-cyan-500/10 group-hover:bg-cyan-500 group-hover:dark:bg-cyan-500/20 group-hover:text-white group-hover:scale-110 transition-all duration-300">
                   <span
                     className="material-symbols-outlined text-2xl font-light"
                     style={{ fontVariationSettings: "'FILL' 0" }}
@@ -109,7 +109,7 @@ export default function ApproachSection() {
                     {service.icon}
                   </span>
                 </div>
-                <h4 className="text-xl font-headline font-bold text-black dark:text-white mb-3">
+                <h4 className="text-xl font-headline font-bold text-black dark:text-white mb-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
                   {service.title}
                 </h4>
                 <p className="text-slate-600 dark:text-slate-400 font-light leading-relaxed text-sm">
