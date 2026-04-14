@@ -68,9 +68,12 @@ export async function runMigrations() {
 
           console.log(`✅ Migración ${migration} completada`);
         } else if (migration === '002_create_availability_table') {
-          // Crear tabla de disponibilidad
+          // Eliminar tabla antigua si existe con estructura incorrecta
+          await pool.query('DROP TABLE IF EXISTS availability_config CASCADE');
+
+          // Crear tabla de disponibilidad con estructura correcta
           await pool.query(`
-            CREATE TABLE IF NOT EXISTS availability_config (
+            CREATE TABLE availability_config (
               id SERIAL PRIMARY KEY,
               meeting_duration INTEGER NOT NULL DEFAULT 60,
               slots JSONB NOT NULL DEFAULT '{}',
@@ -79,15 +82,14 @@ export async function runMigrations() {
             )
           `);
 
-          // Insertar configuración por defecto si no existe
+          // Insertar configuración por defecto
           await pool.query(`
             INSERT INTO availability_config (meeting_duration, slots)
             VALUES (60, '{}')
-            ON CONFLICT DO NOTHING
           `);
 
           // Crear índice
-          await pool.query('CREATE INDEX IF NOT EXISTS idx_availability_config_updated ON availability_config(updated_at)');
+          await pool.query('CREATE INDEX idx_availability_config_updated ON availability_config(updated_at)');
 
           // Marcar migración como ejecutada
           await pool.query(
