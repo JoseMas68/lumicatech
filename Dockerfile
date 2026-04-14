@@ -18,6 +18,9 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Crear directorio data para build time
+RUN mkdir -p /app/data
+
 # Deshabilitar telemetría durante build
 ENV NEXT_TELEMETRY_DISABLED 1
 

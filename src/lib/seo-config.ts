@@ -96,14 +96,27 @@ export async function getSeoConfig(): Promise<SeoConfig> {
   } catch (error) {
     console.error('Error reading SEO config:', error);
   }
-  
-  // Create default config if doesn't exist
-  await saveSeoConfig(defaultConfig);
+
+  // Create directory and default config if doesn't exist
+  try {
+    const dataDir = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
+    await saveSeoConfig(defaultConfig);
+  } catch (error) {
+    console.error('Error creating SEO config directory/file:', error);
+  }
+
   return defaultConfig;
 }
 
 export async function saveSeoConfig(config: SeoConfig): Promise<void> {
   try {
+    const dataDir = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(dataDir)) {
+      fs.mkdirSync(dataDir, { recursive: true });
+    }
     fs.writeFileSync(SEO_CONFIG_PATH, JSON.stringify(config, null, 2));
   } catch (error) {
     console.error('Error saving SEO config:', error);
