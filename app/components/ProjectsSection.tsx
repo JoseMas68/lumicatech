@@ -13,13 +13,6 @@ export default function ProjectsSection() {
       link: "/lumiware"
     },
     {
-      category: "Gestión & Reservas",
-      title: "Delta Caravan",
-      description: "Ecosistema integral para gestión de flotas y reservas de vehículos de recreo con panel de control avanzado.",
-      tech: ["Plataforma Base", "Gestor Documental", "Pasarela Pagos"],
-      link: "/en-construccion"
-    },
-    {
       category: "Optimización de procesos",
       title: "Eficiencia Operativa",
       description: "Aumento de la comunicación y colaboración entre equipos mediante automatizaciones y procesos inteligentes.",
@@ -51,7 +44,7 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
@@ -59,13 +52,13 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group relative bg-white dark:bg-white/5 p-8 lg:p-10 rounded-2xl border border-slate-200 dark:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-primary-container/10 hover:border-primary/30 overflow-hidden flex flex-col items-start backdrop-blur-sm"
+              className="group relative bg-white dark:bg-white/5 p-8 lg:p-10 rounded-2xl border border-slate-200 dark:border-white/10 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10 hover:border-primary/30 overflow-hidden flex flex-col items-start backdrop-blur-sm"
             >
-              <span className="font-mono text-xs text-primary dark:text-primary-container tracking-widest uppercase mb-6 block">
+              <span className="font-mono text-xs text-primary tracking-widest uppercase mb-6 block">
                 {String(idx + 1).padStart(2, '0')} // {project.category}
               </span>
 
-              <h3 className="text-3xl font-headline font-bold text-black dark:text-white mb-4 group-hover:text-primary dark:group-hover:text-primary-container transition-colors">
+              <h3 className="text-3xl font-headline font-bold text-black dark:text-white mb-4 group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
 
@@ -77,7 +70,7 @@ export default function ProjectsSection() {
                 {project.tech.map((tech, i) => (
                   <span
                     key={i}
-                    className="text-[11px] px-3 py-1.5 bg-primary/5 border border-primary/20 text-primary dark:text-primary-container rounded font-mono"
+                    className="text-[11px] px-3 py-1.5 bg-primary/5 border border-primary/20 text-primary rounded font-mono"
                   >
                     {tech}
                   </span>
@@ -86,7 +79,7 @@ export default function ProjectsSection() {
 
               <Link
                 href={project.link}
-                className="inline-flex items-center gap-2 text-black dark:text-white font-bold text-sm tracking-wide group-hover:gap-4 group-hover:text-primary dark:group-hover:text-primary-container transition-all"
+                className="inline-flex items-center gap-2 text-black dark:text-white font-bold text-sm tracking-wide group-hover:gap-4 group-hover:text-primary transition-all"
               >
                 Explorar proyecto
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
