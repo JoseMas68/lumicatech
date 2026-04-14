@@ -36,25 +36,6 @@ export default function SocialProof() {
             </motion.div>
           ))}
         </div>
-
-        {/* Trusted By Label */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-center"
-        >
-          <p className="text-xs text-slate-500 mb-8 font-mono tracking-[0.2em] uppercase">
-            Empresas de referencia confían en nosotros
-          </p>
-          <div className="flex justify-center items-center gap-x-16 gap-y-8 opacity-40 flex-wrap filter grayscale hover:grayscale-0 transition-all duration-700">
-            <div className="text-2xl font-black text-white mix-blend-screen tracking-tighter">CERÁMICA MAS</div>
-            <div className="text-2xl font-black text-white mix-blend-screen tracking-tighter">ROCA GROUP</div>
-            <div className="text-2xl font-black text-white mix-blend-screen tracking-tighter">PORCELANOSA</div>
-            <div className="text-2xl font-black text-white mix-blend-screen tracking-tighter">LAMINART</div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
