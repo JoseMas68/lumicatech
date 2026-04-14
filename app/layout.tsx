@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import CookieBanner from "./components/CookieBanner";
+import DatabaseInitializer from "./components/DatabaseInitializer";
 
 const baseUrl = "https://lumicatech.es";
 
@@ -410,6 +411,7 @@ export default function RootLayout({
             })
           }}
         />
+        <DatabaseInitializer />
         {children}
         <CookieBanner />
       </body>
