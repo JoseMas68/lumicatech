@@ -75,12 +75,11 @@ export default function Header() {
             <img src={logoSrc} alt="LumicaTech" className="h-8 md:h-11 w-auto" />
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-12">
-            <Link href="/#projects" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">Proyectos</Link>
-            <Link href="/#services" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">Servicios</Link>
-            <Link href="/#approach" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">Filosofía</Link>
-            <a href="/#contact" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary-container">Contacto</a>
+            <Link href="/#projects" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Proyectos</Link>
+            <Link href="/#services" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Servicios</Link>
+            <Link href="/#approach" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Filosofía</Link>
+            <a href="/#contact" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Contacto</a>
           </div>
 
           {/* Right Actions */}
@@ -91,7 +90,7 @@ export default function Header() {
                 className="relative w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/20 transition-all flex items-center justify-center group hover:bg-surface-container-high hover:border-primary-container/50"
                 aria-label="Toggle theme"
               >
-                <span className="material-symbols-outlined text-lg text-on-surface-variant group-hover:text-primary-container transition-colors duration-200">
+                <span className="material-symbols-outlined text-lg text-on-surface-variant group-hover:text-primary transition-colors duration-200">
                   {theme === 'dark' ? 'light_mode' : 'dark_mode'}
                 </span>
               </button>
