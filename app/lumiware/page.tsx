@@ -1,45 +1,19 @@
-'use client';
+import { Metadata } from "next";
+import LumiwareClient from "./components/LumiwareClient";
 
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import Hero from './components/Hero';
-import SocialProof from './components/SocialProof';
-import Problem from './components/Problem';
-import Solution from './components/Solution';
-import HowItWorks from './components/HowItWorks';
-import AutomaticCatalogs from './components/AutomaticCatalogs';
-import AdaptableTool from './components/AdaptableTool';
-import StockControl from './components/StockControl';
-import QRStock from './components/QRStock';
-import AnalyticsEngine from './components/AnalyticsEngine';
-import CommercialEngine from './components/CommercialEngine';
-import AIEngine from './components/AIEngine';
-import ERPIntegration from './components/ERPIntegration';
-import Benefits from './components/Benefits';
-import ClosingCTA from './components/ClosingCTA';
+export const metadata: Metadata = {
+  title: "Lumiware | Software de Gestión de Almacenes para Pymes | LumicaTech",
+  description: "Lumiware digitaliza la gestión de almacenes para pymes con QR, control de stock en tiempo real, catálogos automáticos e integración con tu ERP. Sin instalación. Empieza hoy.",
+  keywords: ["gestión almacenes pyme", "software gestión almacén pymes", "control de stock pymes", "digitalización almacén pequeña empresa", "inventario almacén", "gestión stock"],
+  openGraph: {
+    title: "Lumiware | Software de Gestión de Almacenes para Pymes | LumicaTech",
+    description: "Lumiware digitaliza la gestión de almacenes para pymes con QR, control de stock en tiempo real, catálogos automáticos e integración con tu ERP. Sin instalación. Empieza hoy.",
+    url: "https://lumicatech.es/lumiware",
+    images: [{ url: "https://lumicatech.es/og-lumiware.png", width: 1200, height: 630 }],
+  },
+  alternates: { canonical: "https://lumicatech.es/lumiware" },
+};
 
 export default function LumiwarePage() {
-  return (
-    <div className="min-h-screen flex flex-col bg-[#050505] text-white selection:bg-primary-container/30 selection:text-primary-container font-sans">
-      <Header />
-      <main className="flex-grow pt-24 break-words">
-        <Hero />
-        <SocialProof />
-        <Problem />
-        <Solution />
-        <HowItWorks />
-        <AutomaticCatalogs />
-        <AdaptableTool />
-        <StockControl />
-        <QRStock />
-        <AnalyticsEngine />
-        <CommercialEngine />
-        <AIEngine />
-        <ERPIntegration />
-        <Benefits />
-        <ClosingCTA />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <LumiwareClient />;
 }
