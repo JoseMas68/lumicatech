@@ -48,7 +48,7 @@ export default function Hero() {
               Lumiware
             </h2>
             <h1 className="text-5xl md:text-7xl font-black font-headline leading-[1.1] tracking-tighter text-white">
-              Transformación digital de <span className="text-cyan-400">almacenes</span>
+              Software de Gestión de <span className="text-cyan-400">Almacenes para Pymes</span>
             </h1>
           </div>
 
