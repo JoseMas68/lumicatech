@@ -5,23 +5,23 @@ import { motion } from 'framer-motion';
 const faqs = [
   {
     question: "¿Qué es Lumiware y para qué sirve?",
-    answer: "Lumiware es un software de gestión de almacenes para pymes que digitaliza tu inventario con códigos QR. Te permite controlar el stock en tiempo real, automatizar catálogos, integrar con tu ERP y gestionar movimientos desde móvil. Ideal para pequeñas empresas que quieren eliminar Excel y el papel."
+    answer: "Lumiware es un software de gestión de almacenes que digitaliza tu inventario con códigos QR. Te permite controlar el stock en tiempo real, automatizar catálogos, integrar con tu ERP y gestionar movimientos desde móvil. Ideal para empresas de cualquier tamaño que quieren eliminar Excel y el papel de sus operaciones de almacén."
   },
   {
     question: "¿Cuánto cuesta el software de almacén Lumiware?",
-    answer: "El precio de Lumiware es personalizado según las necesidades de tu pyme: tamaño del almacén, número de usuarios, integraciones requeridas, etc. Es un modelo SaaS sin inversión inicial en infraestructura. Contacta con nosotros para un presupuesto sin compromiso."
+    answer: "El precio de Lumiware es personalizado según las necesidades de tu empresa: tamaño del almacén, número de usuarios, integraciones requeridas, etc. Es un modelo SaaS sin inversión inicial en infraestructura. Escala según tu operación, desde pymes hasta grandes centros logísticos. Contacta con nosotros para un presupuesto sin compromiso."
   },
   {
     question: "¿Necesito instalar algo o comprar servidores?",
     answer: "No. Lumiware es 100% cloud (SaaS), así que no necesitas servidores ni instalación técnica. Funciona desde navegador web en cualquier dispositivo: ordenador, tablet o móvil. Nosotros nos encargamos de todas las actualizaciones y mantenimiento técnico."
   },
   {
-    question: "¿Cuánto tiempo tarda en implementarse en mi pyme?",
-    answer: "La implementación de Lumiware es rápida comparada con otros softwares de gestión. En la mayoría de las pymes, entre 2 y 4 semanas ya tienes el sistema operativo: etiquetado de productos con QR, formación del equipo y configuración de integraciones. Todo sin parar tu actividad."
+    question: "¿Cuánto tiempo tarda en implementarse?",
+    answer: "La implementación de Lumiware es rápida comparada con otros softwares de gestión. El plazo varía según el tamaño de tu operación, pero en la mayoría de casos, entre 2 y 4 semanas ya tienes el sistema operativo: etiquetado de productos con QR, formación del equipo y configuración de integraciones. Todo sin parar tu actividad."
   },
   {
     question: "¿Se integra con mi ERP o sistema de gestión actual?",
-    answer: "Sí, Lumiware se integra con los ERPs más utilizados por pymes españolas. La integración es bidireccional: los datos de stock y movimientos se sincronizan automáticamente, evitando la duplicación de trabajo y los errores manuales."
+    answer: "Sí, Lumiware se integra con los ERPs más utilizados por empresas. La integración es bidireccional: los datos de stock y movimientos se sincronizan automáticamente, evitando la duplicación de trabajo y los errores manuales."
   }
 ];
 

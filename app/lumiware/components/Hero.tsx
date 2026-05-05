@@ -69,9 +69,9 @@ export default function Hero() {
           >
             <Link href="/booking" className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-cyan-500 px-8 py-4 font-bold text-black transition-all hover:bg-cyan-400 hover:scale-[1.02] active:scale-95">
               <span className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.2)_0%,rgba(255,255,255,0)_100%)] opacity-0 group-hover:opacity-100 transition-opacity"></span>
-              <span>Empezar ahora</span>
+              <span>Solicitar Reunión</span>
               <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             </Link>
             <button className="group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-xl border border-white/10 bg-white/5 px-8 py-4 font-bold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/20 active:scale-95">

@@ -14,7 +14,7 @@ export default function LumiwareCTA() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-6">
           <button className="bg-gradient-to-br from-primary to-primary-container text-on-primary-container px-10 py-5 rounded-lg text-lg font-bold tracking-tight hover:shadow-[0_0_40px_rgba(156,240,255,0.4)] transition-all active:scale-95">
-            Solicitar Demo Gratis
+            Solicitar Reunión
           </button>
           <button className="px-10 py-5 rounded-lg text-lg font-bold tracking-tight text-on-surface border border-outline-variant/30 hover:bg-surface-container transition-all">
             Contactar Ventas

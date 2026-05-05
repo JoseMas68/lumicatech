@@ -30,19 +30,19 @@ export default function SEOContent() {
                 </p>
               </div>
 
-              {/* Benefits for Small Businesses */}
+              {/* Benefits for Companies */}
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
                   Ahorra tiempo sin invertir en infraestructura
                 </h3>
                 <p className="text-lg text-slate-300 leading-relaxed font-light mb-6">
-                  Muchas pequeñas empresas españolas creen que digitalizar su almacén requiere servidores, licencias costosas y un departamento informático. Con Lumiware, nada de eso. Es un{" "}
-                  <span className="text-cyan-400 font-semibold">software almacén pequeña empresa</span>{" "}
-                  100% cloud: funciona desde el navegador, sin instalación, y tú pagas una cuota mensual ajustada a tu tamaño. Sin sorpresas, sin costes ocultos.
+                  Muchas empresas creen que digitalizar su almacén requiere servidores propios, licencias costosas y un departamento informático. Con Lumiware, nada de eso. Es un{" "}
+                  <span className="text-cyan-400 font-semibold">software de gestión de almacenes</span>{" "}
+                  100% cloud: funciona desde el navegador, sin instalación, y tú pagas una cuota mensual ajustada a tu tamaño. Sin sorpresas, sin costes ocultos. Escala desde pymes hasta grandes operaciones industriales.
                 </p>
                 <p className="text-lg text-slate-300 leading-relaxed font-light">
                   El resultado es inmediato: tu equipo deja de perseguir productos por pasillos, deja de llamar al encargado para saber si hay stock, deja de rehacer inventarios cada mes porque los números no cuadran. Con el{" "}
-                  <span className="text-cyan-400 font-semibold">control de stock pymes</span>{" "}
+                  <span className="text-cyan-400 font-semibold">control de stock</span>{" "}
                   basado en códigos QR, un escaneo te da la información exacta en segundos.
                 </p>
               </div>
@@ -53,13 +53,13 @@ export default function SEOContent() {
                   Digitalización de almacén: más que tecnología, tranquilidad
                 </h3>
                 <p className="text-lg text-slate-300 leading-relaxed font-light mb-6">
-                  La <span className="text-cyan-400 font-semibold">digitalización almacén</span> significa que tus datos están seguros, actualizados y accesibles desde cualquier lugar. No dependes de que una persona concreta sepa dónde está todo: la información está en el sistema, no en la cabeza de nadie. Y cuando alguien se va de vacaciones, el almacén sigue funcionando.
+                  La <span className="text-cyan-400 font-semibold">digitalización de almacenes</span> significa que tus datos están seguros, actualizados y accesibles desde cualquier lugar. No dependes de que una persona concreta sepa dónde está todo: la información está en el sistema, no en la cabeza de nadie. Y cuando alguien se va de vacaciones, el almacén sigue funcionando.
                 </p>
                 <p className="text-lg text-slate-300 leading-relaxed font-light mb-6">
-                  Pero el verdadero cambio es en errores menos. Menos roturas de stock por sorpresa, menos devoluciones por enviar productos equivocados, menos tiempo perdido en reuniones para arreglar problemas que ya deberían estar resueltos. El sistema te avisa antes de que el problema ocurra.
+                  Pero el verdadero cambio está en la reducción de errores. Menos roturas de stock por sorpresa, menos devoluciones por enviar productos equivocados, menos tiempo perdido en reuniones para arreglar problemas que ya deberían estar resueltos. El sistema te avisa antes de que el problema ocurra.
                 </p>
                 <p className="text-lg text-slate-300 leading-relaxed font-light">
-                  Con el <span className="text-cyan-400 font-semibold">inventario en tiempo real</span>, tomas decisiones con datos frescos, no con estimaciones de hace tres semanas. Sabes qué productos se venden más, cuáles están estancados, cuándo reponer antes de que se agoten. Tu almacén pasa de ser un cajón desastre a un motor que impulsa tu negocio.
+                  Con el <span className="text-cyan-400 font-semibold">inventario en tiempo real</span>, tomas decisiones con datos frescos, no con estimaciones de hace tres semanas. Sabes qué productos se venden más, cuáles están estancados, cuándo reponer antes de que se agoten. Tu almacén pasa de ser un centro de costes a un motor que impulsa tu negocio.
                 </p>
               </div>
 
@@ -79,13 +79,13 @@ export default function SEOContent() {
               {/* Closing CTA */}
               <div className="bg-gradient-to-r from-cyan-500/10 to-emerald-500/10 border border-cyan-500/20 rounded-2xl p-8 md:p-12">
                 <h4 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  El primer paso es el más fácil: probarlo
+                  El primer paso es el más fácil: reunirte con nosotros
                 </h4>
                 <p className="text-lg text-slate-300 leading-relaxed font-light mb-6">
-                  No tienes que comprometerte a nada para ver si Lumiware funciona para tu pyme. Pide una demo personalizada y verás cómo funciona con tus productos, tus procesos, tus necesidades. Sin tecnicismos, sin promesas vacías: solo una herramienta real para una empresa real.
+                  No necesitas comprometerte a nada para descubrir si Lumiware es la solución que tu pyme necesita. Agenda una reunión con nuestro equipo y te explicaremos, sin tecnicismos, cómo el software se adapta a tu almacén, tus productos y tus procesos. Veremos casos reales de empresas como la tuya y resolveremos todas tus dudas.
                 </p>
                 <p className="text-xl font-semibold text-cyan-400">
-                  Tu almacén digitalizado está a un escaneo de distancia.
+                  Tu almacén digitalizado empieza con una conversación.
                 </p>
               </div>
             </div>

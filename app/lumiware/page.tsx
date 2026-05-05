@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Lumiware: Software de Gestión de Almacenes para Pymes",
-    description: "Digitaliza tu almacén con QR, control de stock en tiempo real y catálogos automáticos. Sin instalación. Ideal para pymes españolas.",
+    description: "Digitaliza tu almacén con QR, control de stock en tiempo real y catálogos automáticos. Sin instalación. Ideal para empresas de cualquier tamaño.",
     images: ["https://lumicatech.es/og-lumiware.png"],
   },
   alternates: { canonical: "https://lumicatech.es/lumiware" },
@@ -33,7 +33,7 @@ export default function LumiwarePage() {
             "name": "Lumiware",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Web (SaaS)",
-            "description": "Lumiware es un software de gestión de almacenes para pymes que digitaliza el inventario mediante códigos QR, ofrece control de stock en tiempo real, catálogos automáticos y se integra con tu ERP. Sin instalación, ideal para pequeñas empresas españolas.",
+            "description": "Lumiware es un software de gestión de almacenes que digitaliza el inventario mediante códigos QR, ofrece control de stock en tiempo real, catálogos automáticos y se integra con tu ERP. Sin instalación, ideal para empresas de cualquier tamaño.",
             "url": "https://lumicatech.es/lumiware",
             "screenshot": "https://lumicatech.b-cdn.net/LumiWare%20Portada/interior-of-warehouse-with-racks-full-of-boxes-2026-03-16-23-00-10-utc.webp",
             "offers": {
