@@ -48,8 +48,11 @@ export default function Hero() {
               Lumiware
             </h2>
             <h1 className="text-5xl md:text-7xl font-black font-headline leading-[1.1] tracking-tighter text-white">
-              Software de Gestión de <span className="text-cyan-400">Almacenes para Pymes</span>
+              Software de Gestión de <span className="text-cyan-400">Almacenes para Pymes con QR</span>
             </h1>
+            <p className="text-lg md:text-xl text-slate-400 max-w-2xl font-light leading-relaxed">
+              Digitaliza tu almacén con códigos QR y control de stock en tiempo real
+            </p>
           </div>
 
           {/* Subtitle */}

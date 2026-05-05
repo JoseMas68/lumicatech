@@ -68,6 +68,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png" />
 
+        {/* Preconnect to CDN */}
+        <link rel="preconnect" href="https://lumicatech.b-cdn.net" />
+        <link rel="dns-prefetch" href="https://lumicatech.b-cdn.net" />
+
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#135bec" />

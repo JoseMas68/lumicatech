@@ -16,6 +16,8 @@ import CommercialEngine from './CommercialEngine';
 import AIEngine from './AIEngine';
 import ERPIntegration from './ERPIntegration';
 import Benefits from './Benefits';
+import SEOContent from './SEOContent';
+import FAQ from './FAQ';
 import ClosingCTA from './ClosingCTA';
 
 export default function LumiwareClient() {
@@ -37,6 +39,8 @@ export default function LumiwareClient() {
         <AIEngine />
         <ERPIntegration />
         <Benefits />
+        <SEOContent />
+        <FAQ />
         <ClosingCTA />
       </main>
       <Footer />
