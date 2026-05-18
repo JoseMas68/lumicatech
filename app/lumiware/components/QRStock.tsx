@@ -22,14 +22,14 @@ export default function QRStock() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       {/* Background Gradients */}
       <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2"></div>
-      
+
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -43,10 +43,10 @@ export default function QRStock() {
                   Motor Digital
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black font-headline mb-6 text-white leading-tight">
+              <h2 className="text-4xl md:text-5xl font-black font-headline mb-6 text-on-surface dark:text-white leading-tight transition-colors duration-500">
                 Escalable. Flexible. <span className="text-cyan-400">Tecnológico.</span>
               </h2>
-              <p className="text-slate-300 text-xl leading-relaxed font-light">
+              <p className="text-on-surface-variant dark:text-slate-300 text-xl leading-relaxed font-light transition-colors duration-500">
                 Un motor digital diseñado para crecer con tu negocio. Tecnología probada que se adapta a cualquier operación de almacenaje.
               </p>
             </div>
@@ -55,22 +55,22 @@ export default function QRStock() {
             <div className="space-y-8 relative">
               {/* Connecting vertical line */}
               <div className="absolute left-[1.15rem] top-8 bottom-8 w-px bg-gradient-to-b from-cyan-500/50 via-blue-500/20 to-transparent"></div>
-              
+
               {features.map((feat, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
                   className="flex gap-8 items-start relative group"
                 >
-                  <div className="relative z-10 w-10 h-10 flex-shrink-0 flex items-center justify-center bg-black border-2 border-cyan-500/30 rounded-full group-hover:border-cyan-400 transition-colors duration-300">
-                    <span className="font-mono text-cyan-400 text-sm font-bold">{feat.number}</span>
+                  <div className="relative z-10 w-10 h-10 flex-shrink-0 flex items-center justify-center bg-white border-2 border-cyan-500/30 rounded-full group-hover:bg-cyan-400 group-hover:border-cyan-400 transition-colors duration-300">
+                    <span className="font-mono text-cyan-400 text-sm font-bold group-hover:text-white transition-colors duration-300">{feat.number}</span>
                   </div>
                   <div className="pt-1">
-                    <h4 className="text-xl font-bold mb-2 text-white group-hover:text-cyan-100 transition-colors">{feat.title}</h4>
-                    <p className="text-slate-400 font-light leading-relaxed">{feat.desc}</p>
+                    <h4 className="text-xl font-bold mb-2 text-on-surface dark:text-white group-hover:text-cyan-500 transition-colors duration-500">{feat.title}</h4>
+                    <p className="text-on-surface-variant dark:text-slate-400 font-light leading-relaxed transition-colors duration-500">{feat.desc}</p>
                   </div>
                 </motion.div>
               ))}
@@ -78,7 +78,7 @@ export default function QRStock() {
           </motion.div>
 
           {/* Right: Image Component */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -94,7 +94,7 @@ export default function QRStock() {
                 />
                 {/* Tech overlay Grid */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.8)_2px,transparent_2px),linear-gradient(90deg,rgba(0,0,0,0.8)_2px,transparent_2px)] bg-[size:4px_4px] opacity-40"></div>
-                
+
                 {/* Cyberpunk Scan Line */}
                 <motion.div
                   animate={{ y: ["0%", "100%", "0%"] }}

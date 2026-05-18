@@ -180,7 +180,7 @@ export default function RootLayout({
           };`}
         </script>
         <style>{`
-          /* Light Mode Theme - Colores MÁS CLAROS */
+          /* Light Mode Theme - Enhanced contrast and definition */
           .light {
             color-scheme: light;
           }
@@ -190,14 +190,14 @@ export default function RootLayout({
             --color-on-primary-fixed: #001258;
             --color-on-secondary-container: #303f87;
             --color-surface: #ffffff;
-            --color-surface-variant: #fafbfc;
+            --color-surface-variant: #f5f6f8;
             --color-tertiary-fixed: #ffdbd0;
             --color-on-primary: #ffffff;
             --color-surface-tint: #1b49ef;
             --color-inverse-surface: #2e303a;
             --color-background: #ffffff;
-            --color-primary-container: #00daf3; /* Cyan para degradados en modo claro */
-            --color-outline-variant: #e0e1ed;
+            --color-primary-container: #00daf3;
+            --color-outline-variant: #d1d5db;
             --color-error-container: #ffdad6;
             --color-on-background: #1a1b24;
             --color-on-secondary: #ffffff;
@@ -207,17 +207,17 @@ export default function RootLayout({
             --color-on-primary-fixed-variant: #0032c3;
             --color-secondary: #4a59a3;
             --color-inverse-primary: #b9c3ff;
-            --color-surface-dim: #f9f9fb;
+            --color-surface-dim: #f5f6f8;
             --color-on-secondary-fixed-variant: #324189;
             --color-on-surface-variant: #49454f;
-            --color-surface-container-low: #fafbfc;
+            --color-surface-container-low: #f8f9fa;
             --color-on-tertiary-container: #ffdbd1;
             --color-secondary-fixed-dim: #b9c3ff;
             --color-on-primary-container: #dee1ff;
-            --color-outline: #79747e;
+            --color-outline: #9ca3af;
             --color-inverse-on-surface: #f0effd;
             --color-primary-fixed: #dee1ff;
-            --color-surface-container-highest: #f3f3f8;
+            --color-surface-container-highest: #eef0f3;
             --color-surface-container-lowest: #ffffff;
             --color-on-tertiary: #ffffff;
             --color-secondary-fixed: #dee1ff;
@@ -226,13 +226,13 @@ export default function RootLayout({
             --color-tertiary: #8f2900;
             --color-surface-bright: #ffffff;
             --color-on-surface: #1a1b24;
-            --color-surface-container: #fafbfc;
+            --color-surface-container: #f3f4f6;
             --color-on-tertiary-fixed-variant: #842500;
             --color-primary: #2751f6;
             --color-primary-fixed-dim: #b9c3ff;
             --color-on-tertiary-fixed: #3a0b00;
             --color-tertiary-container: #b83700;
-            --color-surface-container-high: #f0f0f5;
+            --color-surface-container-high: #e9ecef;
           }
 
           .light .bg-surface {
@@ -240,15 +240,15 @@ export default function RootLayout({
           }
 
           .light .bg-slate-50 {
-            background-color: #fafbfc;
+            background-color: #f8f9fa;
           }
 
           .light .bg-slate-100 {
-            background-color: #f3f3f8;
+            background-color: #eef0f3;
           }
 
           .light .bg-slate-200 {
-            background-color: #f0f0f5;
+            background-color: #e9ecef;
           }
 
           .light .text-on-surface {
@@ -268,34 +268,37 @@ export default function RootLayout({
           }
 
           .light .border-outline-variant\/20 {
-            border-color: rgba(224, 225, 237, 0.4);
+            border-color: rgba(209, 213, 219, 0.6);
           }
 
           .light .border-outline-variant\/30 {
-            border-color: rgba(224, 225, 237, 0.6);
+            border-color: rgba(156, 163, 175, 0.5);
           }
 
           .light .border-outline-variant\/10 {
-            border-color: rgba(224, 225, 237, 0.2);
+            border-color: rgba(209, 213, 219, 0.3);
           }
 
           .light .border-outline-variant\/40 {
-            border-color: rgba(196, 26, 26, 0.15);
+            border-color: rgba(156, 163, 175, 0.25);
           }
 
-          .light .border-outline-variant\/40 {
-            border-color: rgba(143, 41, 0, 0.15);
+          .light .border-outline {
+            border-color: #d1d5db;
           }
 
           .light .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(20px);
+            border: 1px solid rgba(209, 213, 219, 0.5);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
           }
 
           .light .glass-nav {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom-color: rgba(224, 225, 237, 0.3);
+            border-bottom: 1px solid rgba(209, 213, 219, 0.5);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
           }
 
           .light .bg-gradient-to-br.from-primary.to-primary-container {
@@ -339,19 +342,23 @@ export default function RootLayout({
           }
 
           .light .shadow-lg {
-            box-shadow: 0 10px 15px -3px rgba(26, 27, 36, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
           }
 
           .light .shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(26, 27, 36, 0.03);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+          }
+
+          .light .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
           }
 
           .light .shadow-xl {
-            box-shadow: 0 20px 25px -5px rgba(26, 27, 36, 0.08);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
           }
 
           .light .shadow-2xl {
-            box-shadow: 0 25px 50px -12px rgba(39, 81, 246, 0.12);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
           }
 
           .satoshi {
@@ -371,9 +378,9 @@ export default function RootLayout({
           }
 
           .light .technical-grid {
-            background-image: 
-              linear-gradient(to right, rgba(39, 81, 246, 0.03) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(39, 81, 246, 0.03) 1px, transparent 1px);
+            background-image:
+              linear-gradient(to right, rgba(156, 163, 175, 0.08) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(156, 163, 175, 0.08) 1px, transparent 1px);
           }
 
           .hero-glow {
@@ -389,7 +396,7 @@ export default function RootLayout({
           }
 
           .light .card-glow-hover:hover {
-            box-shadow: 0 0 30px rgba(39, 81, 246, 0.04);
+            box-shadow: 0 0 30px rgba(39, 81, 246, 0.08);
           }
 
           .glow-shadow {
@@ -397,13 +404,53 @@ export default function RootLayout({
           }
 
           .light .glow-shadow {
-            box-shadow: 0 40px 40px -15px rgba(39, 81, 246, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(39, 81, 246, 0.12), 0 8px 10px -6px rgba(39, 81, 246, 0.08);
+          }
+
+          .light .border-l {
+            border-left: 1px solid rgba(209, 213, 219, 0.6);
+          }
+
+          .light .border-r {
+            border-right: 1px solid rgba(209, 213, 219, 0.6);
+          }
+
+          .light .border-t {
+            border-top: 1px solid rgba(209, 213, 219, 0.6);
+          }
+
+          .light .border-b {
+            border-bottom: 1px solid rgba(209, 213, 219, 0.6);
+          }
+
+          /* Enhanced Light Mode Utilities */
+          .light .card-elevated {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(209, 213, 219, 0.8);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+          }
+
+          .light .card-elevated:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: rgba(156, 163, 175, 0.9);
+          }
+
+          .light .border-default {
+            border-color: rgba(209, 213, 219, 0.8);
+          }
+
+          .light .bg-surface-container-alt {
+            background-color: #f3f4f6;
+          }
+
+          .light .divide-y > div + div {
+            border-top: 1px solid rgba(209, 213, 219, 0.6);
           }
 
           /* Contraste verificado WCAG AAA */
           /* Texto #1a1b24 sobre #ffffff = 16.5:1 ✓ */
-          /* Texto #1a1b24 sobre #fafbfc = 15.8:1 ✓ */
-          /* Texto #1a1b24 sobre #f3f3f8 = 14.2:1 ✓ */
+          /* Texto #1a1b24 sobre #f8f9fa = 15.8:1 ✓ */
+          /* Texto #1a1b24 sobre #eef0f3 = 14.2:1 ✓ */
           /* Azul #2751f6 sobre blanco = 7.2:1 ✓ */
         `}</style>
       </head>

@@ -13,13 +13,13 @@ export default function AnalyticsEngine() {
   const chartData = [40, 65, 45, 80, 55, 90, 70, 85, 60, 75, 50, 95];
 
   return (
-    <section className="py-32 bg-[#050505] relative z-10 border-t border-white/5">
+    <section className="py-32 bg-white dark:bg-[#050505] relative z-10 border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(16,185,129,0.05),transparent_60%)] pointer-events-none"></div>
 
       <div className="max-w-screen-xl mx-auto px-8 relative">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -33,10 +33,10 @@ export default function AnalyticsEngine() {
                   Motor Analytics
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black font-headline text-white leading-tight mb-6">
+              <h2 className="text-4xl md:text-5xl font-black font-headline text-on-surface dark:text-white leading-tight mb-6 transition-colors duration-500">
                 Inteligencia de <span className="text-emerald-400">datos.</span>
               </h2>
-              <p className="text-slate-300 text-xl leading-relaxed font-light">
+              <p className="text-on-surface-variant dark:text-slate-300 text-xl leading-relaxed font-light transition-colors duration-500">
                 Convierte los datos de tu almacén en información estratégica. Analiza patrones, optimiza procesos y toma decisiones basadas en datos reales.
               </p>
             </div>
@@ -72,22 +72,22 @@ export default function AnalyticsEngine() {
                   desc: "Genera informes personalizados para gestión y toma de decisiones."
                 }
               ].map((feature, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
                   className="flex gap-6 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0 text-emerald-400 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 group-hover:scale-110 transition-all duration-300">
+                  <div className="w-12 h-12 rounded-xl bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 flex items-center justify-center flex-shrink-0 text-emerald-400 group-hover:bg-emerald-500/10 group-hover:border-emerald-500/30 group-hover:scale-110 transition-all duration-300">
                     {feature.icon}
                   </div>
                   <div className="pt-1">
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-100 transition-colors">
+                    <h3 className="text-xl font-bold text-on-surface dark:text-white mb-2 group-hover:text-emerald-400 transition-colors duration-500">
                       {feature.title}
                     </h3>
-                    <p className="text-slate-400 font-light leading-relaxed">
+                    <p className="text-on-surface-variant dark:text-slate-400 font-light leading-relaxed transition-colors duration-500">
                       {feature.desc}
                     </p>
                   </div>
@@ -97,7 +97,7 @@ export default function AnalyticsEngine() {
           </motion.div>
 
           {/* Right: Visual Dashboard UI Mockup */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -105,17 +105,17 @@ export default function AnalyticsEngine() {
             className="relative"
           >
             {/* Outer Box */}
-            <div className="bg-[#0a0a0a]/80 backdrop-blur-xl border border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden group">
+            <div className="bg-surface-container dark:bg-[#0a0a0a]/80 backdrop-blur-xl border border-outline-variant dark:border-white/10 rounded-3xl p-8 shadow-2xl relative overflow-hidden group">
               {/* Internal glow */}
               <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              
+
               <div className="relative z-10 space-y-8">
                 {/* Header */}
-                <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                  <h3 className="font-mono text-sm font-bold text-slate-300">KPIs PRINCIPALES</h3>
+                <div className="flex items-center justify-between border-b border-outline-variant dark:border-white/10 pb-4">
+                  <h3 className="font-mono text-sm font-bold text-on-surface-variant dark:text-slate-300 transition-colors duration-500">KPIs PRINCIPALES</h3>
                   <div className="flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full">
-                    <motion.span 
-                      animate={{ opacity: [1, 0.5, 1] }} 
+                    <motion.span
+                      animate={{ opacity: [1, 0.5, 1] }}
                       transition={{ duration: 2, repeat: Infinity }}
                       className="w-2 h-2 bg-emerald-500 rounded-full"
                     ></motion.span>
@@ -126,13 +126,13 @@ export default function AnalyticsEngine() {
                 {/* Grid */}
                 <div className="grid grid-cols-2 gap-4">
                   {stats.map((stat, idx) => (
-                    <motion.div 
-                      key={idx} 
+                    <motion.div
+                      key={idx}
                       whileHover={{ scale: 1.05 }}
-                      className="bg-white/5 border border-white/5 p-5 rounded-2xl transition-transform cursor-default"
+                      className="bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/5 p-5 rounded-2xl transition-transform cursor-default shadow-sm hover:shadow-md"
                     >
-                      <p className="text-xs text-slate-400 mb-2 font-mono uppercase">{stat.label}</p>
-                      <p className="text-3xl font-black text-white mb-2 font-headline">{stat.value}</p>
+                      <p className="text-xs text-on-surface-variant dark:text-slate-400 mb-2 font-mono uppercase transition-colors duration-500">{stat.label}</p>
+                      <p className="text-3xl font-black text-on-surface dark:text-white mb-2 font-headline transition-colors duration-500">{stat.value}</p>
                       <div className="flex items-center gap-1">
                         <svg className={`w-3 h-3 ${stat.color}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 10l7-7m0 0l7 7m-7-7v18" />
@@ -144,9 +144,9 @@ export default function AnalyticsEngine() {
                 </div>
 
                 {/* Chart Area */}
-                <div className="bg-white/5 border border-white/5 p-6 rounded-2xl relative pt-8">
-                  <p className="absolute top-4 left-6 text-xs font-mono text-slate-400 uppercase">Tendencia Mensual</p>
-                  
+                <div className="bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/5 p-6 rounded-2xl relative pt-8 shadow-sm hover:shadow-md">
+                  <p className="absolute top-4 left-6 text-xs font-mono text-on-surface-variant dark:text-slate-400 uppercase transition-colors duration-500">Tendencia Mensual</p>
+
                   <div className="flex items-end justify-between h-32 gap-3 mt-4">
                     {chartData.map((height, idx) => (
                       <div key={idx} className="w-full h-full relative group/bar flex items-end justify-center">
@@ -158,16 +158,16 @@ export default function AnalyticsEngine() {
                           className="w-full bg-emerald-500/20 rounded-t-sm border-t border-emerald-500/50 group-hover/bar:bg-emerald-400/40 transition-colors"
                         ></motion.div>
                         {/* Tooltip on hover */}
-                        <div className="absolute -top-8 bg-black border border-white/10 text-white text-xs py-1 px-2 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap z-20 pointer-events-none">
+                        <div className="absolute -top-8 bg-black border border-outline-variant dark:border-white/10 text-on-surface dark:text-white text-xs py-1 px-2 rounded opacity-0 group-hover/bar:opacity-100 transition-opacity whitespace-nowrap z-20 pointer-events-none">
                           {height * 12}
                         </div>
                       </div>
                     ))}
                   </div>
                   {/* Decorative chart lines */}
-                  <div className="absolute bottom-6 left-6 right-6 border-t border-white/5"></div>
-                  <div className="absolute bottom-16 left-6 right-6 border-t border-white/5 border-dashed"></div>
-                  <div className="absolute bottom-28 left-6 right-6 border-t border-white/5"></div>
+                  <div className="absolute bottom-6 left-6 right-6 border-t border-outline-variant dark:border-white/5 transition-colors duration-500"></div>
+                  <div className="absolute bottom-16 left-6 right-6 border-t border-outline-variant dark:border-white/5 border-dashed transition-colors duration-500"></div>
+                  <div className="absolute bottom-28 left-6 right-6 border-t border-outline-variant dark:border-white/5 transition-colors duration-500"></div>
                 </div>
               </div>
             </div>

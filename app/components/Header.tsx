@@ -34,15 +34,6 @@ export default function Header() {
     }
   }, []);
 
-  // Forzar modo oscuro si estamos en Lumiware
-  useEffect(() => {
-    if (isLumiwarePage) {
-      setTheme('dark');
-      document.documentElement.classList.remove('light');
-      document.documentElement.classList.add('dark');
-    }
-  }, [isLumiwarePage]);
-
   // Bloquear scroll cuando el menú está abierto
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : '';
@@ -84,7 +75,7 @@ export default function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-4">
-            {!isLumiwarePage && mounted && (
+            {mounted && (
               <button
                 onClick={toggleTheme}
                 className="relative w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/20 transition-all flex items-center justify-center group hover:bg-surface-container-high hover:border-primary-container/50"

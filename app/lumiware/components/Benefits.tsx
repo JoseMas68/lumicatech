@@ -53,23 +53,23 @@ export default function Benefits() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[#0a0a0a]"></div>
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden transition-colors duration-500">
+      <div className="absolute inset-0 bg-surface-container dark:bg-[#0a0a0a] transition-colors duration-500"></div>
 
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-white mb-6">
+          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
             Beneficios
           </h2>
-          <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-            Qué cambia en tu empresa con <span className="font-bold text-cyan-400">LUMIWARE</span>
+          <p className="text-xl md:text-2xl text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
+            Qué cambia en tu empresa con <span className="font-bold text-primary dark:text-cyan-400 transition-colors duration-500">LUMIWARE</span>
           </p>
         </motion.div>
 
@@ -82,15 +82,15 @@ export default function Benefits() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 hover:bg-white/[0.08] hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(0,229,255,0.1)] transition-all duration-300 group backdrop-blur-sm"
+              className="bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 hover:bg-surface-container-hover dark:hover:bg-white/[0.08] hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(0,229,255,0.1)] transition-all duration-300 group backdrop-blur-sm shadow-sm hover:shadow-md"
             >
-              <div className="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 text-cyan-400 border border-cyan-500/20 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300 drop-shadow-[0_0_8px_rgba(0,196,217,0.5)]">
+              <div className="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center mb-6 text-primary dark:text-cyan-400 border border-cyan-500/20 group-hover:scale-110 group-hover:bg-cyan-500/20 transition-all duration-300 drop-shadow-[0_0_8px_rgba(0,196,217,0.5)]">
                 {benefit.icon}
               </div>
-              <h4 className="text-xl font-bold mb-3 text-white group-hover:text-cyan-50 transition-colors">
+              <h4 className="text-xl font-bold mb-3 text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors duration-500">
                 {benefit.title}
               </h4>
-              <p className="text-base text-slate-400 leading-relaxed font-light">
+              <p className="text-base text-on-surface-variant dark:text-slate-400 leading-relaxed font-light transition-colors duration-500">
                 {benefit.description}
               </p>
             </motion.div>
@@ -104,7 +104,7 @@ export default function Benefits() {
               transition={{ duration: 0.5, delay: 5 * 0.1 }}
               className="h-full w-full flex bg-gradient-to-br from-cyan-500/10 to-transparent border border-cyan-500/20 rounded-2xl p-8 flex-col justify-center items-center text-center cursor-pointer group hover:bg-cyan-500/10 transition-colors duration-300"
             >
-              <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
+              <div className="w-16 h-16 rounded-full bg-cyan-500/20 flex items-center justify-center text-primary dark:text-cyan-400 mb-4 group-hover:scale-110 group-hover:bg-cyan-400 group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,229,255,0.2)]">
                 <svg className="w-6 h-6 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>

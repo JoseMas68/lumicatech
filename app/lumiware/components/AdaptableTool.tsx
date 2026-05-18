@@ -34,20 +34,20 @@ export default function AdaptableTool() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       {/* Background Orbs */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08),transparent_70%)] pointer-events-none"></div>
-      
+
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
             La Herramienta que se Adapta a Ti <span className="text-blue-400">no al Revés</span>
           </h2>
         </motion.div>
@@ -55,7 +55,7 @@ export default function AdaptableTool() {
         {/* Main Content - Two Columns */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Image with tech overlay */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -70,13 +70,13 @@ export default function AdaptableTool() {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#050505] via-blue-900/40 to-transparent"></div>
-                
+
                 {/* Tech floating UI overlay */}
                 <div className="absolute inset-x-8 bottom-8 flex justify-between items-end">
-                  <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-xl">
-                    <p className="text-white font-mono text-sm">Estado: <span className="text-emerald-400">Sincronizado</span></p>
+                  <div className="bg-black/60 backdrop-blur-xl border border-outline-variant dark:border-white/10 p-4 rounded-xl">
+                    <p className="text-on-surface dark:text-white font-mono text-sm transition-colors duration-500">Estado: <span className="text-emerald-400">Sincronizado</span></p>
                     <div className="w-full bg-white/20 h-1 mt-2 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         initial={{ width: "0%" }}
                         whileInView={{ width: "100%" }}
                         viewport={{ once: true }}
@@ -85,7 +85,7 @@ export default function AdaptableTool() {
                       />
                     </div>
                   </div>
-                  
+
                   {/* Decorative dots grid */}
                   <div className="grid grid-cols-4 gap-2 opacity-50">
                     {[...Array(16)].map((_, i) => (
@@ -95,13 +95,13 @@ export default function AdaptableTool() {
                 </div>
               </div>
             </div>
-            
+
             {/* Outline box effect */}
             <div className="absolute inset-0 border-2 border-blue-500/20 rounded-3xl -m-4 pointer-events-none hidden md:block"></div>
           </motion.div>
 
           {/* Right: Benefits */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -109,8 +109,8 @@ export default function AdaptableTool() {
             className="order-1 lg:order-2 space-y-10"
           >
             {benefits.map((benefit, idx) => (
-              <motion.div 
-                key={idx} 
+              <motion.div
+                key={idx}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -124,10 +124,10 @@ export default function AdaptableTool() {
 
                 {/* Content */}
                 <div className="flex-1 pt-1">
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">
+                  <h3 className="text-2xl font-bold text-on-surface dark:text-white mb-3 group-hover:text-blue-300 transition-colors duration-500">
                     {benefit.title}
                   </h3>
-                  <p className="text-slate-400 leading-relaxed font-light text-lg">
+                  <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light text-lg transition-colors duration-500">
                     {benefit.description}
                   </p>
                 </div>

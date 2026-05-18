@@ -43,13 +43,13 @@ export default function AutomaticCatalogs() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden transition-colors duration-500">
       {/* Decorative floating blurred orbs */}
       <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-purple-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
@@ -62,10 +62,10 @@ export default function AutomaticCatalogs() {
               Motor Comercial
             </span>
           </div>
-          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-white mb-6">
+          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
             Catálogos Automáticos
           </h2>
-          <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
+          <p className="text-xl md:text-2xl text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
             Crea catálogos directamente desde tu almacén
           </p>
         </motion.div>
@@ -73,14 +73,14 @@ export default function AutomaticCatalogs() {
         {/* Main Content - Two Columns */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Image (SaaS floating mockup style) */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1 relative"
           >
-            <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur-sm">
+            <div className="relative rounded-3xl overflow-hidden border border-outline-variant dark:border-white/10 bg-surface-container dark:bg-white/5 p-2 shadow-2xl backdrop-blur-sm">
               <div className="relative rounded-2xl overflow-hidden group aspect-[4/3] lg:aspect-square">
                 <img
                   src="https://lumicatech.b-cdn.net/LumiwareImages/grok_image_1773938972210.jpg"
@@ -92,12 +92,12 @@ export default function AutomaticCatalogs() {
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
               </div>
             </div>
-            
+
             {/* Floating element */}
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-8 -right-8 lg:-right-12 bg-black/80 backdrop-blur-xl border border-white/10 p-5 rounded-2xl shadow-2xl"
+              className="absolute -bottom-8 -right-8 lg:-right-12 bg-white/90 dark:bg-black/80 backdrop-blur-xl border border-outline-variant dark:border-white/10 p-5 rounded-2xl shadow-2xl"
             >
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400">
@@ -106,15 +106,15 @@ export default function AutomaticCatalogs() {
                   </svg>
                 </div>
                 <div>
-                  <p className="text-white font-bold">Catálogo.pdf</p>
-                  <p className="text-xs text-slate-400">Generado con éxito</p>
+                  <p className="text-on-surface dark:text-white font-bold transition-colors duration-500">Catálogo.pdf</p>
+                  <p className="text-xs text-on-surface-variant dark:text-slate-400 transition-colors duration-500">Generado con éxito</p>
                 </div>
               </div>
             </motion.div>
           </motion.div>
 
           {/* Right: Features */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -122,8 +122,8 @@ export default function AutomaticCatalogs() {
             className="order-1 lg:order-2 space-y-8"
           >
             {features.map((feature, idx) => (
-              <motion.div 
-                key={idx} 
+              <motion.div
+                key={idx}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -131,16 +131,16 @@ export default function AutomaticCatalogs() {
                 className="flex gap-5 group"
               >
                 {/* Icon */}
-                <div className="flex-shrink-0 w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center border border-white/10 text-purple-400 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 group-hover:scale-110 transition-all duration-300">
+                <div className="flex-shrink-0 w-12 h-12 bg-surface-container dark:bg-white/5 rounded-xl flex items-center justify-center border border-outline-variant dark:border-white/10 text-purple-400 group-hover:bg-purple-500/10 group-hover:border-purple-500/30 group-hover:scale-110 transition-all duration-300">
                   {feature.icon}
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 pt-1">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-100 transition-colors">
+                  <h3 className="text-xl font-bold text-on-surface dark:text-white mb-2 transition-colors duration-500">
                     {feature.title}
                   </h3>
-                  <p className="text-slate-400 leading-relaxed font-light">
+                  <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light transition-colors duration-500">
                     {feature.description}
                   </p>
                 </div>

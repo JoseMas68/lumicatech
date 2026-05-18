@@ -34,21 +34,21 @@ export default function Problem() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative z-10">
+    <section className="py-32 bg-white dark:bg-[#050505] relative z-10 transition-colors duration-500">
       <div className="max-w-screen-xl mx-auto px-8">
         <div className="space-y-16">
           {/* Header */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6 }}
             className="text-center space-y-6"
           >
-            <h2 className="text-xl md:text-2xl font-light tracking-widest text-[#f43f5e] uppercase mb-4">
+            <h2 className="text-xl md:text-2xl font-light tracking-widest text-rose-500 uppercase mb-4">
               El Problema
             </h2>
-            <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-white font-headline leading-tight">
+            <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-on-surface dark:text-white font-headline leading-tight transition-colors duration-500">
               La gestión de almacenes sigue siendo <span className="text-rose-500">ineficiente</span>
             </h3>
           </motion.div>
@@ -62,7 +62,7 @@ export default function Problem() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="relative group p-8 rounded-2xl bg-white/5 border border-white/10 overflow-hidden backdrop-blur-sm"
+                className="relative group p-8 rounded-2xl bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 overflow-hidden backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300"
               >
                 {/* Background glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-rose-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
@@ -72,17 +72,17 @@ export default function Problem() {
                   <div className="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center text-rose-400 group-hover:scale-110 group-hover:bg-rose-500/20 transition-all duration-300">
                     {issue.icon}
                   </div>
-                  <span className="text-6xl font-black text-white/5 font-sans leading-none select-none">
+                  <span className="text-6xl font-black text-on-surface/5 dark:text-white/5 font-sans leading-none select-none transition-colors duration-500">
                     {String(idx + 1).padStart(2, '0')}
                   </span>
                 </div>
 
                 {/* Content */}
                 <div className="relative space-y-3">
-                  <h4 className="text-xl font-bold text-white group-hover:text-rose-100 transition-colors">
+                  <h4 className="text-xl font-bold text-on-surface dark:text-white group-hover:text-rose-500 transition-colors">
                     {issue.title}
                   </h4>
-                  <p className="text-slate-400 leading-relaxed font-light">
+                  <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light transition-colors duration-500">
                     {issue.description}
                   </p>
                 </div>
@@ -91,16 +91,16 @@ export default function Problem() {
           </div>
 
           {/* Callout Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
-            className="relative rounded-2xl overflow-hidden group"
+            className="relative rounded-2xl overflow-hidden group shadow-lg"
           >
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(244,63,94,0.15),transparent_50%)] bg-[#0a0a0a]"></div>
-            <div className="absolute inset-0 border border-white/10 group-hover:border-rose-500/30 rounded-2xl transition-all duration-500"></div>
-            
+            <div className="absolute inset-0 bg-surface-container dark:bg-[#0a0a0a] transition-colors duration-500"></div>
+            <div className="absolute inset-0 border border-outline-variant dark:border-white/10 group-hover:border-rose-500/30 rounded-2xl transition-all duration-500"></div>
+
             <div className="relative p-10 md:p-14 flex flex-col md:flex-row gap-10 items-center md:items-start text-center md:text-left">
               {/* Left icon */}
               <div className="flex-shrink-0 relative">
@@ -114,14 +114,14 @@ export default function Problem() {
 
               {/* Content */}
               <div className="space-y-6 flex-1">
-                <h4 className="text-2xl md:text-4xl font-bold text-white tracking-tight">
+                <h4 className="text-2xl md:text-4xl font-bold text-on-surface dark:text-white tracking-tight transition-colors duration-500">
                   Elimina el caos de los sistemas aislados
                 </h4>
-                <p className="text-lg text-slate-300 leading-relaxed font-light">
+                <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
                   ¿Sistemas que no se hablan entre sí? Eso es cosa del pasado. Unifica tus procesos, elimina el error humano y transforma tu almacén de un obstáculo en un motor de alta velocidad.
                 </p>
-                <div className="pt-6 border-t border-white/10">
-                  <p className="text-xl font-medium text-rose-400">
+                <div className="pt-6 border-t border-outline-variant dark:border-white/10">
+                  <p className="text-xl font-medium text-rose-500">
                     El resultado son costes invisibles.
                   </p>
                 </div>

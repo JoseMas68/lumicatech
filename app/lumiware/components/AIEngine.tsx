@@ -64,22 +64,22 @@ export default function AIEngine() {
   ];
 
   return (
-    <section className="py-32 bg-[#0a0a0a] relative z-10 border-t border-white/5">
+    <section className="py-32 bg-surface-container dark:bg-[#0a0a0a] relative z-10 border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(139,92,246,0.08),transparent_50%)] pointer-events-none"></div>
 
       <div className="max-w-screen-xl mx-auto px-8 relative">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-white mb-6">
+          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
             Inteligencia Artificial
           </h2>
-          <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
+          <p className="text-xl md:text-2xl text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
             Encuentra productos similares <span className="font-bold text-violet-400">automáticamente</span>
           </p>
         </motion.div>
@@ -97,20 +97,20 @@ export default function AIEngine() {
               {aiFeatures.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-violet-500/30 hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(139,92,246,0.15)] transition-all duration-300 group backdrop-blur-sm relative overflow-hidden"
+                  className="bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 rounded-2xl p-8 hover:border-violet-500/30 hover:bg-surface-container-hover dark:hover:bg-white/[0.07] hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(139,92,246,0.15)] transition-all duration-300 group backdrop-blur-sm relative overflow-hidden shadow-sm hover:shadow-md"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-violet-500/10 rounded-full blur-[40px] group-hover:bg-violet-500/20 transition-all duration-500"></div>
-                  
+
                   <div className="relative z-10">
                     <div className="w-14 h-14 bg-violet-500/10 rounded-xl flex items-center justify-center mb-6 border border-violet-500/20 group-hover:scale-110 group-hover:bg-violet-500/20 transition-all duration-300">
                       <div className="text-violet-400">
                         {feature.icon}
                       </div>
                     </div>
-                    <h4 className="text-xl font-bold mb-3 text-white group-hover:text-violet-200 transition-colors">
+                    <h4 className="text-xl font-bold mb-3 text-on-surface dark:text-white group-hover:text-violet-400 transition-colors duration-500">
                       {feature.title}
                     </h4>
-                    <p className="text-slate-400 text-base leading-relaxed font-light">
+                    <p className="text-on-surface-variant dark:text-slate-400 text-base leading-relaxed font-light transition-colors duration-500">
                       {feature.description}
                     </p>
                   </div>
@@ -119,7 +119,7 @@ export default function AIEngine() {
             </div>
           </motion.div>
 
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-outline-variant dark:via-white/10 to-transparent transition-colors duration-500"></div>
 
           {/* Group 2: Smart Budgets */}
           <motion.div
@@ -129,19 +129,19 @@ export default function AIEngine() {
             transition={{ duration: 0.6 }}
           >
             <div className="mb-10 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <h3 className="text-2xl md:text-3xl font-bold text-white">
+              <h3 className="text-2xl md:text-3xl font-bold text-on-surface dark:text-white transition-colors duration-500">
                 Presupuestos Inteligentes
               </h3>
               <p className="text-xl font-medium text-amber-400">
                 Presupuestos basados en stock real
               </p>
             </div>
-            
+
             <div className="grid md:grid-cols-3 gap-6">
               {budgetFeatures.map((feature, idx) => (
                 <div
                   key={idx}
-                  className="bg-gradient-to-b from-white/5 to-transparent border border-white/10 rounded-2xl p-8 hover:border-amber-500/30 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(251,191,36,0.15)] transition-all duration-300 group backdrop-blur-sm relative overflow-hidden"
+                  className="bg-gradient-to-b from-surface-container dark:from-white/5 to-transparent border border-outline-variant dark:border-white/10 rounded-2xl p-8 hover:border-amber-500/30 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(251,191,36,0.15)] transition-all duration-300 group backdrop-blur-sm relative overflow-hidden shadow-sm hover:shadow-md"
                 >
                   <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-full blur-[40px] group-hover:bg-amber-500/10 transition-all duration-500"></div>
 
@@ -151,18 +151,18 @@ export default function AIEngine() {
                         {feature.icon}
                       </div>
                     </div>
-                    <h4 className="text-xl font-bold mb-3 text-white group-hover:text-amber-100 transition-colors">
+                    <h4 className="text-xl font-bold mb-3 text-on-surface dark:text-white group-hover:text-amber-400 transition-colors duration-500">
                       {feature.title}
                     </h4>
-                    <p className="text-slate-400 text-base leading-relaxed font-light">
+                    <p className="text-on-surface-variant dark:text-slate-400 text-base leading-relaxed font-light transition-colors duration-500">
                       {feature.description}
                     </p>
                   </div>
                 </div>
               ))}
             </div>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}

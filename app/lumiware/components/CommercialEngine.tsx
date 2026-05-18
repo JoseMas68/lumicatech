@@ -35,14 +35,14 @@ export default function CommercialEngine() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       {/* Background Deep Glow - Pinkish/Purple for commerce */}
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-pink-600/10 blur-[150px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Image Box */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -57,11 +57,11 @@ export default function CommercialEngine() {
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-                
+
                 {/* Floating Sales Metrics inside Image */}
                 <div className="absolute bottom-8 left-8 right-8 flex justify-between gap-4">
                   <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl flex-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="text-xs text-slate-300 font-mono mb-1">Stock Disponible</p>
+                    <p className="text-xs text-white font-mono mb-1">Stock Disponible</p>
                     <p className="text-xl font-bold text-white">4,205 u.</p>
                   </div>
                   <div className="bg-pink-500/20 backdrop-blur-md border border-pink-500/30 p-4 rounded-xl flex-1 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
@@ -74,7 +74,7 @@ export default function CommercialEngine() {
           </motion.div>
 
           {/* Right: Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -88,10 +88,10 @@ export default function CommercialEngine() {
                   Motor Comercialización
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-black font-headline text-white leading-tight">
+              <h2 className="text-4xl lg:text-5xl font-black font-headline text-on-surface dark:text-white leading-tight transition-colors duration-500">
                 Automatización de <span className="text-pink-400">ventas.</span>
               </h2>
-              <p className="text-slate-300 leading-relaxed text-xl font-light">
+              <p className="text-on-surface-variant dark:text-slate-300 leading-relaxed text-xl font-light transition-colors duration-500">
                 Lumiware no es solo logística; es una herramienta comercial que conecta el almacén con las ventas. Automatiza catálogos, presupuestos y albaranes.
               </p>
             </div>
@@ -105,16 +105,16 @@ export default function CommercialEngine() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
-                  className="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col gap-5 hover:border-pink-500/30 hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-300 group shadow-lg"
+                  className="p-6 rounded-2xl bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 flex flex-col gap-5 hover:border-pink-500/30 hover:bg-surface-container-hover dark:hover:bg-white/[0.07] hover:-translate-y-1 transition-all duration-300 group shadow-lg hover:shadow-xl"
                 >
                   <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 text-pink-400 group-hover:scale-110 group-hover:bg-pink-500/20 transition-all duration-300 text-xl">
                     {feature.icon}
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-2 group-hover:text-pink-100 transition-colors">
+                    <h3 className="text-lg font-bold text-on-surface dark:text-white mb-2 group-hover:text-pink-300 transition-colors duration-500">
                       {feature.title}
                     </h3>
-                    <p className="text-slate-400 text-sm leading-relaxed font-light">
+                    <p className="text-on-surface-variant dark:text-slate-400 text-sm leading-relaxed font-light transition-colors duration-500">
                       {feature.description}
                     </p>
                   </div>

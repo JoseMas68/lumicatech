@@ -22,7 +22,7 @@ export default function PrivacidadPage() {
               <p><strong className="text-on-surface">NIF:</strong> 53226557A</p>
               <p><strong className="text-on-surface">Condición:</strong> Trabajador autónomo</p>
               <p><strong className="text-on-surface">Email de contacto:</strong>{" "}
-                <a href="mailto:josemas68@gmail.com" className="text-[#135bec] hover:underline">josemas68@gmail.com</a>
+                <a href="mailto:info@lumicatech.es" className="text-[#135bec] hover:underline">info@lumicatech.es</a>
               </p>
               <p><strong className="text-on-surface">Web:</strong> https://lumicatech.es</p>
             </div>

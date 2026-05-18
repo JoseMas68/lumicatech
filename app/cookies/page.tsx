@@ -96,7 +96,7 @@ export default function CookiesPage() {
             <h2 className="text-xl font-semibold text-on-surface mb-3">5. Más información</h2>
             <p className="text-on-surface-variant text-sm">
               Para cualquier consulta relacionada con el uso de cookies puedes contactar con nosotros en{" "}
-              <a href="mailto:josemas68@gmail.com" className="text-[#135bec] hover:underline">josemas68@gmail.com</a>
+              <a href="mailto:info@lumicatech.es" className="text-[#135bec] hover:underline">info@lumicatech.es</a>
               {" "}(José Manuel Mas Albiol, NIF: 53226557A).
               También puedes consultar más información sobre cookies en la web de la{" "}
               <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-[#135bec] hover:underline">

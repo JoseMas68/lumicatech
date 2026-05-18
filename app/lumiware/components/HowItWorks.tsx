@@ -43,24 +43,24 @@ export default function HowItWorks() {
   ];
 
   return (
-    <section className="py-32 bg-[#0a0a0a] relative z-10 border-t border-white/5">
+    <section className="py-32 bg-surface-container dark:bg-[#0a0a0a] relative z-10 border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,229,255,0.05),transparent_70%)]"></div>
-      
+
       <div className="max-w-screen-xl mx-auto px-8 relative">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="text-center mb-20 space-y-6"
         >
-          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-white">
+          <h2 className="text-4xl md:text-6xl font-black font-headline tracking-tighter text-on-surface dark:text-white transition-colors duration-500">
             Cómo Funciona
           </h2>
           <div className="space-y-4">
-            <p className="text-3xl text-slate-300 leading-relaxed font-light">
-              Toda la tienda en un <span className="font-bold text-cyan-400">solo escaneo</span>
+            <p className="text-3xl text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
+              Toda la tienda en un <span className="font-bold text-primary dark:text-cyan-400 transition-colors duration-500">solo escaneo</span>
             </p>
           </div>
         </motion.div>
@@ -74,29 +74,29 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white/5 p-10 rounded-3xl border border-white/10 hover:border-cyan-500/30 hover:bg-white/[0.07] transition-all duration-300 relative overflow-hidden group backdrop-blur-sm"
+              className="bg-surface-container dark:bg-white/5 p-10 rounded-3xl border border-outline-variant dark:border-white/10 hover:border-cyan-500/30 hover:bg-surface-container-hover dark:hover:bg-white/[0.07] transition-all duration-300 relative overflow-hidden group backdrop-blur-sm shadow-sm hover:shadow-md"
             >
               {/* Animated Glow on Hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               {/* Step Number Badge */}
-              <span className="absolute top-6 right-6 w-10 h-10 bg-black/50 border border-white/10 rounded-full flex items-center justify-center text-sm font-bold text-cyan-400 backdrop-blur-md shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+              <span className="absolute top-6 right-6 w-10 h-10 bg-white dark:bg-white border border-outline-variant dark:border-white/20 rounded-full flex items-center justify-center text-sm font-bold text-primary dark:text-cyan-500 backdrop-blur-md shadow-md group-hover:bg-primary dark:group-hover:bg-cyan-500 group-hover:text-white transition-all duration-300">
                 {String(idx + 1).padStart(2, '0')}
               </span>
-              
+
               {/* Icon */}
               <div className="w-16 h-16 bg-gradient-to-br from-cyan-500/20 to-blue-600/20 rounded-2xl flex items-center justify-center mb-8 border border-cyan-500/20 group-hover:scale-110 transition-transform duration-300">
-                <div className="text-cyan-400 drop-shadow-[0_0_10px_rgba(0,196,217,0.8)]">
+                <div className="text-primary dark:text-cyan-400 drop-shadow-[0_0_10px_rgba(0,196,217,0.8)] transition-colors duration-500">
                   {step.icon}
                 </div>
               </div>
 
               {/* Content */}
               <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-cyan-50 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-on-surface dark:text-white transition-colors duration-500">
                   {step.title}
                 </h3>
-                <p className="text-slate-400 leading-relaxed font-light text-lg">
+                <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light text-lg transition-colors duration-500">
                   {step.description}
                 </p>
               </div>

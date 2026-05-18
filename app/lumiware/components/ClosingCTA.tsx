@@ -5,24 +5,24 @@ import { motion } from 'framer-motion';
 
 export default function ClosingCTA() {
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden transition-colors duration-500">
       {/* Background technical grid and Glow */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none"></div>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-cyan-500/10 blur-[150px] rounded-full pointer-events-none z-0"></div>
 
       <div className="max-w-5xl mx-auto px-8 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="bg-[#0a0a0a]/90 backdrop-blur-xl border border-white/10 rounded-3xl p-12 md:p-24 text-center relative overflow-hidden group shadow-2xl"
+          className="bg-surface-container dark:bg-[#0a0a0a]/90 backdrop-blur-xl border border-outline-variant dark:border-white/10 rounded-3xl p-12 md:p-24 text-center relative overflow-hidden group shadow-2xl"
         >
           {/* subtle glow inside card */}
           <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-          
+
           {/* Badge */}
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-10 mx-auto relative z-10 backdrop-blur-md">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 mb-10 mx-auto relative z-10 backdrop-blur-md">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-500"></span>
@@ -31,12 +31,12 @@ export default function ClosingCTA() {
           </div>
 
           {/* Main Headline */}
-          <h2 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-white mb-8 relative z-10 leading-tight">
+          <h2 className="text-5xl md:text-7xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-8 relative z-10 leading-tight transition-colors duration-500">
             Digitaliza tu <br className="hidden md:block" /><span className="text-cyan-400 drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]">almacén</span>
           </h2>
 
           {/* Description */}
-          <p className="text-xl text-slate-300 mb-12 leading-relaxed max-w-2xl mx-auto relative z-10 font-light">
+          <p className="text-xl text-on-surface-variant dark:text-slate-300 mb-12 leading-relaxed max-w-2xl mx-auto relative z-10 font-light transition-colors duration-500">
             LUMIWARE transforma la gestión del inventario en un proceso ágil, visual y conectado con la realidad del negocio.
           </p>
 
@@ -65,7 +65,7 @@ export default function ClosingCTA() {
                 <svg className="w-4 h-4 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                 </svg>
-                <span className="text-xs font-mono tracking-widest uppercase text-slate-300">{text}</span>
+                <span className="text-xs font-mono tracking-widest uppercase text-on-surface-variant dark:text-slate-300 transition-colors duration-500">{text}</span>
               </div>
             ))}
           </div>

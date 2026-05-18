@@ -27,7 +27,7 @@ export default function AvisoLegalPage() {
               <p><strong className="text-on-surface">Condición:</strong> Trabajador autónomo</p>
               <p><strong className="text-on-surface">Actividad:</strong> Desarrollo de software y soluciones tecnológicas industriales</p>
               <p><strong className="text-on-surface">Email de contacto:</strong>{" "}
-                <a href="mailto:josemas68@gmail.com" className="text-[#135bec] hover:underline">josemas68@gmail.com</a>
+                <a href="mailto:info@lumicatech.es" className="text-[#135bec] hover:underline">info@lumicatech.es</a>
               </p>
               <p><strong className="text-on-surface">Sitio web:</strong> https://lumicatech.es</p>
             </div>

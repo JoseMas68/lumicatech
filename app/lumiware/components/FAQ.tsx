@@ -9,7 +9,7 @@ const faqs = [
   },
   {
     question: "¿Cuánto cuesta el software de almacén Lumiware?",
-    answer: "El precio de Lumiware es personalizado según las necesidades de tu empresa: tamaño del almacén, número de usuarios, integraciones requeridas, etc. Es un modelo SaaS sin inversión inicial en infraestructura. Escala según tu operación, desde pymes hasta grandes centros logísticos. Contacta con nosotros para un presupuesto sin compromiso."
+    answer: "El precio de Lumiware consta de dos partes: una cuota mensual SaaS que varía según el tamaño de tu operación (número de usuarios, productos, almacenes) y un coste de implementación que se paga una sola vez. No necesitas inversión en infraestructura ni servidores. Escala según tu operación, desde pymes hasta grandes centros logísticos. Contacta con nosotros para un presupuesto sin compromiso."
   },
   {
     question: "¿Necesito instalar algo o comprar servidores?",
@@ -21,17 +21,17 @@ const faqs = [
   },
   {
     question: "¿Se integra con mi ERP o sistema de gestión actual?",
-    answer: "Sí, Lumiware se integra con los ERPs más utilizados por empresas. La integración es bidireccional: los datos de stock y movimientos se sincronizan automáticamente, evitando la duplicación de trabajo y los errores manuales."
+    answer: "Si tu ERP tiene API y documentación disponible, podemos realizar una integración para importar los datos desde tu sistema a Lumiware automáticamente. Si no es posible, siempre puedes exportar los datos de tu ERP en formato estándar (CSV, Excel) e importarlos a Lumiware. De cualquier forma, migrar tu inventario existente es sencillo."
   }
 ];
 
 export default function FAQ() {
   return (
     <>
-      <section className="py-32 bg-[#050505] relative overflow-hidden">
+      <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden transition-colors duration-500">
         {/* Background Glows */}
-        <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-cyan-500/5 blur-[150px] rounded-full pointer-events-none"></div>
-        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-emerald-500/5 blur-[150px] rounded-full pointer-events-none"></div>
+        <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-primary-container/5 dark:bg-cyan-500/5 blur-[150px] rounded-full pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-0 w-[600px] h-[600px] bg-emerald-500/5 dark:bg-emerald-500/5 blur-[150px] rounded-full pointer-events-none"></div>
 
         <div className="max-w-screen-xl mx-auto px-8 relative z-10">
           {/* Section Header */}
@@ -42,13 +42,13 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h2 className="text-xl md:text-2xl font-light tracking-widest text-[#00e5ff] uppercase mb-4">
+            <h2 className="text-xl md:text-2xl font-light tracking-widest text-primary dark:text-[#00e5ff] uppercase mb-4 transition-colors duration-500">
               Preguntas Frecuentes
             </h2>
-            <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-white mb-6">
+            <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
               Lo que preguntan las pymes sobre software de gestión de almacenes
             </h3>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+            <p className="text-lg text-on-surface-variant dark:text-slate-400 max-w-2xl mx-auto transition-colors duration-500">
               Respuestas directas a las dudas más comunes de pequeñas empresas que están digitalizando su almacén
             </p>
           </motion.div>
@@ -62,17 +62,17 @@ export default function FAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-cyan-500/30 hover:bg-white/[0.08] transition-all duration-300 group"
+                className="bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 rounded-2xl p-8 hover:border-primary-container/30 dark:hover:border-cyan-500/30 hover:bg-surface-container-high dark:hover:bg-white/[0.08] transition-all duration-300 group shadow-sm dark:shadow-none"
               >
                 <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold group-hover:bg-cyan-500/20 transition-colors">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary/10 dark:bg-cyan-500/10 border border-primary/20 dark:border-cyan-500/20 flex items-center justify-center text-primary dark:text-cyan-400 font-bold group-hover:bg-primary/20 dark:group-hover:bg-cyan-500/20 transition-colors">
                     {idx + 1}
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-lg font-bold text-white mb-3 group-hover:text-cyan-50 transition-colors">
+                    <h4 className="text-lg font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">
                       {faq.question}
                     </h4>
-                    <p className="text-slate-400 leading-relaxed font-light text-base">
+                    <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light text-base transition-colors duration-500">
                       {faq.answer}
                     </p>
                   </div>

@@ -34,24 +34,24 @@ export default function Solution() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden transition-colors duration-500">
       {/* Background Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-container/10 dark:bg-cyan-500/10 blur-[120px] rounded-full pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <h2 className="text-xl md:text-2xl font-light tracking-widest text-[#00e5ff] uppercase mb-4">
+          <h2 className="text-xl md:text-2xl font-light tracking-widest text-primary dark:text-[#00e5ff] uppercase mb-4 transition-colors duration-500">
             La Solución
           </h2>
-          <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-white">
+          <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white transition-colors duration-500">
             Una nueva forma de gestionar el almacén
           </h3>
         </motion.div>
@@ -59,37 +59,37 @@ export default function Solution() {
         {/* Main Content - Two Columns */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left Column - Copy */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
             className="space-y-12"
           >
-            <p className="text-xl md:text-2xl text-slate-300 leading-relaxed font-light">
-              <span className="font-bold text-cyan-400">LUMIWARE</span> digitaliza el inventario mediante códigos QR y una interfaz simple que permite acceder a toda la información del producto en segundos.
+            <p className="text-xl md:text-2xl text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
+              <span className="font-bold text-primary dark:text-cyan-400">LUMIWARE</span> digitaliza el inventario mediante códigos QR y una interfaz simple que permite acceder a toda la información del producto en segundos.
             </p>
 
             {/* Features List */}
             <div className="space-y-8">
               {features.map((feature, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, y: 15 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
                   className="flex gap-5 group"
                 >
-                  <div className="flex-shrink-0 w-14 h-14 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-cyan-400 group-hover:bg-cyan-500/10 group-hover:text-cyan-300 group-hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(0,0,0,0)] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.2)]">
+                  <div className="flex-shrink-0 w-14 h-14 bg-surface-container dark:bg-white/5 border border-outline-variant dark:border-white/10 rounded-xl flex items-center justify-center text-primary dark:text-cyan-400 group-hover:bg-primary/10 dark:group-hover:bg-cyan-500/10 group-hover:scale-110 transition-all duration-300 shadow-sm dark:shadow-none group-hover:shadow-md">
                     {feature.icon}
                   </div>
                   <div className="flex-1 pt-1">
-                    <h3 className="text-2xl font-bold text-white group-hover:text-cyan-50 transition-colors">
-                      <span className="font-mono text-cyan-400 mr-2 opacity-50">&gt;_</span>
+                    <h3 className="text-2xl font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">
+                      <span className="font-mono text-primary dark:text-cyan-400 mr-2 opacity-50">&gt;_</span>
                       {feature.title}
                     </h3>
-                    <p className="text-slate-400 leading-relaxed font-light">
+                    <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light transition-colors duration-500">
                       {feature.description}
                     </p>
                   </div>
@@ -98,15 +98,15 @@ export default function Solution() {
             </div>
 
             {/* CTA Callout */}
-            <div className="pt-8 border-t">
-                <p className="text-xl font-medium text-cyan-400 inline-block">
+            <div className="pt-8 border-t border-outline-variant dark:border-white/10">
+                <p className="text-xl font-medium text-primary dark:text-cyan-400 inline-block transition-colors duration-500">
                   Escanea para operar
                 </p>
             </div>
           </motion.div>
 
           {/* Right Column - Visual Abstract Phone/Device Area */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -114,20 +114,20 @@ export default function Solution() {
             className="relative"
           >
             {/* Outer glowing frame */}
-            <div className="relative aspect-[4/5] max-w-md mx-auto rounded-3xl p-[1px] bg-gradient-to-b from-cyan-500/50 via-blue-500/20 to-transparent">
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-blue-500/10 blur-xl rounded-3xl"></div>
-              
-              {/* Inner content */}
-              <div className="relative h-full bg-[#0a0a0a]/90 backdrop-blur-xl rounded-[23px] flex flex-col items-center justify-center border border-white/5 overflow-hidden group">
-                
+            <div className="relative aspect-[4/5] max-w-md mx-auto rounded-3xl p-[1px] bg-gradient-to-b from-primary/50 dark:from-cyan-500/50 via-blue-500/20 to-transparent">
+              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 dark:from-cyan-500/10 to-blue-500/10 blur-xl rounded-3xl"></div>
+
+              {/* Inner content - Fixed dark background */}
+              <div className="relative h-full bg-[#1a1a2e]/95 backdrop-blur-xl rounded-[23px] flex flex-col items-center justify-center border border-white/10 overflow-hidden group shadow-lg">
+
                 {/* Tech grid inside device */}
                 <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-30"></div>
-                
+
                 {/* Scanning line animation */}
-                <motion.div 
+                <motion.div
                   animate={{ y: ["-150%", "150%"] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                  className="absolute left-0 right-0 h-1 bg-cyan-400 shadow-[0_0_15px_#00e5ff]"
+                  className="absolute left-0 right-0 h-1 bg-cyan-400 shadow-[0_0_15px_rgba(0,229,255,0.5)]"
                 />
 
                 <div className="relative z-10 text-center space-y-6">
@@ -138,7 +138,7 @@ export default function Solution() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                     </svg>
                   </div>
-                  
+
                   {/* Decorative Scan Box */}
                   <div className="w-32 h-32 mx-auto mt-4 border-2 border-cyan-500/30 rounded-xl flex items-center justify-center relative">
                     <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-cyan-400 rounded-tl-lg"></div>
@@ -156,12 +156,12 @@ export default function Solution() {
                 </div>
               </div>
             </div>
-            
+
             {/* Floaters */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }} 
+            <motion.div
+              animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -right-6 top-1/4 py-3 px-5 bg-white/10 backdrop-blur-md rounded-lg border border-white/10 shadow-xl"
+              className="absolute -right-6 top-1/4 py-3 px-5 bg-[#1a1a2e]/95 backdrop-blur-md rounded-lg border border-white/10 shadow-xl"
             >
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]"></div>

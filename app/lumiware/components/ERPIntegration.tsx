@@ -34,7 +34,7 @@ export default function ERPIntegration() {
   ];
 
   return (
-    <section className="py-32 bg-[#050505] relative overflow-hidden border-t border-white/5">
+    <section className="py-32 bg-white dark:bg-[#050505] relative overflow-hidden border-t border-outline-variant dark:border-white/5 transition-colors duration-500">
       {/* Background glow lines */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-sky-500/10 blur-[150px] rounded-full pointer-events-none -translate-y-1/2"></div>
       <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[150px] rounded-full pointer-events-none translate-y-1/2"></div>
@@ -42,7 +42,7 @@ export default function ERPIntegration() {
       <div className="max-w-screen-xl mx-auto px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-50px" }}
@@ -56,33 +56,33 @@ export default function ERPIntegration() {
                   Integración
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black font-headline text-white leading-tight mb-6">
+              <h2 className="text-4xl md:text-5xl font-black font-headline text-on-surface dark:text-white leading-tight mb-6 transition-colors duration-500">
                 Complemento para tu <span className="text-sky-400">ERP</span>
               </h2>
-              <p className="text-slate-300 text-xl leading-relaxed font-light">
-                <span className="font-bold text-white">LUMIWARE</span> no sustituye tu sistema de gestión actual. Se integra con él para añadir la capa de agilidad y usabilidad que le falta al almacén.
+              <p className="text-on-surface-variant dark:text-slate-300 text-xl leading-relaxed font-light transition-colors duration-500">
+                <span className="font-bold text-on-surface dark:text-white transition-colors duration-500">LUMIWARE</span> no sustituye tu sistema de gestión actual. Se integra con él para añadir la capa de agilidad y usabilidad que le falta al almacén.
               </p>
             </div>
 
             {/* Benefits Array */}
-            <div className="space-y-8 pl-4 border-l-2 border-white/10">
+            <div className="space-y-8 pl-4 border-l-2 border-outline-variant dark:border-white/10 transition-colors duration-500">
               {benefits.map((benefit, idx) => (
-                <motion.div 
-                  key={idx} 
+                <motion.div
+                  key={idx}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.15 }}
                   className="relative group"
                 >
-                  <div className="absolute -left-[2.35rem] top-2.5 w-4 h-4 rounded-full bg-white/10 border border-white/20 group-hover:bg-sky-500 group-hover:border-sky-400 group-hover:scale-125 transition-all duration-300 shadow-[0_0_10px_rgba(14,165,233,0)] group-hover:shadow-[0_0_15px_rgba(14,165,233,0.8)]"></div>
-                  
-                  <div className="bg-white/5 p-6 rounded-2xl border border-white/10 hover:bg-white/[0.08] hover:border-sky-500/30 transition-all duration-300 ml-4 group-hover:-translate-y-1">
+                  <div className="absolute -left-[2.35rem] top-2.5 w-4 h-4 rounded-full bg-surface-container dark:bg-white/10 border border-outline-variant dark:border-white/20 group-hover:bg-sky-500 group-hover:border-sky-400 group-hover:scale-125 transition-all duration-300 shadow-[0_0_10px_rgba(14,165,233,0)] group-hover:shadow-[0_0_15px_rgba(14,165,233,0.8)]"></div>
+
+                  <div className="bg-surface-container dark:bg-white/5 p-6 rounded-2xl border border-outline-variant dark:border-white/10 hover:bg-surface-container-hover dark:hover:bg-white/[0.08] hover:border-sky-500/30 transition-all duration-300 ml-4 group-hover:-translate-y-1 shadow-sm hover:shadow-md">
                     <div className="w-10 h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 mb-4 group-hover:scale-110 transition-transform duration-300">
                       {benefit.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-sky-200 transition-colors">{benefit.title}</h3>
-                    <p className="text-slate-400 font-light leading-relaxed">{benefit.description}</p>
+                    <h3 className="text-xl font-bold text-on-surface dark:text-white mb-2 group-hover:text-sky-400 transition-colors duration-500">{benefit.title}</h3>
+                    <p className="text-on-surface-variant dark:text-slate-400 font-light leading-relaxed transition-colors duration-500">{benefit.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -90,27 +90,27 @@ export default function ERPIntegration() {
           </motion.div>
 
           {/* Right: Mockup/Visual */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative rounded-3xl overflow-hidden p-2 bg-gradient-to-br from-white/10 to-transparent shadow-2xl backdrop-blur">
-              <div className="relative rounded-[20px] overflow-hidden bg-black border border-white/10 aspect-[4/3]">
+            <div className="relative rounded-3xl overflow-hidden p-2 bg-gradient-to-br from-surface-container dark:from-white/10 to-transparent shadow-2xl backdrop-blur">
+              <div className="relative rounded-[20px] overflow-hidden bg-black border border-outline-variant dark:border-white/10 aspect-[4/3]">
                 <img
                   src="https://lumicatech.b-cdn.net/LumiwareImages/business-team-analyzing-income-charts-and-graphs-w-2026-01-05-00-21-33-utc.webp"
                   alt="Dashboard de ERP"
                   className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-sky-900/60 to-indigo-900/30 mix-blend-color"></div>
-                
+
                 {/* Tech UI connecting 2 systems visually */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="flex items-center gap-4 w-full px-8">
                      {/* Legacy System */}
-                    <div className="flex-1 bg-black/80 backdrop-blur-md p-4 rounded-xl border border-white/10 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-300 text-center">
+                    <div className="flex-1 bg-[#1a1a2e]/95 backdrop-blur-md p-4 rounded-xl border border-white/10 transform rotate-[-5deg] hover:rotate-0 transition-transform duration-300 text-center">
                       <span className="text-slate-400 font-mono text-xs block mb-2">SISTEMA BASE</span>
                       <span className="text-white font-bold text-sm">ERP Actual</span>
                     </div>
@@ -126,7 +126,7 @@ export default function ERPIntegration() {
                     </div>
 
                     {/* Lumiware */}
-                    <div className="flex-1 bg-white/10 backdrop-blur-xl p-4 rounded-xl border border-sky-500/30 shadow-[0_0_20px_rgba(14,165,233,0.3)] transform rotate-[5deg] hover:rotate-0 transition-transform duration-300 text-center">
+                    <div className="flex-1 bg-[#1a1a2e]/95 backdrop-blur-xl p-4 rounded-xl border border-sky-500/30 shadow-[0_0_20px_rgba(14,165,233,0.3)] transform rotate-[5deg] hover:rotate-0 transition-transform duration-300 text-center">
                       <span className="text-sky-300 font-mono text-xs block mb-2">CAPA ÁGIL</span>
                       <span className="text-white font-bold text-sm">LUMIWARE</span>
                     </div>
