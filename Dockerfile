@@ -14,7 +14,7 @@ WORKDIR /app
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 COPY package.json pnpm-lock.yaml* ./
-RUN pnpm approve-builds --package sharp --package unrs-resolver && pnpm install --frozen-lockfile
+RUN echo "sharp\nunrs-resolver" | pnpm approve-builds && pnpm install --frozen-lockfile
 
 # Builder
 FROM base AS builder
