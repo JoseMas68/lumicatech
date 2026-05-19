@@ -1,6 +1,10 @@
 # Usar imagen oficial de Node.js
 FROM node:20-alpine AS base
 
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+
 # Instalar dependencias adicionales
 RUN apk add --no-cache libc6-compat
 
@@ -9,8 +13,8 @@ WORKDIR /app
 # Instalar dependencias solo si es necesario
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
-COPY package.json package-lock.json* ./
-RUN npm ci
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install --frozen-lockfile
 
 # Builder
 FROM base AS builder
@@ -21,18 +25,18 @@ COPY . .
 # Crear directorio data para build time
 RUN mkdir -p /app/data
 
-# Deshabilitar telemetría durante build
-ENV NEXT_TELEMETRY_DISABLED 1
+# Deshabilitar telemetria durante build
+ENV NEXT_TELEMETRY_DISABLED=1
 
-# Build de la aplicación
-RUN npm run build
+# Build de la aplicacion
+RUN pnpm run build
 
-# Runner de producción
+# Runner de produccion
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # Crear usuario no-root
 RUN addgroup --system --gid 1001 nodejs
@@ -46,14 +50,15 @@ COPY --from=builder /app/.next/static ./.next/static
 # Crear directorio de data con permisos
 RUN mkdir -p /app/data && chown -R nextjs:nodejs /app/data
 
-# Crear archivos de configuración con permisos si no existen
+# Crear archivos de configuracion con permisos si no existen
 RUN touch /app/data/seo-config.json /app/data/availability.json && chown nextjs:nodejs /app/data/*.json
 
 USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
-ENV HOSTNAME "0.0.0.0"
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
 
 CMD ["node", "server.js"]
+
