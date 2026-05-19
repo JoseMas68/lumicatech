@@ -14,9 +14,8 @@ WORKDIR /app
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 COPY package.json pnpm-lock.yaml* ./
-# Habilitar build scripts para paquetes necesarios
-RUN echo "enable-pre-post-scripts=true" > .npmrc
-RUN pnpm install --frozen-lockfile
+# Aprobar solo build scripts necesarios (sharp, unrs-resolver)
+RUN pnpm approve-builds sharp unrs-resolver && pnpm install --frozen-lockfile
 
 # Builder
 FROM base AS builder
