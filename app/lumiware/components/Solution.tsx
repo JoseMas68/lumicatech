@@ -48,12 +48,12 @@ export default function Solution() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <h2 className="text-xl md:text-2xl font-light tracking-widest text-primary dark:text-[#00e5ff] uppercase mb-4 transition-colors duration-500">
+          <p className="text-xl md:text-2xl font-light tracking-widest text-primary dark:text-[#00e5ff] uppercase mb-4 transition-colors duration-500">
             La Solución
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white transition-colors duration-500">
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white transition-colors duration-500">
             Una nueva forma de gestionar el almacén
-          </h3>
+          </h2>
         </motion.div>
 
         {/* Main Content - Two Columns */}
@@ -86,7 +86,6 @@ export default function Solution() {
                   </div>
                   <div className="flex-1 pt-1">
                     <h3 className="text-2xl font-bold text-on-surface dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors">
-                      <span className="font-mono text-primary dark:text-cyan-400 mr-2 opacity-50">&gt;_</span>
                       {feature.title}
                     </h3>
                     <p className="text-on-surface-variant dark:text-slate-400 leading-relaxed font-light transition-colors duration-500">

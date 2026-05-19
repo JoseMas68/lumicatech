@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function SEOContent() {
   return (
@@ -30,6 +31,37 @@ export default function SEOContent() {
                 </p>
               </div>
 
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-on-surface dark:text-white mb-6 transition-colors duration-500">
+                  ¿Qué es un WMS y por qué importa en una pyme?
+                </h3>
+                <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light mb-6 transition-colors duration-500">
+                  Un <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500">WMS (Warehouse Management System)</span> o
+                  <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500"> sistema de gestión de almacén</span> permite controlar ubicaciones,
+                  entradas, salidas, picking y trazabilidad desde una única plataforma. Para una pyme, esto se traduce en menos errores operativos y mejor servicio al cliente.
+                </p>
+                <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
+                  Si estás buscando <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500">software de inventario</span> o un
+                  <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500"> programa de almacén</span>, la clave es que incluya
+                  <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500"> control de inventario</span> en tiempo real,
+                  automatización documental y facilidad de implantación.
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold text-on-surface dark:text-white mb-6 transition-colors duration-500">
+                  Solución local para empresas de Castellón y Comunidad Valenciana
+                </h3>
+                <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light mb-6 transition-colors duration-500">
+                  Si tu empresa opera en <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500">Castellón</span> o en cualquier punto de la
+                  <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500"> Comunidad Valenciana</span>, Lumiware te ayuda a digitalizar el almacén con una implantación cercana,
+                  rápida y alineada con tu operativa real.
+                </p>
+                <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
+                  Trabajamos con pymes industriales, distribución y comercio técnico que necesitan un software de gestión de almacenes práctico, con soporte en castellano y enfoque en resultados desde el primer mes.
+                </p>
+              </div>
+
               {/* Benefits for Companies */}
               <div>
                 <h3 className="text-2xl md:text-3xl font-bold text-on-surface dark:text-white mb-6 transition-colors duration-500">
@@ -38,12 +70,14 @@ export default function SEOContent() {
                 <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light mb-6 transition-colors duration-500">
                   Muchas empresas creen que digitalizar su almacén requiere servidores propios, licencias costosas y un departamento informático. Con Lumiware, nada de eso. Es un{" "}
                   <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500">software de gestión de almacenes</span>{" "}
-                  100% cloud: funciona desde el navegador, sin instalación, y tú pagas una cuota mensual ajustada a tu tamaño. Sin sorpresas, sin costes ocultos. Escala desde pymes hasta grandes operaciones industriales.
+                  100% cloud: funciona desde el navegador, sin instalación, y tú pagas una cuota mensual ajustada a tu tamaño. Sin sorpresas, sin costes ocultos. Escala desde pymes hasta grandes operaciones industriales y encaja como
+                  <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500"> software logístico para pymes</span> orientado a resultados.
                 </p>
                 <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
                   El resultado es inmediato: tu equipo deja de perseguir productos por pasillos, deja de llamar al encargado para saber si hay stock, deja de rehacer inventarios cada mes porque los números no cuadran. Con el{" "}
                   <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500">control de stock</span>{" "}
-                  basado en códigos QR, un escaneo te da la información exacta en segundos.
+                  basado en <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500">código QR</span>, un escaneo te da la información exacta en segundos y mejora la
+                  <span className="text-primary dark:text-cyan-400 font-semibold transition-colors duration-500"> gestión de stock</span> diaria.
                 </p>
               </div>
 
@@ -73,6 +107,12 @@ export default function SEOContent() {
                 </p>
                 <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light transition-colors duration-500">
                   Esto significa menos trabajo manual, menos errores de transcripción y más confianza en tus datos. Tu equipo comercial puede saber si hay stock antes de prometer entrega. Tu equipo de compras sabe cuándo reponer antes de que se agote. Y tú, como responsable, tienes visibilidad total sin estar presente físicamente en el almacén.
+                </p>
+                <p className="text-lg text-on-surface-variant dark:text-slate-300 leading-relaxed font-light mt-6 transition-colors duration-500">
+                  Si quieres ver cómo encaja con tus procesos, puedes revisar también nuestro enfoque de
+                  <Link href="/servicios/software-a-medida" className="text-primary dark:text-cyan-400 font-semibold hover:underline transition-colors duration-500"> software a medida</Link>
+                  o contactar con el equipo desde
+                  <Link href="/contacto" className="text-primary dark:text-cyan-400 font-semibold hover:underline transition-colors duration-500"> la página de contacto</Link>.
                 </p>
               </div>
 

@@ -22,6 +22,10 @@ const faqs = [
   {
     question: "¿Se integra con mi ERP o sistema de gestión actual?",
     answer: "Si tu ERP tiene API y documentación disponible, podemos realizar una integración para importar los datos desde tu sistema a Lumiware automáticamente. Si no es posible, siempre puedes exportar los datos de tu ERP en formato estándar (CSV, Excel) e importarlos a Lumiware. De cualquier forma, migrar tu inventario existente es sencillo."
+  },
+  {
+    question: "¿Trabajáis con empresas en Castellón y Comunidad Valenciana?",
+    answer: "Sí. Trabajamos con pymes de Castellón y del resto de la Comunidad Valenciana. Adaptamos Lumiware a la operativa de cada almacén y acompañamos la implantación con soporte cercano para que el equipo adopte el sistema sin fricción."
   }
 ];
 
@@ -42,12 +46,12 @@ export default function FAQ() {
             transition={{ duration: 0.6 }}
             className="text-center mb-20"
           >
-            <h2 className="text-xl md:text-2xl font-light tracking-widest text-primary dark:text-[#00e5ff] uppercase mb-4 transition-colors duration-500">
+            <p className="text-xl md:text-2xl font-light tracking-widest text-primary dark:text-[#00e5ff] uppercase mb-4 transition-colors duration-500">
               Preguntas Frecuentes
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black font-headline tracking-tighter text-on-surface dark:text-white mb-6 transition-colors duration-500">
               Lo que preguntan las pymes sobre software de gestión de almacenes
-            </h3>
+            </h2>
             <p className="text-lg text-on-surface-variant dark:text-slate-400 max-w-2xl mx-auto transition-colors duration-500">
               Respuestas directas a las dudas más comunes de pequeñas empresas que están digitalizando su almacén
             </p>

@@ -45,12 +45,12 @@ export default function Problem() {
             transition={{ duration: 0.6 }}
             className="text-center space-y-6"
           >
-            <h2 className="text-xl md:text-2xl font-light tracking-widest text-rose-500 uppercase mb-4">
+            <p className="text-xl md:text-2xl font-light tracking-widest text-rose-500 uppercase mb-4">
               El Problema
-            </h2>
-            <h3 className="text-4xl md:text-5xl font-black tracking-tighter text-on-surface dark:text-white font-headline leading-tight transition-colors duration-500">
+            </p>
+            <h2 className="text-4xl md:text-5xl font-black tracking-tighter text-on-surface dark:text-white font-headline leading-tight transition-colors duration-500">
               La gestión de almacenes sigue siendo <span className="text-rose-500">ineficiente</span>
-            </h3>
+            </h2>
           </motion.div>
 
           {/* Issues Grid */}

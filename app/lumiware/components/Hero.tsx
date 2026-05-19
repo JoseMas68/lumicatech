@@ -44,10 +44,10 @@ export default function Hero() {
 
           {/* Headline */}
           <div className="space-y-4">
-            <h2 className="text-xl md:text-3xl font-light tracking-widest text-primary dark:text-cyan-400 uppercase font-sans transition-colors duration-500">
+            <p className="text-xl md:text-3xl font-light tracking-widest text-primary dark:text-cyan-400 uppercase font-sans transition-colors duration-500">
               Lumiware
-            </h2>
-            <h1 className="text-5xl md:text-7xl font-black font-headline leading-[1.1] tracking-tighter text-on-surface dark:text-white transition-colors duration-500">
+            </p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black font-headline leading-[1.1] tracking-tighter text-on-surface dark:text-white transition-colors duration-500">
               Software de Gestión de <span className="text-primary dark:text-cyan-400 transition-colors duration-500">Almacenes para Pymes con QR</span>
             </h1>
             <p className="text-lg md:text-xl text-on-surface-variant dark:text-slate-400 max-w-2xl font-light leading-relaxed transition-colors duration-500">

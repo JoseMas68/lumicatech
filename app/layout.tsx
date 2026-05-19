@@ -76,14 +76,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#135bec" />
 
-        {/* OpenGraph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/icon-512.png" />
-        <meta property="og:image:width" content="512" />
-        <meta property="og:image:height" content="512" />
-
-        {/* Twitter */}
-        <meta name="twitter:image" content="/icon-512.png" />
+        {/* OpenGraph/Twitter images are handled per-page via Next metadata */}
 
         {/* Android Chrome */}
         <meta name="mobile-web-app-capable" content="yes" />
