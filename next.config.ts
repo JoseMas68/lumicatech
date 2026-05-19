@@ -64,9 +64,9 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnfonts.com",
-              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnfonts.com https://fonts.gstatic.com",
-              "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdnfonts.com data:",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://cdnfonts.com https://www.cdnfonts.com",
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnfonts.com https://www.cdnfonts.com https://fonts.gstatic.com",
+              "font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://cdnfonts.com https://www.cdnfonts.com data:",
               "img-src 'self' data: blob: https://images.unsplash.com https://lh3.googleusercontent.com https://lumicatech.b-cdn.net",
               "connect-src 'self' https://calendar.google.com",
               "frame-src 'self' https://calendar.google.com",

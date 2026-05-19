@@ -53,7 +53,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className="dark">
+    <html lang="es" className="dark" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -98,7 +98,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <link
-          href="https://cdnfonts.com/css/satoshi"
+          href="https://www.cdnfonts.com/css/satoshi"
           rel="stylesheet"
         />
         <link
