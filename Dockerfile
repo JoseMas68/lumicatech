@@ -14,8 +14,11 @@ WORKDIR /app
 FROM base AS deps
 RUN apk add --no-cache libc6-compat
 COPY package.json pnpm-lock.yaml* ./
-# Aprobar solo build scripts necesarios (sharp, unrs-resolver)
-RUN pnpm approve-builds sharp unrs-resolver && pnpm install --frozen-lockfile
+# Crear pnpm-workspace.yaml con build scripts aprobados antes de instalar
+RUN echo 'allowBuilds:' > pnpm-workspace.yaml && \
+    echo '  sharp: true' >> pnpm-workspace.yaml && \
+    echo '  unrs-resolver: true' >> pnpm-workspace.yaml
+RUN pnpm install --frozen-lockfile
 
 # Builder
 FROM base AS builder
