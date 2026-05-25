@@ -102,23 +102,23 @@ export default function ScheduleConfig({ initialConfig }: Props) {
   const selectedSlots = selectedDate ? (config.slots[selectedDate] ?? []) : [];
 
   return (
-    <div className="bg-[#23242f] rounded-2xl border border-white/10 p-6">
-      <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+    <div className="space-y-5">
+      <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold">Disponibilidad por día</h2>
-          <p className="text-gray-400 text-sm mt-1">
-            Pulsa un día y activa las horas en que puedes recibir reuniones. Puedes cambiar cada semana según tus turnos.
+          <h2 className="text-xl font-bold tracking-tight">Disponibilidad</h2>
+          <p className="text-sm text-slate-500 mt-1">
+            Selecciona un día en el calendario y activa las horas en que puedes recibir reuniones.
           </p>
         </div>
         <div className="flex items-end gap-3">
           <div>
-            <label className="block text-xs text-gray-400 mb-1.5">Duración reunión</label>
+            <label className="block text-xs text-slate-400 mb-1.5">Duración reunión</label>
             <select
               value={config.meetingDuration}
               onChange={(e) =>
                 setConfig((prev) => ({ ...prev, meetingDuration: Number(e.target.value) }))
               }
-              className="bg-[#1a1b24] border border-white/10 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500"
+              className="bg-[#0a0f1e] border border-white/10 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500/50 transition"
             >
               <option value={30}>30 minutos</option>
               <option value={45}>45 minutos</option>
@@ -130,7 +130,7 @@ export default function ScheduleConfig({ initialConfig }: Props) {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-medium px-5 py-2 rounded-xl transition text-sm"
+            className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-50 text-white font-medium px-4 py-2 rounded-xl transition text-sm shadow-lg shadow-cyan-500/20"
           >
             {saved ? (
               <><Check className="w-4 h-4" /> Guardado</>
@@ -149,7 +149,7 @@ export default function ScheduleConfig({ initialConfig }: Props) {
           <div className="flex items-center justify-between mb-3">
             <button
               onClick={prevMonth}
-              className="p-1.5 rounded-lg hover:bg-white/10 transition text-gray-400 hover:text-white"
+              className="p-1.5 rounded-lg hover:bg-white/10 transition text-slate-400 hover:text-white"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -158,7 +158,7 @@ export default function ScheduleConfig({ initialConfig }: Props) {
             </span>
             <button
               onClick={nextMonth}
-              className="p-1.5 rounded-lg hover:bg-white/10 transition text-gray-400 hover:text-white"
+              className="p-1.5 rounded-lg hover:bg-white/10 transition text-slate-400 hover:text-white"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -166,7 +166,7 @@ export default function ScheduleConfig({ initialConfig }: Props) {
 
           <div className="grid grid-cols-7 gap-1 mb-1">
             {DAY_LABELS.map((d) => (
-              <div key={d} className="w-10 text-center text-xs text-gray-500 py-1">
+              <div key={d} className="w-10 text-center text-xs text-slate-500 py-1">
                 {d}
               </div>
             ))}
@@ -191,19 +191,19 @@ export default function ScheduleConfig({ initialConfig }: Props) {
                   <button
                     key={dayNum}
                     onClick={() => setSelectedDate(isSelected ? null : dateStr)}
-                    className={`relative w-10 h-10 rounded-lg text-sm font-medium transition flex flex-col items-center justify-center ${
+                    className={`relative w-10 h-10 rounded-xl text-sm font-medium transition flex flex-col items-center justify-center ${
                       isSelected
-                        ? "bg-indigo-600 text-white"
+                        ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20"
                         : isToday
                         ? "bg-white/10 text-white"
-                        : "hover:bg-white/5 text-gray-300"
+                        : "hover:bg-white/5 text-slate-300"
                     }`}
                   >
                     {dayNum}
                     {slotCount > 0 && (
                       <span
-                        className={`absolute bottom-1 w-1.5 h-1.5 rounded-full ${
-                          isSelected ? "bg-white" : "bg-indigo-400"
+                        className={`absolute bottom-1.5 w-1.5 h-1.5 rounded-full ${
+                          isSelected ? "bg-white" : "bg-cyan-400"
                         }`}
                       />
                     )}
@@ -214,9 +214,9 @@ export default function ScheduleConfig({ initialConfig }: Props) {
         </div>
 
         {/* Editor de horas */}
-        <div className="flex-1 min-w-0 bg-[#1a1b24] rounded-xl border border-white/10 p-4">
+        <div className="flex-1 min-w-0 bg-[#111827] border border-white/5 rounded-xl p-4">
           {!selectedDate ? (
-            <div className="h-full min-h-[200px] flex items-center justify-center text-gray-500 text-sm">
+            <div className="h-full min-h-[200px] flex items-center justify-center text-slate-500 text-sm">
               Selecciona un día para editar sus horas disponibles
             </div>
           ) : (
@@ -224,14 +224,14 @@ export default function ScheduleConfig({ initialConfig }: Props) {
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <span className="font-medium text-sm">{selectedDate}</span>
-                  <span className="text-gray-400 text-xs ml-2">
+                  <span className="text-slate-500 text-xs ml-2">
                     {selectedSlots.length} hora{selectedSlots.length !== 1 ? "s" : ""} activa{selectedSlots.length !== 1 ? "s" : ""}
                   </span>
                 </div>
                 {selectedSlots.length > 0 && (
                   <button
                     onClick={() => clearDay(selectedDate)}
-                    className="flex items-center gap-1 text-xs text-red-400 hover:text-red-300 transition"
+                    className="flex items-center gap-1 text-xs text-rose-400 hover:text-rose-300 transition"
                   >
                     <X className="w-3 h-3" />
                     Limpiar día
@@ -245,10 +245,10 @@ export default function ScheduleConfig({ initialConfig }: Props) {
                     <button
                       key={slot}
                       onClick={() => toggleSlot(selectedDate, slot)}
-                      className={`py-2 rounded-lg text-xs font-medium transition border ${
+                      className={`py-2 rounded-xl text-xs font-medium transition border ${
                         active
-                          ? "bg-indigo-600 border-indigo-500 text-white"
-                          : "bg-[#23242f] border-white/10 text-gray-400 hover:border-indigo-500/50 hover:text-white"
+                          ? "bg-gradient-to-r from-cyan-500 to-blue-600 border-cyan-500/50 text-white shadow-sm shadow-cyan-500/10"
+                          : "bg-[#0a0f1e] border-white/10 text-slate-400 hover:border-cyan-500/30 hover:text-white"
                       }`}
                     >
                       {slot}

@@ -1,14 +1,22 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Copy, Eye, FilePlus2, Filter, FileDown, RefreshCw, Send, Trash2 } from "lucide-react";
-import { BUDGET_TEMPLATES, DEFAULT_BUDGET_FOOTER, DEFAULT_BUDGET_TEMPLATE, getTemplateTheme, type BudgetTemplateId } from "@/src/lib/budget-branding";
+import {
+  Copy, Eye, FilePlus2, Filter, FileDown, RefreshCw, Send, Trash2,
+  X, Check, Plus, Minus, Sparkles, Palette, Download, ExternalLink,
+  Clock, CheckCircle2, XCircle, AlertCircle, Search, FileText
+} from "lucide-react";
+import {
+  BUDGET_TEMPLATES, DEFAULT_BUDGET_FOOTER, DEFAULT_BUDGET_TEMPLATE,
+  getTemplateTheme, type BudgetTemplateId, type BudgetTemplateTheme
+} from "@/src/lib/budget-branding";
 
 type BudgetStatus = "borrador" | "enviado" | "aceptado" | "rechazado" | "vencido";
 
 type BudgetItem = {
   id?: string;
   concept: string;
+  description?: string;
   quantity: number;
   unitPrice: number;
 };
@@ -21,14 +29,27 @@ type Budget = {
   company?: string;
   title: string;
   finalTotal: number;
+  subtotal: number;
+  taxAmount: number;
+  discount: number;
   currency: string;
+  taxPercent: number;
   status: BudgetStatus;
   createdAt: string;
+  validUntil?: string;
   template: BudgetTemplateId;
   brandFooter?: string;
+  items?: BudgetItem[];
+  notes?: string;
 };
 
-const STATUS_OPTIONS: BudgetStatus[] = ["borrador", "enviado", "aceptado", "rechazado", "vencido"];
+const STATUS_CONFIG: Record<BudgetStatus, { label: string; icon: React.ReactNode; color: string; bg: string; border: string }> = {
+  borrador: { label: "Borrador", icon: <Clock className="w-3 h-3" />, color: "text-slate-300", bg: "bg-slate-500/10", border: "border-slate-500/20" },
+  enviado: { label: "Enviado", icon: <Send className="w-3 h-3" />, color: "text-cyan-300", bg: "bg-cyan-500/10", border: "border-cyan-500/20" },
+  aceptado: { label: "Aceptado", icon: <CheckCircle2 className="w-3 h-3" />, color: "text-emerald-300", bg: "bg-emerald-500/10", border: "border-emerald-500/20" },
+  rechazado: { label: "Rechazado", icon: <XCircle className="w-3 h-3" />, color: "text-rose-300", bg: "bg-rose-500/10", border: "border-rose-500/20" },
+  vencido: { label: "Vencido", icon: <AlertCircle className="w-3 h-3" />, color: "text-amber-300", bg: "bg-amber-500/10", border: "border-amber-500/20" },
+};
 
 export default function BudgetsPanel() {
   const [budgets, setBudgets] = useState<Budget[]>([]);
@@ -36,18 +57,30 @@ export default function BudgetsPanel() {
   const [saving, setSaving] = useState(false);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<BudgetStatus | "todos">("todos");
-  const [newBudget, setNewBudget] = useState({
+  const [showModal, setShowModal] = useState(false);
+  const [editingBudget, setEditingBudget] = useState<Budget | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+
+  // Form state
+  const [form, setForm] = useState({
     clientName: "",
     clientEmail: "",
     company: "",
-    title: "Propuesta de servicios",
+    title: "",
     notes: "",
     taxPercent: 21,
     discount: 0,
+    currency: "EUR",
+    validUntil: "",
     template: DEFAULT_BUDGET_TEMPLATE as BudgetTemplateId,
     brandFooter: DEFAULT_BUDGET_FOOTER,
-    items: [{ concept: "Servicio principal", quantity: 1, unitPrice: 0 }] as BudgetItem[],
+    items: [{ concept: "", description: "", quantity: 1, unitPrice: 0 }] as BudgetItem[],
   });
+
+  const showToast = (message: string, type: "success" | "error" = "success") => {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  };
 
   const fetchBudgets = useCallback(async (q?: string) => {
     setLoading(true);
@@ -65,47 +98,141 @@ export default function BudgetsPanel() {
     fetchBudgets();
   }, [fetchBudgets]);
 
-  const totalPresupuestado = useMemo(() => budgets.reduce((acc, b) => acc + (b.finalTotal || 0), 0), [budgets]);
-  const accepted = useMemo(() => budgets.filter((b) => b.status === "aceptado").length, [budgets]);
-  const conversion = budgets.length > 0 ? ((accepted / budgets.length) * 100).toFixed(1) : "0.0";
-  const filteredBudgets = useMemo(() => {
-    if (statusFilter === "todos") return budgets;
-    return budgets.filter((b) => b.status === statusFilter);
-  }, [budgets, statusFilter]);
-  const canCreate = useMemo(() => {
-    const hasName = newBudget.clientName.trim().length >= 2;
-    const hasEmail = newBudget.clientEmail.includes("@");
-    const hasTitle = newBudget.title.trim().length >= 3;
-    const hasValidItem = newBudget.items.some((item) => item.concept.trim().length > 0);
-    return hasName && hasEmail && hasTitle && hasValidItem;
-  }, [newBudget]);
+  // Stats
+  const stats = useMemo(() => {
+    const total = budgets.length;
+    const accepted = budgets.filter((b) => b.status === "aceptado").length;
+    const sent = budgets.filter((b) => b.status === "enviado").length;
+    const revenue = budgets.reduce((acc, b) => acc + (b.finalTotal || 0), 0);
+    const conversion = total > 0 ? ((accepted / total) * 100).toFixed(1) : "0.0";
+    return { total, accepted, sent, revenue, conversion };
+  }, [budgets]);
 
-  async function createBudget() {
+  const filteredBudgets = useMemo(() => {
+    let result = budgets;
+    if (statusFilter !== "todos") result = result.filter((b) => b.status === statusFilter);
+    if (query.trim()) {
+      const q = query.toLowerCase();
+      result = result.filter((b) =>
+        [b.clientName, b.clientEmail, b.company || "", b.title].some((f) => f.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [budgets, statusFilter, query]);
+
+  // Form helpers
+  const resetForm = () => {
+    setForm({
+      clientName: "",
+      clientEmail: "",
+      company: "",
+      title: "",
+      notes: "",
+      taxPercent: 21,
+      discount: 0,
+      currency: "EUR",
+      validUntil: "",
+      template: DEFAULT_BUDGET_TEMPLATE as BudgetTemplateId,
+      brandFooter: DEFAULT_BUDGET_FOOTER,
+      items: [{ concept: "", description: "", quantity: 1, unitPrice: 0 }],
+    });
+    setEditingBudget(null);
+  };
+
+  const openCreate = () => {
+    resetForm();
+    setShowModal(true);
+  };
+
+  const openEdit = (budget: Budget) => {
+    setEditingBudget(budget);
+    setForm({
+      clientName: budget.clientName,
+      clientEmail: budget.clientEmail,
+      company: budget.company || "",
+      title: budget.title,
+      notes: budget.notes || "",
+      taxPercent: budget.taxPercent,
+      discount: budget.discount,
+      currency: budget.currency,
+      validUntil: budget.validUntil || "",
+      template: budget.template,
+      brandFooter: budget.brandFooter || DEFAULT_BUDGET_FOOTER,
+      items: budget.items?.length ? budget.items : [{ concept: "", description: "", quantity: 1, unitPrice: 0 }],
+    });
+    setShowModal(true);
+  };
+
+  const addItem = () => {
+    setForm({ ...form, items: [...form.items, { concept: "", description: "", quantity: 1, unitPrice: 0 }] });
+  };
+
+  const removeItem = (idx: number) => {
+    if (form.items.length <= 1) return;
+    setForm({ ...form, items: form.items.filter((_, i) => i !== idx) });
+  };
+
+  const updateItem = (idx: number, key: keyof BudgetItem, value: string | number) => {
+    const items = [...form.items];
+    items[idx] = { ...items[idx], [key]: value };
+    setForm({ ...form, items });
+  };
+
+  const canCreate = useMemo(() => {
+    const hasName = form.clientName.trim().length >= 2;
+    const hasEmail = form.clientEmail.includes("@");
+    const hasTitle = form.title.trim().length >= 3;
+    const hasValidItem = form.items.some((item) => item.concept.trim().length > 0);
+    return hasName && hasEmail && hasTitle && hasValidItem;
+  }, [form]);
+
+  // Preview calculations
+  const previewItems = useMemo(
+    () => form.items.filter((item) => item.concept.trim()).map((item) => ({
+      ...item,
+      total: Math.max(0, item.quantity) * Math.max(0, item.unitPrice),
+    })),
+    [form.items]
+  );
+
+  const previewSubtotal = useMemo(() => previewItems.reduce((acc, item) => acc + item.total, 0), [previewItems]);
+  const safeDiscount = Math.min(Math.max(0, Number(form.discount) || 0), previewSubtotal);
+  const previewTaxAmount = Math.max(0, ((previewSubtotal - safeDiscount) * Math.max(0, Number(form.taxPercent) || 0)) / 100);
+  const previewTotal = previewSubtotal - safeDiscount + previewTaxAmount;
+  const selectedTheme = getTemplateTheme(form.template);
+
+  async function saveBudget() {
+    if (!canCreate) return;
     setSaving(true);
     try {
+      const isEdit = !!editingBudget;
       const res = await fetch("/api/admin/budgets", {
-        method: "POST",
+        method: isEdit ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newBudget),
+        body: JSON.stringify({
+          ...(isEdit ? { id: editingBudget!.id } : {}),
+          ...form,
+          items: form.items.map((i) => ({
+            concept: i.concept,
+            description: i.description,
+            quantity: i.quantity,
+            unitPrice: i.unitPrice,
+          })),
+        }),
       });
+
       if (!res.ok) {
         const data = await res.json();
-        alert(data.error || "No se pudo crear");
+        showToast(data.error || "Error al guardar", "error");
         return;
       }
-      setNewBudget({
-        clientName: "",
-        clientEmail: "",
-        company: "",
-        title: "Propuesta de servicios",
-        notes: "",
-        taxPercent: 21,
-        discount: 0,
-        template: DEFAULT_BUDGET_TEMPLATE,
-        brandFooter: DEFAULT_BUDGET_FOOTER,
-        items: [{ concept: "Servicio principal", quantity: 1, unitPrice: 0 }],
-      });
+
+      showToast(isEdit ? "Presupuesto actualizado ✓" : "Presupuesto creado ✓");
+      setShowModal(false);
+      resetForm();
       fetchBudgets(query);
+    } catch {
+      showToast("Error de conexión", "error");
     } finally {
       setSaving(false);
     }
@@ -115,6 +242,7 @@ export default function BudgetsPanel() {
     if (action === "delete") {
       if (!confirm("¿Eliminar presupuesto?")) return;
       await fetch("/api/admin/budgets", { method: "DELETE", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id }) });
+      showToast("Presupuesto eliminado");
       fetchBudgets(query);
       return;
     }
@@ -122,6 +250,7 @@ export default function BudgetsPanel() {
       ? { id, action: "duplicate" }
       : { id, action: "status", status: "enviado" };
     await fetch("/api/admin/budgets", { method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    if (action === "send") showToast("Presupuesto enviado ✓");
     fetchBudgets(query);
   }
 
@@ -134,218 +263,509 @@ export default function BudgetsPanel() {
     fetchBudgets(query);
   }
 
-  function updateItem(idx: number, key: keyof BudgetItem, value: string) {
-    const items = [...newBudget.items];
-    items[idx] = { ...items[idx], [key]: key === "concept" ? value : Number(value) };
-    setNewBudget({ ...newBudget, items });
+  // Modal
+  if (showModal) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-start justify-center p-4 sm:p-8" style={{ backgroundColor: "rgba(0,0,0,0.7)" }}>
+        <div className="w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 bg-[#111827]" onClick={(e) => e.stopPropagation()}>
+          {/* Modal header */}
+          <div className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#111827]/95 backdrop-blur">
+            <h2 className="text-lg font-bold">{editingBudget ? "Editar presupuesto" : "Nuevo presupuesto"}</h2>
+            <button onClick={() => setShowModal(false)} className="p-2 rounded-lg hover:bg-white/5 text-slate-400">
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+
+          <div className="grid xl:grid-cols-[1fr_1fr] gap-0">
+            {/* LEFT: Form */}
+            <div className="p-6 space-y-5 border-r border-white/5">
+              {/* Client info */}
+              <div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Datos del cliente</h3>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  <FormField label="Cliente *" value={form.clientName} onChange={(v) => setForm({...form, clientName: v})} placeholder="Nombre completo" />
+                  <FormField label="Email *" value={form.clientEmail} onChange={(v) => setForm({...form, clientEmail: v})} placeholder="email@ejemplo.com" type="email" />
+                  <FormField label="Empresa" value={form.company} onChange={(v) => setForm({...form, company: v})} placeholder="Nombre empresa" />
+                  <FormField label="Título *" value={form.title} onChange={(v) => setForm({...form, title: v})} placeholder="Ej: Desarrollo web para..." />
+                </div>
+              </div>
+
+              {/* Notes */}
+              <div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Notas</h3>
+                <textarea
+                  value={form.notes}
+                  onChange={(e) => setForm({...form, notes: e.target.value})}
+                  placeholder="Alcance del proyecto, detalles adicionales..."
+                  className="w-full min-h-20 bg-[#0a0f1e] border border-white/10 rounded-xl px-4 py-3 text-sm resize-none focus:border-cyan-500/50 focus:outline-none transition"
+                />
+              </div>
+
+              {/* Financial */}
+              <div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Financiero</h3>
+                <div className="grid sm:grid-cols-3 gap-3">
+                  <NumberField label="IVA (%)" value={form.taxPercent} onChange={(v) => setForm({...form, taxPercent: v})} min={0} max={100} />
+                  <NumberField label="Descuento (€)" value={form.discount} onChange={(v) => setForm({...form, discount: v})} min={0} />
+                  <div>
+                    <label className="block text-xs text-slate-400 mb-1.5">Moneda</label>
+                    <select
+                      value={form.currency}
+                      onChange={(e) => setForm({...form, currency: e.target.value})}
+                      className="w-full bg-[#0a0f1e] border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:border-cyan-500/50 focus:outline-none"
+                    >
+                      <option value="EUR">EUR (€)</option>
+                      <option value="USD">USD ($)</option>
+                      <option value="GBP">GBP (£)</option>
+                      <option value="CHF">CHF (Fr)</option>
+                    </select>
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <label className="block text-xs text-slate-400 mb-1.5">Válido hasta</label>
+                  <input
+                    type="date"
+                    value={form.validUntil}
+                    onChange={(e) => setForm({...form, validUntil: e.target.value})}
+                    className="w-full bg-[#0a0f1e] border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:border-cyan-500/50 focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              {/* Template selection */}
+              <div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <Palette className="w-3 h-3" /> Plantilla
+                </h3>
+                <div className="grid grid-cols-3 gap-2">
+                  {BUDGET_TEMPLATES.map((template) => (
+                    <button
+                      key={template.id}
+                      onClick={() => setForm({...form, template: template.id})}
+                      className={`relative rounded-xl border p-3 text-left transition-all ${
+                        form.template === template.id
+                          ? "border-cyan-400 bg-cyan-500/10 ring-1 ring-cyan-400/30"
+                          : "border-white/10 bg-[#0a0f1e] hover:border-white/20"
+                      }`}
+                    >
+                      <div className="absolute inset-0 rounded-xl bg-gradient-to-br opacity-20" style={{ backgroundImage: `linear-gradient(135deg, ${template.accent}, transparent)` }} />
+                      <div className="relative">
+                        <p className="text-[10px] uppercase tracking-widest text-slate-500">{template.badge}</p>
+                        <p className="text-sm font-semibold mt-0.5">{template.name}</p>
+                        <p className="text-[10px] text-slate-500 mt-0.5 leading-tight">{template.description}</p>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Items */}
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Líneas</h3>
+                  <button onClick={addItem} className="text-xs text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+                    <Plus className="w-3 h-3" /> Añadir línea
+                  </button>
+                </div>
+                <div className="space-y-2">
+                  {form.items.map((item, idx) => (
+                    <div key={idx} className="bg-[#0a0f1e] border border-white/5 rounded-xl p-3 space-y-2">
+                      <div className="grid grid-cols-12 gap-2">
+                        <input
+                          className="col-span-6 bg-transparent border border-white/5 rounded-lg px-2.5 py-2 text-xs focus:border-cyan-500/50 focus:outline-none"
+                          value={item.concept}
+                          onChange={(e) => updateItem(idx, "concept", e.target.value)}
+                          placeholder="Concepto"
+                        />
+                        <input
+                          className="col-span-2 bg-transparent border border-white/5 rounded-lg px-2.5 py-2 text-xs focus:border-cyan-500/50 focus:outline-none"
+                          type="number"
+                          min={0}
+                          value={item.quantity || ""}
+                          onChange={(e) => updateItem(idx, "quantity", Number(e.target.value) || 0)}
+                          placeholder="Cant."
+                        />
+                        <input
+                          className="col-span-3 bg-transparent border border-white/5 rounded-lg px-2.5 py-2 text-xs focus:border-cyan-500/50 focus:outline-none"
+                          type="number"
+                          min={0}
+                          step="0.01"
+                          value={item.unitPrice || ""}
+                          onChange={(e) => updateItem(idx, "unitPrice", Number(e.target.value) || 0)}
+                          placeholder="Precio"
+                        />
+                        <button
+                          onClick={() => removeItem(idx)}
+                          disabled={form.items.length <= 1}
+                          className="col-span-1 text-slate-500 hover:text-red-400 disabled:opacity-30 transition"
+                        >
+                          <Minus className="w-3 h-3" />
+                        </button>
+                      </div>
+                      {item.description && (
+                        <input
+                          className="w-full bg-transparent border border-white/5 rounded-lg px-2.5 py-1.5 text-[10px] text-slate-400 focus:border-cyan-500/50 focus:outline-none"
+                          value={item.description}
+                          onChange={(e) => updateItem(idx, "description", e.target.value)}
+                          placeholder="Descripción (opcional)"
+                        />
+                      )}
+                      <div className="text-right text-xs text-slate-500">
+                        {(item.quantity * item.unitPrice).toFixed(2)} {form.currency}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div>
+                <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Pie del documento</h3>
+                <textarea
+                  value={form.brandFooter}
+                  onChange={(e) => setForm({...form, brandFooter: e.target.value})}
+                  className="w-full min-h-20 bg-[#0a0f1e] border border-white/10 rounded-xl px-4 py-3 text-xs resize-none focus:border-cyan-500/50 focus:outline-none"
+                />
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-3 pt-2">
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="flex-1 px-4 py-3 rounded-xl border border-white/10 text-sm text-slate-400 hover:bg-white/5 transition"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={saveBudget}
+                  disabled={!canCreate || saving}
+                  className="flex-1 px-4 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-sm font-medium hover:from-cyan-400 hover:to-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition shadow-lg shadow-cyan-500/20"
+                >
+                  {saving ? "Guardando..." : editingBudget ? "Actualizar" : "Crear presupuesto"}
+                </button>
+              </div>
+            </div>
+
+            {/* RIGHT: Live Preview */}
+            <div className="bg-[#0d1117] p-6">
+              <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                <Eye className="w-3 h-3" /> Vista previa en tiempo real
+              </h3>
+
+              {/* Preview card */}
+              <div className="rounded-xl border border-white/10 overflow-hidden bg-gradient-to-br from-[#141b2d] to-[#0f1420] shadow-2xl">
+                {/* Header */}
+                <div className="p-5 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(135deg, ${selectedTheme.accent}20, transparent)` }}>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-[10px] uppercase tracking-[0.2em] text-cyan-300/70">Presupuesto</p>
+                      <h4 className="text-base font-bold mt-1">{form.title || "Sin título"}</h4>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-xs font-bold text-white">{selectedTheme.name}</p>
+                      <p className="text-[10px] text-slate-400">{form.currency}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2 mt-3 text-xs text-slate-300">
+                    <span className="font-medium">{form.clientName || "Cliente"}</span>
+                    <span>·</span>
+                    <span className="text-slate-400">{form.clientEmail || "email@ejemplo.com"}</span>
+                    {form.company && (
+                      <>
+                        <span>·</span>
+                        <span className="text-slate-400">{form.company}</span>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Items */}
+                <div className="p-5 space-y-2">
+                  {previewItems.length > 0 ? (
+                    <>
+                      {/* Header row */}
+                      <div className="grid grid-cols-12 text-[10px] text-slate-500 uppercase tracking-wider pb-2 border-b border-white/5">
+                        <span className="col-span-5">Concepto</span>
+                        <span className="col-span-2 text-center">Cant.</span>
+                        <span className="col-span-2 text-right">Precio</span>
+                        <span className="col-span-3 text-right">Total</span>
+                      </div>
+                      {previewItems.map((item, i) => (
+                        <div key={i} className="grid grid-cols-12 text-xs gap-2 py-1.5">
+                          <div className="col-span-5">
+                            <p className="font-medium truncate">{item.concept}</p>
+                            {item.description && <p className="text-[10px] text-slate-500 truncate">{item.description}</p>}
+                          </div>
+                          <span className="col-span-2 text-center text-slate-400">{item.quantity}</span>
+                          <span className="col-span-2 text-right text-slate-400">{item.unitPrice.toFixed(2)}</span>
+                          <span className="col-span-3 text-right font-medium">{item.total.toFixed(2)}</span>
+                        </div>
+                      ))}
+                    </>
+                  ) : (
+                    <p className="text-xs text-slate-500 text-center py-4">Añade líneas para ver el detalle</p>
+                  )}
+
+                  {/* Totals */}
+                  <div className="mt-4 pt-4 border-t border-white/10 space-y-1.5">
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-400">Subtotal</span>
+                      <span className="text-slate-200">{previewSubtotal.toFixed(2)} {form.currency}</span>
+                    </div>
+                    {form.discount > 0 && (
+                      <div className="flex justify-between text-xs">
+                        <span className="text-slate-400">Descuento</span>
+                        <span className="text-emerald-400">-{safeDiscount.toFixed(2)} {form.currency}</span>
+                      </div>
+                    )}
+                    <div className="flex justify-between text-xs">
+                      <span className="text-slate-400">IVA ({form.taxPercent}%)</span>
+                      <span className="text-slate-200">{previewTaxAmount.toFixed(2)} {form.currency}</span>
+                    </div>
+                    <div className="flex justify-between text-sm pt-2 border-t border-white/10">
+                      <span className="font-bold">Total</span>
+                      <span className="font-bold text-cyan-300">{previewTotal.toFixed(2)} {form.currency}</span>
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  {form.brandFooter && (
+                    <div className="mt-4 pt-3 border-t border-white/5 text-[10px] text-slate-500 whitespace-pre-line leading-relaxed">
+                      {form.brandFooter}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
-
-  const previewItems = useMemo(
-    () => newBudget.items.filter((item) => item.concept.trim()).map((item) => ({
-      ...item,
-      total: Math.max(0, item.quantity) * Math.max(0, item.unitPrice),
-    })),
-    [newBudget.items]
-  );
-
-  const previewSubtotal = useMemo(() => previewItems.reduce((acc, item) => acc + item.total, 0), [previewItems]);
-  const safeDiscount = Math.min(Math.max(0, Number(newBudget.discount) || 0), previewSubtotal);
-  const previewTaxAmount = Math.max(0, ((previewSubtotal - safeDiscount) * Math.max(0, Number(newBudget.taxPercent) || 0)) / 100);
-  const previewTotal = previewSubtotal - safeDiscount + previewTaxAmount;
-  const selectedTemplate = getTemplateTheme(newBudget.template);
 
   return (
     <div className="space-y-6">
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
-        <Stat label="Total" value={budgets.length} />
-        <Stat label="Enviados" value={budgets.filter((b) => b.status === "enviado").length} />
-        <Stat label="Aceptados" value={accepted} />
-        <Stat label="Conversion" value={`${conversion}%`} />
-        <Stat label="Importe" value={`${totalPresupuestado.toFixed(2)} EUR`} />
+      {/* Stats row */}
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <StatCard label="Total" value={stats.total} accent="from-slate-500 to-slate-600" />
+        <StatCard label="Enviados" value={stats.sent} accent="from-cyan-500 to-blue-500" />
+        <StatCard label="Aceptados" value={stats.accepted} accent="from-emerald-500 to-teal-500" />
+        <StatCard label="Conversión" value={`${stats.conversion}%`} accent="from-indigo-500 to-purple-500" />
+        <StatCard label="Importe" value={`${stats.revenue.toFixed(0)}€`} accent="from-amber-500 to-orange-500" />
       </div>
 
-      <div className="grid xl:grid-cols-[1.2fr_1fr] gap-4">
-      <div className="bg-[#101425] border border-white/10 rounded-2xl p-4 sm:p-5 space-y-3">
-        <div className="flex items-center justify-between gap-2">
-          <h3 className="font-semibold text-sm">Crear propuesta</h3>
-          <button onClick={createBudget} disabled={saving || !canCreate} className="px-3 py-2 text-xs bg-cyan-600 hover:bg-cyan-500 rounded-lg flex items-center gap-1.5 disabled:opacity-50">
-            <FilePlus2 className="w-3 h-3" />{saving ? "Creando..." : "Crear presupuesto"}
-          </button>
-        </div>
-
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-2">
-          <Input placeholder="Cliente" value={newBudget.clientName} onChange={(v) => setNewBudget({ ...newBudget, clientName: v })} />
-          <Input placeholder="Email" value={newBudget.clientEmail} onChange={(v) => setNewBudget({ ...newBudget, clientEmail: v })} />
-          <Input placeholder="Empresa" value={newBudget.company} onChange={(v) => setNewBudget({ ...newBudget, company: v })} />
-          <Input placeholder="Título" value={newBudget.title} onChange={(v) => setNewBudget({ ...newBudget, title: v })} />
-        </div>
-
-        <textarea
-          value={newBudget.notes}
-          onChange={(e) => setNewBudget({ ...newBudget, notes: e.target.value })}
-          placeholder="Notas internas o alcance del proyecto"
-          className="w-full min-h-20 bg-[#0a0f1e] border border-white/10 rounded-lg px-3 py-2 text-sm"
-        />
-
-        <div className="grid md:grid-cols-2 gap-2">
-          <label className="text-xs text-slate-300 space-y-1">
-            <span>Impuestos (%)</span>
-            <input type="number" min={0} value={newBudget.taxPercent} onChange={(e) => setNewBudget({ ...newBudget, taxPercent: Number(e.target.value || 0) })} className="w-full bg-[#0a0f1e] border border-white/10 rounded-lg px-3 py-2 text-sm" />
-          </label>
-          <label className="text-xs text-slate-300 space-y-1">
-            <span>Descuento</span>
-            <input type="number" min={0} value={newBudget.discount} onChange={(e) => setNewBudget({ ...newBudget, discount: Number(e.target.value || 0) })} className="w-full bg-[#0a0f1e] border border-white/10 rounded-lg px-3 py-2 text-sm" />
-          </label>
-        </div>
-
-        <div className="space-y-2">
-          <p className="text-xs uppercase tracking-[0.18em] text-slate-300">Plantillas</p>
-          <div className="grid sm:grid-cols-3 gap-2">
-            {BUDGET_TEMPLATES.map((template) => (
-              <button
-                key={template.id}
-                type="button"
-                onClick={() => setNewBudget({ ...newBudget, template: template.id })}
-                className={`rounded-xl border p-3 text-left transition ${newBudget.template === template.id ? "border-cyan-400 bg-cyan-500/10" : "border-white/10 bg-[#0a0f1e]"}`}
-              >
-                <p className="text-xs text-cyan-300">{template.badge}</p>
-                <p className="text-sm font-semibold mt-1">{template.name}</p>
-                <p className="text-xs text-slate-400 mt-1">{template.description}</p>
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="space-y-1">
-          <p className="text-xs text-slate-300">Pie profesional Lumicatech</p>
-          <textarea
-            value={newBudget.brandFooter}
-            onChange={(e) => setNewBudget({ ...newBudget, brandFooter: e.target.value })}
-            className="w-full min-h-24 bg-[#0a0f1e] border border-white/10 rounded-lg px-3 py-2 text-xs"
+      {/* Toolbar */}
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Buscar por cliente, email o empresa..."
+            className="w-full bg-[#111827] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:border-cyan-500/50 focus:outline-none transition"
           />
         </div>
-
-        <div className="space-y-2">
-          {newBudget.items.map((item, idx) => (
-            <div key={idx} className="grid grid-cols-12 gap-2">
-              <input className="col-span-6 bg-[#0a0f1e] border border-white/10 rounded-lg px-2 py-2 text-xs" value={item.concept} onChange={(e) => updateItem(idx, "concept", e.target.value)} placeholder="Concepto" />
-              <input className="col-span-2 bg-[#0a0f1e] border border-white/10 rounded-lg px-2 py-2 text-xs" type="number" min={0} value={item.quantity} onChange={(e) => updateItem(idx, "quantity", e.target.value)} placeholder="Ud" />
-              <input className="col-span-3 bg-[#0a0f1e] border border-white/10 rounded-lg px-2 py-2 text-xs" type="number" min={0} value={item.unitPrice} onChange={(e) => updateItem(idx, "unitPrice", e.target.value)} placeholder="Precio" />
-              <button className="col-span-1 text-red-400 text-xs" onClick={() => setNewBudget({ ...newBudget, items: newBudget.items.filter((_, i) => i !== idx) })}>×</button>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex gap-2 flex-wrap items-center">
-          <button onClick={() => setNewBudget({ ...newBudget, items: [...newBudget.items, { concept: "", quantity: 1, unitPrice: 0 }] })} className="px-3 py-1.5 text-xs border border-white/10 rounded-lg">Añadir línea</button>
-          {!canCreate && <p className="text-xs text-amber-300">Faltan datos obligatorios para crear.</p>}
-        </div>
-      </div>
-
-      <div className="rounded-2xl border border-white/10 overflow-hidden bg-[#0f1426]">
-        <div className={`p-4 bg-gradient-to-br ${selectedTemplate.panel}`}>
-          <p className="text-[11px] uppercase tracking-[0.18em] text-cyan-200">Vista previa</p>
-          <h4 className="text-lg font-bold mt-1">{newBudget.title || "Propuesta de servicios"}</h4>
-          <p className="text-xs text-slate-300 mt-1">{newBudget.clientName || "Cliente"} · {newBudget.clientEmail || "email@cliente.com"}</p>
-        </div>
-        <div className="p-4 space-y-3">
-          {previewItems.slice(0, 4).map((item, index) => (
-            <div key={`${item.concept}-${index}`} className="grid grid-cols-12 text-xs gap-2">
-              <span className="col-span-6 truncate">{item.concept}</span>
-              <span className="col-span-2 text-slate-300">{item.quantity} ud</span>
-              <span className="col-span-2 text-slate-300">{item.unitPrice.toFixed(2)} EUR</span>
-              <span className="col-span-2 text-right">{item.total.toFixed(2)} EUR</span>
-            </div>
-          ))}
-          {previewItems.length === 0 && <p className="text-xs text-slate-400">Añade al menos una linea para ver detalle.</p>}
-          <div className="border-t border-white/10 pt-3 text-xs space-y-1">
-            <PreviewLine label="Subtotal" value={`${previewSubtotal.toFixed(2)} EUR`} />
-            <PreviewLine label={`Impuestos (${Number(newBudget.taxPercent) || 0}%)`} value={`${previewTaxAmount.toFixed(2)} EUR`} />
-            <PreviewLine label="Descuento" value={`${safeDiscount.toFixed(2)} EUR`} />
-            <PreviewLine label="Total" value={`${previewTotal.toFixed(2)} EUR`} strong />
-          </div>
-          <div className="text-[11px] text-slate-400 whitespace-pre-line border-t border-white/10 pt-3">
-            {newBudget.brandFooter || DEFAULT_BUDGET_FOOTER}
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-        <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Buscar por cliente, email o empresa" className="flex-1 bg-[#0a0f1e] border border-white/10 rounded-lg px-3 py-2 text-sm" />
         <div className="flex items-center gap-2">
-          <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-[#0a0f1e] text-xs">
-            <Filter className="w-3 h-3" />
-            <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value as BudgetStatus | "todos")} className="bg-transparent outline-none">
+          <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-white/10 bg-[#111827] text-xs">
+            <Filter className="w-3.5 h-3.5 text-slate-500" />
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value as BudgetStatus | "todos")}
+              className="bg-transparent outline-none text-slate-300"
+            >
               <option value="todos">Todos</option>
-              {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
+              {(["borrador", "enviado", "aceptado", "rechazado", "vencido"] as BudgetStatus[]).map((s) => (
+                <option key={s} value={s}>{STATUS_CONFIG[s].label}</option>
+              ))}
             </select>
           </div>
-          <button onClick={() => fetchBudgets(query)} className="px-3 py-2 border border-white/10 rounded-lg text-sm flex items-center gap-1.5"><RefreshCw className="w-4 h-4" />Actualizar</button>
+          <button onClick={() => fetchBudgets(query)} className="px-3 py-2 border border-white/10 rounded-xl text-sm flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-white/5 transition">
+            <RefreshCw className="w-4 h-4" />
+          </button>
+          <button onClick={openCreate} className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-sm font-medium hover:from-cyan-400 hover:to-blue-500 transition shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
+            <FilePlus2 className="w-4 h-4" />
+            Nuevo presupuesto
+          </button>
         </div>
       </div>
 
-      {loading ? <p className="text-gray-400 text-sm">Cargando cotizaciones...</p> : (
+      {/* Budgets list */}
+      {loading ? (
+        <div className="flex items-center justify-center py-16 text-slate-500">
+          <RefreshCw className="w-5 h-5 animate-spin mr-2" />
+          Cargando cotizaciones...
+        </div>
+      ) : filteredBudgets.length === 0 ? (
+        <div className="text-center py-16">
+          <FileText className="w-12 h-12 text-slate-600 mx-auto mb-3" />
+          <p className="text-slate-500 text-sm">No hay presupuestos{statusFilter !== "todos" ? " con este filtro" : ""}.</p>
+          <button onClick={openCreate} className="mt-3 text-sm text-cyan-400 hover:text-cyan-300">Crear el primero →</button>
+        </div>
+      ) : (
         <div className="space-y-2">
           {filteredBudgets.map((b) => (
-            <div key={b.id} className="bg-[#0e1324] border border-white/10 rounded-xl p-4 flex flex-col lg:flex-row lg:items-center gap-3">
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <p className="text-sm font-semibold text-white truncate">{b.title}</p>
-                  <StatusBadge status={b.status} />
-                </div>
-                <p className="text-xs text-gray-400 truncate mt-1">{b.clientName} · {b.clientEmail}{b.company ? ` · ${b.company}` : ""}</p>
-                <p className="text-xs text-cyan-300 mt-1">{b.finalTotal.toFixed(2)} {b.currency} · {new Date(b.createdAt).toLocaleDateString("es-ES")}</p>
-              </div>
-              <div className="flex items-center gap-2 flex-wrap">
-                <select value={b.status} onChange={(e) => changeStatus(b.id, e.target.value as BudgetStatus)} className="bg-[#1a1b24] border border-white/10 rounded-lg px-2 py-1.5 text-xs">
-                  {STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
-                </select>
-                <a href={`/presupuesto/${b.token}`} target="_blank" rel="noreferrer" className="px-2 py-1.5 text-xs border border-white/10 rounded-lg">Ver link</a>
-                <a href={`/presupuesto/${b.token}`} target="_blank" rel="noreferrer" className="px-2 py-1.5 text-xs border border-white/10 rounded-lg flex items-center gap-1"><Eye className="w-3 h-3" />Preview</a>
-                <a href={`/api/admin/budgets/${b.id}/pdf`} target="_blank" rel="noreferrer" className="px-2 py-1.5 text-xs border border-emerald-500/40 text-emerald-300 rounded-lg flex items-center gap-1"><FileDown className="w-3 h-3" />PDF</a>
-                <button onClick={() => mutate(b.id, "send")} className="px-2 py-1.5 text-xs border border-indigo-500/40 text-indigo-300 rounded-lg flex items-center gap-1"><Send className="w-3 h-3" />Enviar</button>
-                <button onClick={() => mutate(b.id, "duplicate")} className="px-2 py-1.5 text-xs border border-white/10 rounded-lg flex items-center gap-1"><Copy className="w-3 h-3" />Duplicar</button>
-                <button onClick={() => mutate(b.id, "delete")} className="px-2 py-1.5 text-xs border border-red-500/40 text-red-300 rounded-lg flex items-center gap-1"><Trash2 className="w-3 h-3" />Borrar</button>
-              </div>
-            </div>
+            <BudgetRow
+              key={b.id}
+              budget={b}
+              statusConfig={STATUS_CONFIG[b.status]}
+              onStatusChange={(s) => changeStatus(b.id, s)}
+              onSend={() => mutate(b.id, "send")}
+              onDuplicate={() => mutate(b.id, "duplicate")}
+              onDelete={() => mutate(b.id, "delete")}
+              onEdit={() => openEdit(b)}
+            />
           ))}
-          {filteredBudgets.length === 0 && <p className="text-gray-500 text-sm">No hay cotizaciones en este filtro.</p>}
+        </div>
+      )}
+
+      {/* Toast */}
+      {toast && (
+        <div className={`fixed bottom-6 right-6 px-5 py-3 rounded-xl border text-sm font-medium shadow-2xl z-50 flex items-center gap-2 ${
+          toast.type === "success"
+            ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-300"
+            : "bg-rose-500/10 border-rose-500/30 text-rose-300"
+        }`}>
+          {toast.type === "success" ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
+          {toast.message}
         </div>
       )}
     </div>
   );
 }
 
-function PreviewLine({ label, value, strong = false }: { label: string; value: string; strong?: boolean }) {
+/* --- Subcomponents --- */
+
+function StatCard({ label, value, accent }: { label: string; value: string | number; accent: string }) {
   return (
-    <div className="flex items-center justify-between gap-2">
-      <span className={strong ? "text-white font-semibold" : "text-slate-300"}>{label}</span>
-      <span className={strong ? "text-white font-semibold" : "text-slate-100"}>{value}</span>
+    <div className="bg-[#111827] border border-white/5 rounded-xl p-4 hover:border-white/10 transition-colors">
+      <p className="text-xs text-slate-500 mb-1">{label}</p>
+      <p className={`text-xl font-bold bg-gradient-to-r ${accent} bg-clip-text text-transparent`}>{value}</p>
     </div>
   );
 }
 
-function Input({ value, onChange, placeholder }: { value: string; onChange: (value: string) => void; placeholder: string }) {
-  return <input value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className="bg-[#1a1b24] border border-white/10 rounded-lg px-3 py-2 text-sm" />;
-}
-
-function Stat({ label, value }: { label: string; value: string | number }) {
+function BudgetRow({
+  budget, statusConfig, onStatusChange, onSend, onDuplicate, onDelete, onEdit
+}: {
+  budget: Budget;
+  statusConfig: typeof STATUS_CONFIG[BudgetStatus];
+  onStatusChange: (s: BudgetStatus) => void;
+  onSend: () => void;
+  onDuplicate: () => void;
+  onDelete: () => void;
+  onEdit: () => void;
+}) {
   return (
-    <div className="bg-[#101425] rounded-xl p-4 border border-white/10 text-center">
-      <p className="text-lg font-bold text-white">{value}</p>
-      <p className="text-xs text-gray-400 mt-1">{label}</p>
+    <div className="bg-[#111827] border border-white/5 rounded-xl p-4 hover:border-white/10 transition-all group">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-4">
+        {/* Info */}
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-sm font-semibold text-white truncate">{budget.title}</p>
+            <span className={`px-2 py-0.5 rounded-full border text-[11px] flex items-center gap-1 ${statusConfig.bg} ${statusConfig.border} ${statusConfig.color}`}>
+              {statusConfig.icon}
+              {statusConfig.label}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 mt-1.5 text-xs text-slate-400 flex-wrap">
+            <span className="font-medium text-slate-300">{budget.clientName}</span>
+            <span>·</span>
+            <span className="truncate">{budget.clientEmail}</span>
+            {budget.company && (
+              <>
+                <span>·</span>
+                <span className="truncate">{budget.company}</span>
+              </>
+            )}
+          </div>
+          <div className="flex items-center gap-3 mt-2 text-xs">
+            <span className="text-cyan-300 font-semibold">{budget.finalTotal.toFixed(2)} {budget.currency}</span>
+            <span className="text-slate-600">|</span>
+            <span className="text-slate-500">{new Date(budget.createdAt).toLocaleDateString("es-ES", { day: "numeric", month: "short", year: "numeric" })}</span>
+            {budget.validUntil && (
+              <>
+                <span className="text-slate-600">|</span>
+                <span className="text-slate-500">Vál. hasta: {new Date(budget.validUntil).toLocaleDateString("es-ES")}</span>
+              </>
+            )}
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <select
+            value={budget.status}
+            onChange={(e) => onStatusChange(e.target.value as BudgetStatus)}
+            className="bg-[#1a1f2e] border border-white/5 rounded-lg px-2 py-1.5 text-[11px] text-slate-300 focus:border-cyan-500/50 focus:outline-none"
+          >
+            {(["borrador", "enviado", "aceptado", "rechazado", "vencido"] as BudgetStatus[]).map((s) => (
+              <option key={s} value={s}>{STATUS_CONFIG[s].label}</option>
+            ))}
+          </select>
+
+          <button onClick={onEdit} className="px-2.5 py-1.5 text-[11px] border border-white/5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition">
+            Editar
+          </button>
+
+          <a href={`/presupuesto/${budget.token}`} target="_blank" rel="noreferrer" className="px-2.5 py-1.5 text-[11px] border border-white/5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition flex items-center gap-1">
+            <ExternalLink className="w-3 h-3" />
+            Ver
+          </a>
+
+          <a href={`/api/admin/budgets/${budget.id}/pdf`} target="_blank" rel="noreferrer" className="px-2.5 py-1.5 text-[11px] border border-emerald-500/20 text-emerald-300 rounded-lg hover:bg-emerald-500/10 transition flex items-center gap-1">
+            <Download className="w-3 h-3" />
+            PDF
+          </a>
+
+          <button onClick={onSend} className="px-2.5 py-1.5 text-[11px] border border-cyan-500/20 text-cyan-300 rounded-lg hover:bg-cyan-500/10 transition flex items-center gap-1">
+            <Send className="w-3 h-3" />
+            Enviar
+          </button>
+
+          <button onClick={onDuplicate} className="px-2.5 py-1.5 text-[11px] border border-white/5 rounded-lg text-slate-400 hover:text-white hover:bg-white/5 transition flex items-center gap-1">
+            <Copy className="w-3 h-3" />
+          </button>
+
+          <button onClick={onDelete} className="px-2.5 py-1.5 text-[11px] border border-rose-500/20 text-rose-300 rounded-lg hover:bg-rose-500/10 transition flex items-center gap-1">
+            <Trash2 className="w-3 h-3" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
-function StatusBadge({ status }: { status: BudgetStatus }) {
-  const styles: Record<BudgetStatus, string> = {
-    borrador: "bg-slate-500/20 text-slate-300 border-slate-400/30",
-    enviado: "bg-cyan-500/20 text-cyan-300 border-cyan-400/30",
-    aceptado: "bg-emerald-500/20 text-emerald-300 border-emerald-400/30",
-    rechazado: "bg-rose-500/20 text-rose-300 border-rose-400/30",
-    vencido: "bg-amber-500/20 text-amber-300 border-amber-400/30",
-  };
-  return <span className={`px-2 py-0.5 rounded-full border text-[11px] ${styles[status]}`}>{status}</span>;
+function FormField({ label, value, onChange, placeholder, type = "text" }: {
+  label: string; value: string; onChange: (v: string) => void; placeholder: string; type?: string;
+}) {
+  return (
+    <div>
+      <label className="block text-xs text-slate-400 mb-1.5">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+        className="w-full bg-[#0a0f1e] border border-white/10 rounded-xl px-4 py-2.5 text-sm focus:border-cyan-500/50 focus:outline-none transition"
+      />
+    </div>
+  );
+}
+
+function NumberField({ label, value, onChange, min, max }: {
+  label: string; value: number; onChange: (v: number) => void; min?: number; max?: number;
+}) {
+  return (
+    <div>
+      <label className="block text-xs text-slate-400 mb-1.5">{label}</label>
+      <input
+        type="number"
+        min={min}
+        max={max}
+        value={value || ""}
+        onChange={(e) => onChange(Number(e.target.value) || 0)}
+        className="w-full bg-[#0a0f1e] border border-white/10 rounded-xl px-3 py-2.5 text-sm focus:border-cyan-500/50 focus:outline-none transition"
+      />
+    </div>
+  );
 }
