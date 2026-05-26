@@ -1,6 +1,57 @@
 # WALKTHRU — LumicaTech Admin
 
-## Fase: Budget PDF Redesign (From Scratch)
+## Fase: Budget PDF Professional Redesign (v2 - May 2026)
+
+### Qué se hizo
+
+Rediseño completo del sistema de generación de PDFs para presupuestos con enfoque en profesionalidad, alineación perfecta y 4 plantillas distintivas.
+
+**Cambios principales:**
+
+1. **Logo dinámico** - Ahora carga el logo desde `process.cwd()` en lugar de ruta hardcoded
+2. **Layout profesional mejorado:**
+   - Barra de acento superior (6px de alto)
+   - Header alineado con logo + info del documento a la derecha
+   - Sección de cliente con mejor jerarquía visual
+   - Tabla de items con columnas perfectamente alineadas
+   - Sección de totales con diseño enfatizado
+   - Footer profesional con numeración de página
+
+3. **4 Plantillas profesionales:**
+   - **Lumica Brand** (Principal) - Cyan profesional #0891b2
+   - **Corporate** (Empresarial) - Azul corporativo #1e40af
+   - **Minimal** (Sobrio) - Monocromático #18181b
+   - **Elegant** (Premium) - Verde esmeralda #059669
+
+**Archivos modificados:**
+- `app/api/admin/budgets/[id]/pdf/route.ts` - Reescrito completamente (~500 líneas)
+- `src/lib/budget-branding.ts` - 4 plantillas con colores pre-computados
+- `app/presupuesto/[token]/page.tsx` - Corregido para usar clases CSS válidas
+
+### Mejoras técnicas
+
+- Logo carga dinámicamente: `join(process.cwd(), "public", "logo.png")`
+- Columnas de tabla alineadas con precisión
+- Text wrapping para títulos largos
+- Números alineados a la derecha correctamente
+- Footer con número de página y referencia del documento
+- Page 2 con términos, condiciones y sección de firma
+
+### Compilación
+
+- `tsc --noEmit` → 0 errores
+- Todas las plantillas funcionan correctamente
+
+### Notas
+
+- PDF generation usa `pdf-lib` con logo embebido
+- Coordenadas optimizadas para A4 (595.28 x 841.89)
+- Márgenes: 55px laterales, 50px superior/inferior
+- Fondo blanco para máximo contraste profesional
+
+---
+
+## Fase: Budget PDF Redesign (From Scratch) - Original
 
 ### Qué se hizo
 
@@ -35,21 +86,3 @@ Se reescribieron TODAS las plantillas de presupuestos PDF desde cero. El sistema
 - Página de términos y aceptación (nueva)
 - 3 plantillas con identidades visuales distintas
 - Preview del PDF en el panel admin coincide con el resultado real
-- `app/admin/dashboard/components/BookingsList.tsx`
-- `app/admin/dashboard/components/FollowUpTracker.tsx`
-- `app/admin/dashboard/components/EmailPreview.tsx`
-- `app/admin/dashboard/components/TestEmailForm.tsx`
-- `app/admin/dashboard/components/ServicesPanel.tsx`
-- `app/admin/dashboard/components/ScheduleConfig.tsx`
-- `app/api/admin/budgets/[id]/pdf/route.ts` — PDF profesional con logo embebido
-
-### Compilación
-
-- `tsc --noEmit` → 0 errores en source code
-- Solo errores preexistentes en `node_modules/@types/*` (ignorados)
-
-### Notas
-
-- PDF generation usa `pdf-lib` con logo.png embebido
-- JWT secret centralizado en `src/lib/auth/jwt.ts` (sin fallbacks inseguros)
-- Todos los componentes siguen el mismo patrón de diseño

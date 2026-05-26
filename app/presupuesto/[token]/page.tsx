@@ -14,7 +14,7 @@ export default async function PublicBudgetPage({ params }: { params: Promise<{ t
   return (
     <main className="min-h-screen bg-[#0f1220] text-white px-4 py-8">
       <div className="max-w-4xl mx-auto space-y-6">
-        <header className={`rounded-2xl border border-white/10 bg-gradient-to-br ${theme.panel} p-6`}>
+        <header className={`rounded-2xl border border-white/10 bg-gradient-to-br from-sky-500/10 to-blue-600/10 p-6`}>
           <p className="text-xs uppercase tracking-[0.2em] text-sky-300">Presupuesto</p>
           <h1 className="text-2xl sm:text-3xl font-bold mt-2">{budget.title}</h1>
           <p className="text-sm text-slate-300 mt-2">{budget.clientName} · {budget.clientEmail}</p>

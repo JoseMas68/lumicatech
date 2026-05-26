@@ -1,4 +1,4 @@
-export type BudgetTemplateId = "lumica" | "corporate" | "minimal";
+export type BudgetTemplateId = "lumica" | "corporate" | "minimal" | "elegant";
 
 export interface BudgetTemplateTheme {
   id: BudgetTemplateId;
@@ -42,18 +42,14 @@ function hexToRgb01(hex: string): [number, number, number] {
   ];
 }
 
-function rgbStr(r: number, g: number, b: number): string {
-  return `#${((1 << 24) + (Math.round(r * 255) << 16) + (Math.round(g * 255) << 8) + Math.round(b * 255)).toString(16).slice(1)}`;
-}
-
 export const BUDGET_TEMPLATES: BudgetTemplateTheme[] = [
   {
     id: "lumica",
     name: "Lumica Brand",
-    description: "Identidad propia, dark header con acento cyan.",
+    description: "Identidad propia con acento cyan profesional.",
     badge: "Principal",
-    primary: "#06b6d4",
-    primaryRgb: hexToRgb01("#06b6d4"),
+    primary: "#0891b2",
+    primaryRgb: hexToRgb01("#0891b2"),
     dark: "#0f172a",
     darkRgb: hexToRgb01("#0f172a"),
     light: "#f8fafc",
@@ -71,10 +67,10 @@ export const BUDGET_TEMPLATES: BudgetTemplateTheme[] = [
   {
     id: "corporate",
     name: "Corporate",
-    description: "Azul corporativo, limpio y formal.",
+    description: "Azul corporativo clásico, limpio y formal.",
     badge: "Empresarial",
-    primary: "#2563eb",
-    primaryRgb: hexToRgb01("#2563eb"),
+    primary: "#1e40af",
+    primaryRgb: hexToRgb01("#1e40af"),
     dark: "#1e293b",
     darkRgb: hexToRgb01("#1e293b"),
     light: "#f1f5f9",
@@ -92,22 +88,43 @@ export const BUDGET_TEMPLATES: BudgetTemplateTheme[] = [
   {
     id: "minimal",
     name: "Minimal",
-    description: "Blanco y negro, tipografía clara, sin ruido.",
+    description: "Monocromático sobrio, tipografía clara, sin distracciones.",
     badge: "Sobrio",
-    primary: "#111827",
-    primaryRgb: hexToRgb01("#111827"),
-    dark: "#111827",
-    darkRgb: hexToRgb01("#111827"),
+    primary: "#18181b",
+    primaryRgb: hexToRgb01("#18181b"),
+    dark: "#18181b",
+    darkRgb: hexToRgb01("#18181b"),
     light: "#fafafa",
     lightRgb: hexToRgb01("#fafafa"),
     surface: "#ffffff",
     surfaceRgb: hexToRgb01("#ffffff"),
-    text: "#111827",
-    textRgb: hexToRgb01("#111827"),
-    muted: "#9ca3af",
-    mutedRgb: hexToRgb01("#9ca3af"),
-    border: "#e5e7eb",
-    borderRgb: hexToRgb01("#e5e7eb"),
+    text: "#18181b",
+    textRgb: hexToRgb01("#18181b"),
+    muted: "#71717a",
+    mutedRgb: hexToRgb01("#71717a"),
+    border: "#e4e4e7",
+    borderRgb: hexToRgb01("#e4e4e7"),
+    white: [1, 1, 1],
+  },
+  {
+    id: "elegant",
+    name: "Elegant",
+    description: "Verde esmeralda premium, sofisticado y moderno.",
+    badge: "Premium",
+    primary: "#059669",
+    primaryRgb: hexToRgb01("#059669"),
+    dark: "#064e3b",
+    darkRgb: hexToRgb01("#064e3b"),
+    light: "#f0fdf4",
+    lightRgb: hexToRgb01("#f0fdf4"),
+    surface: "#ffffff",
+    surfaceRgb: hexToRgb01("#ffffff"),
+    text: "#064e3b",
+    textRgb: hexToRgb01("#064e3b"),
+    muted: "#64748b",
+    mutedRgb: hexToRgb01("#64748b"),
+    border: "#d1fae5",
+    borderRgb: hexToRgb01("#d1fae5"),
     white: [1, 1, 1],
   },
 ];
