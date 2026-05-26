@@ -1,33 +1,40 @@
 # WALKTHRU — LumicaTech Admin
 
-## Fase: Admin UI Redesign (Cyan/Blue Theme)
+## Fase: Budget PDF Redesign (From Scratch)
 
 ### Qué se hizo
 
-Se rediseñaron TODOS los componentes del `/admin/dashboard` para usar un sistema de diseño unificado:
+Se reescribieron TODAS las plantillas de presupuestos PDF desde cero. El sistema anterior tenía campos descentrados y diseño inconsistente.
 
-- **Fondo principal:** `#111827` (dark slate)
-- **Inputs:** `#0a0f1e` (darker)
-- **Botones/CTAs:** `bg-gradient-to-r from-cyan-500 to-blue-600`
-- **Textos:** `text-slate-400/500` en vez de `text-gray-*`
-- **Bordes:** `border-white/5` y `border-white/10`
-- **Sombras:** `shadow-cyan-500/20` en botones
+**Nueva estructura del PDF:**
+- **Línea de acento** en la parte superior (color según plantilla)
+- **Header:** Logo arriba a la izquierda + "PRESUPUESTO" arriba a la derecha
+- **Datos del cliente:** Alineados a la izquierda, label "CLIENTE" en uppercase
+- **Título del proyecto:** Debajo de los datos del cliente
+- **Tabla de items:** Header bar oscuro, columnas alineadas (Concepto | Descripción | Cant. | P.Unit | Total), filas alternadas
+- **Totales:** Cuadro a la derecha con Subtotal, Descuento (si aplica), IVA, Total (barra de acento)
+- **Notas:** Sección opcional debajo
+- **Footer:** Línea divisoria + info de contacto centrada
+- **Página 2 (si no aceptado):** Términos del presupuesto, forma de pago, sección de aceptación con firma
 
-### Componentes rediseñados
+**3 plantillas nuevas:**
+1. **Lumica Brand** — Acento cyan (#06b6d4), dark header, identidad propia
+2. **Corporate** — Acento azul (#2563eb), formal y empresarial
+3. **Minimal** — Acento negro (#111827), sobrio y limpio
 
-1. **BudgetsPanel.tsx** — Stats cards con gradientes, búsqueda, filtros, PDF export, envío emails
-2. **ClientsPanel.tsx** — Stats cards, formulario moderno, tabla con búsqueda, CRUD completo
-3. **BookingsList.tsx** — Stats cards, filtros por estado, badges temáticos, acciones inline
-4. **FollowUpTracker.tsx** — Pipeline visual, stats cards, búsqueda, historial de cambios
-5. **EmailPreview.tsx** — Tabs con gradiente, preview del email, diseño moderno
-6. **TestEmailForm.tsx** — Formulario con inputs modernos, botón gradiente, validación
-7. **ServicesPanel.tsx** — Stats cards, formulario grid 2 columnas, catálogo con hover actions
-8. **ScheduleConfig.tsx** — Calendario con días gradient, slot picker moderno, select duration
+**Archivos modificados:**
+- `src/lib/budget-branding.ts` — Sistema de temas con colores pre-computados (RGB 0-1 para pdf-lib)
+- `app/api/admin/budgets/[id]/pdf/route.ts` — Generación PDF desde cero con pdf-lib
+- `app/admin/dashboard/components/BudgetsPanel.tsx` — Preview actualizada + selector de plantillas con color swatches
 
-### Archivos modificados
+### Mejoras respecto al anterior
 
-- `app/admin/dashboard/components/BudgetsPanel.tsx`
-- `app/admin/dashboard/components/ClientsPanel.tsx`
+- Logo siempre arriba izquierda (antes podía no aparecer)
+- Campos alineados correctamente (antes descentrados)
+- Tabla de items con estructura clara y columnas definidas
+- Página de términos y aceptación (nueva)
+- 3 plantillas con identidades visuales distintas
+- Preview del PDF en el panel admin coincide con el resultado real
 - `app/admin/dashboard/components/BookingsList.tsx`
 - `app/admin/dashboard/components/FollowUpTracker.tsx`
 - `app/admin/dashboard/components/EmailPreview.tsx`

@@ -11,6 +11,15 @@ import {
   getTemplateTheme, type BudgetTemplateId, type BudgetTemplateTheme
 } from "@/src/lib/budget-branding";
 
+// Currency symbol helper
+function currencySymbol(cur: string): string {
+  if (cur === "EUR") return "€";
+  if (cur === "USD") return "$";
+  if (cur === "GBP") return "£";
+  if (cur === "CHF") return "Fr";
+  return cur;
+}
+
 type BudgetStatus = "borrador" | "enviado" | "aceptado" | "rechazado" | "vencido";
 
 type BudgetItem = {
@@ -335,7 +344,7 @@ export default function BudgetsPanel() {
               {/* Template selection */}
               <div>
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                  <Palette className="w-3 h-3" /> Plantilla
+                  <Palette className="w-3 h-3" /> Plantilla PDF
                 </h3>
                 <div className="grid grid-cols-3 gap-2">
                   {BUDGET_TEMPLATES.map((template) => (
@@ -348,7 +357,12 @@ export default function BudgetsPanel() {
                           : "border-white/10 bg-[#0a0f1e] hover:border-white/20"
                       }`}
                     >
-                      <div className="absolute inset-0 rounded-xl bg-gradient-to-br opacity-20" style={{ backgroundImage: `linear-gradient(135deg, ${template.accent}, transparent)` }} />
+                      {/* Color swatch */}
+                      <div className="flex gap-1 mb-2">
+                        <div className="h-2.5 w-5 rounded-sm" style={{ backgroundColor: template.primary }} />
+                        <div className="h-2.5 w-5 rounded-sm" style={{ backgroundColor: template.dark }} />
+                        <div className="h-2.5 w-5 rounded-sm" style={{ backgroundColor: template.surface }} />
+                      </div>
                       <div className="relative">
                         <p className="text-[10px] uppercase tracking-widest text-slate-500">{template.badge}</p>
                         <p className="text-sm font-semibold mt-0.5">{template.name}</p>
@@ -446,96 +460,95 @@ export default function BudgetsPanel() {
               </div>
             </div>
 
-            {/* RIGHT: Live Preview */}
-            <div className="bg-[#0d1117] p-6">
-              <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
-                <Eye className="w-3 h-3" /> Vista previa en tiempo real
-              </h3>
+              {/* RIGHT: Live Preview */}
+              <div className="bg-[#0d1117] p-6">
+                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+                  <Eye className="w-3 h-3" /> Vista previa del PDF
+                </h3>
 
-              {/* Preview card */}
-              <div className="rounded-xl border border-white/10 overflow-hidden bg-gradient-to-br from-[#141b2d] to-[#0f1420] shadow-2xl">
-                {/* Header */}
-                <div className="p-5 bg-gradient-to-br" style={{ backgroundImage: `linear-gradient(135deg, ${selectedTheme.accent}20, transparent)` }}>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] uppercase tracking-[0.2em] text-cyan-300/70">Presupuesto</p>
-                      <h4 className="text-base font-bold mt-1">{form.title || "Sin título"}</h4>
+                {/* Preview card */}
+                <div className="rounded-xl border border-white/10 overflow-hidden shadow-2xl" style={{ backgroundColor: selectedTheme.light }}>
+                  {/* Top accent line */}
+                  <div className="h-[3px]" style={{ backgroundColor: selectedTheme.primary }} />
+
+                  {/* Header */}
+                  <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: `1px solid ${selectedTheme.border}` }}>
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded bg-slate-700 flex items-center justify-center">
+                        <span className="text-[8px] text-white font-bold">LT</span>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold" style={{ color: selectedTheme.text }}>LUMICATECH</p>
+                        <p className="text-[7px]" style={{ color: selectedTheme.muted }}>Industrial Systems</p>
+                      </div>
                     </div>
                     <div className="text-right">
-                      <p className="text-xs font-bold text-white">{selectedTheme.name}</p>
-                      <p className="text-[10px] text-slate-400">{form.currency}</p>
+                      <p className="text-[10px] font-bold" style={{ color: selectedTheme.primary }}>PRESUPUESTO</p>
+                      <p className="text-[8px]" style={{ color: selectedTheme.muted }}>#{(form.title || "BUDGET").slice(0, 8).toUpperCase()}</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 mt-3 text-xs text-slate-300">
-                    <span className="font-medium">{form.clientName || "Cliente"}</span>
-                    <span>·</span>
-                    <span className="text-slate-400">{form.clientEmail || "email@ejemplo.com"}</span>
-                    {form.company && (
-                      <>
-                        <span>·</span>
-                        <span className="text-slate-400">{form.company}</span>
-                      </>
+
+                  {/* Client info */}
+                  <div className="px-4 py-3">
+                    <p className="text-[7px] font-bold uppercase tracking-wider" style={{ color: selectedTheme.muted }}>Cliente</p>
+                    <p className="text-[11px] font-bold mt-0.5" style={{ color: selectedTheme.text }}>{form.clientName || "Nombre cliente"}</p>
+                    {form.company && <p className="text-[9px]" style={{ color: selectedTheme.muted }}>{form.company}</p>}
+                    <p className="text-[8px]" style={{ color: selectedTheme.muted }}>{form.clientEmail || "email@ejemplo.com"}</p>
+                    <p className="text-[11px] font-bold mt-2" style={{ color: selectedTheme.text }}>{form.title || "Título del proyecto"}</p>
+                  </div>
+
+                  {/* Items table */}
+                  <div className="px-4 pb-3">
+                    {/* Table header */}
+                    <div className="grid grid-cols-12 text-[7px] font-bold uppercase tracking-wider mb-1 px-2 py-1 rounded" style={{ backgroundColor: selectedTheme.dark, color: "#ffffff" }}>
+                      <span className="col-span-5">Concepto</span>
+                      <span className="col-span-2 text-center">Cant.</span>
+                      <span className="col-span-2 text-right">P.Unit</span>
+                      <span className="col-span-3 text-right">Total</span>
+                    </div>
+                    {previewItems.length > 0 ? (
+                      previewItems.map((item, i) => (
+                        <div key={i} className={`grid grid-cols-12 text-[9px] py-1 px-2 ${i % 2 === 0 ? "" : ""}`} style={{ backgroundColor: i % 2 === 0 ? selectedTheme.surface : selectedTheme.light }}>
+                          <div className="col-span-5 font-bold truncate" style={{ color: selectedTheme.text }}>{item.concept}</div>
+                          <span className="col-span-2 text-center" style={{ color: selectedTheme.text }}>{item.quantity}</span>
+                          <span className="col-span-2 text-right" style={{ color: selectedTheme.muted }}>{item.unitPrice.toFixed(2)}</span>
+                          <span className="col-span-3 text-right font-bold" style={{ color: selectedTheme.text }}>{item.total.toFixed(2)}</span>
+                        </div>
+                      ))
+                    ) : (
+                      <p className="text-[9px] text-center py-2" style={{ color: selectedTheme.muted }}>Añade líneas</p>
                     )}
                   </div>
-                </div>
-
-                {/* Items */}
-                <div className="p-5 space-y-2">
-                  {previewItems.length > 0 ? (
-                    <>
-                      {/* Header row */}
-                      <div className="grid grid-cols-12 text-[10px] text-slate-500 uppercase tracking-wider pb-2 border-b border-white/5">
-                        <span className="col-span-5">Concepto</span>
-                        <span className="col-span-2 text-center">Cant.</span>
-                        <span className="col-span-2 text-right">Precio</span>
-                        <span className="col-span-3 text-right">Total</span>
-                      </div>
-                      {previewItems.map((item, i) => (
-                        <div key={i} className="grid grid-cols-12 text-xs gap-2 py-1.5">
-                          <div className="col-span-5">
-                            <p className="font-medium truncate">{item.concept}</p>
-                            {item.description && <p className="text-[10px] text-slate-500 truncate">{item.description}</p>}
-                          </div>
-                          <span className="col-span-2 text-center text-slate-400">{item.quantity}</span>
-                          <span className="col-span-2 text-right text-slate-400">{item.unitPrice.toFixed(2)}</span>
-                          <span className="col-span-3 text-right font-medium">{item.total.toFixed(2)}</span>
-                        </div>
-                      ))}
-                    </>
-                  ) : (
-                    <p className="text-xs text-slate-500 text-center py-4">Añade líneas para ver el detalle</p>
-                  )}
 
                   {/* Totals */}
-                  <div className="mt-4 pt-4 border-t border-white/10 space-y-1.5">
-                    <div className="flex justify-between text-xs">
-                      <span className="text-slate-400">Subtotal</span>
-                      <span className="text-slate-200">{previewSubtotal.toFixed(2)} {form.currency}</span>
+                  <div className="px-4 pb-3" style={{ borderTop: `1px solid ${selectedTheme.border}` }}>
+                    <div className="flex justify-between text-[9px] py-0.5">
+                      <span style={{ color: selectedTheme.muted }}>Subtotal</span>
+                      <span style={{ color: selectedTheme.text }}>{previewSubtotal.toFixed(2)} {form.currency}</span>
                     </div>
                     {form.discount > 0 && (
-                      <div className="flex justify-between text-xs">
-                        <span className="text-slate-400">Descuento</span>
-                        <span className="text-emerald-400">-{safeDiscount.toFixed(2)} {form.currency}</span>
+                      <div className="flex justify-between text-[9px] py-0.5">
+                        <span style={{ color: selectedTheme.muted }}>Descuento</span>
+                        <span style={{ color: selectedTheme.muted }}>-{safeDiscount.toFixed(2)} {form.currency}</span>
                       </div>
                     )}
-                    <div className="flex justify-between text-xs">
-                      <span className="text-slate-400">IVA ({form.taxPercent}%)</span>
-                      <span className="text-slate-200">{previewTaxAmount.toFixed(2)} {form.currency}</span>
+                    <div className="flex justify-between text-[9px] py-0.5">
+                      <span style={{ color: selectedTheme.muted }}>IVA ({form.taxPercent}%)</span>
+                      <span style={{ color: selectedTheme.text }}>{previewTaxAmount.toFixed(2)} {form.currency}</span>
                     </div>
-                    <div className="flex justify-between text-sm pt-2 border-t border-white/10">
-                      <span className="font-bold">Total</span>
-                      <span className="font-bold text-cyan-300">{previewTotal.toFixed(2)} {form.currency}</span>
+                    <div className="flex justify-between text-[10px] py-1.5 px-2 mt-1 rounded" style={{ backgroundColor: selectedTheme.primary, color: "#ffffff" }}>
+                      <span className="font-bold">TOTAL</span>
+                      <span className="font-bold">{previewTotal.toFixed(2)} {form.currency}</span>
                     </div>
                   </div>
 
                   {/* Footer */}
                   {form.brandFooter && (
-                    <div className="mt-4 pt-3 border-t border-white/5 text-[10px] text-slate-500 whitespace-pre-line leading-relaxed">
-                      {form.brandFooter}
+                    <div className="px-4 py-2" style={{ borderTop: `1px solid ${selectedTheme.border}` }}>
+                      <p className="text-[7px] whitespace-pre-line leading-relaxed" style={{ color: selectedTheme.muted }}>{form.brandFooter}</p>
                     </div>
                   )}
                 </div>
-              </div>
             </div>
           </div>
         </div>

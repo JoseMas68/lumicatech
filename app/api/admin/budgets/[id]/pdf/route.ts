@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
-import { PDFDocument, PDFFont, PDFPage, StandardFonts, rgb, PDFImage } from "pdf-lib";
+import { PDFDocument, PDFFont, PDFPage, StandardFonts, rgb, PDFImage, PDFDocumentEmbed } from "pdf-lib";
 import { readFileSync } from "fs";
 import { requireAuth } from "@/src/lib/auth";
-import { getTemplateTheme, DEFAULT_BUDGET_FOOTER } from "@/src/lib/budget-branding";
+import { getTemplateTheme, DEFAULT_BUDGET_FOOTER, type BudgetTemplateTheme } from "@/src/lib/budget-branding";
 import { getBudgetById } from "@/src/lib/budgets-db";
 
 const PAGE_W = 595.28;
 const PAGE_H = 841.89;
+const MARGIN_X = 50;
+const CONTENT_W = PAGE_W - MARGIN_X * 2; // 495.28
 
 export async function GET(_request: Request, context: { params: Promise<{ id: string }> }) {
   const authError = await requireAuth();
@@ -22,8 +24,9 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   const pdf = await PDFDocument.create();
   const fontRegular = await pdf.embedFont(StandardFonts.Helvetica);
   const fontBold = await pdf.embedFont(StandardFonts.HelveticaBold);
+  const fontItalic = await pdf.embedFont(StandardFonts.HelveticaOblique);
+  const fontBoldItalic = await pdf.embedFont(StandardFonts.Helvetica-BoldOblique);
   const theme = getTemplateTheme(budget.template);
-  const accentRgb = hexToRgb(theme.accent);
   const footer = (budget.brandFooter || DEFAULT_BUDGET_FOOTER).split("\n").filter(Boolean);
 
   // Load logo
@@ -35,216 +38,409 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
     // No logo — continue without it
   }
 
-  // ============================================
-  // Page 1 — Cover / Header
-  // ============================================
+  const currencySymbol = budget.currency === "EUR" ? "€" : budget.currency === "USD" ? "$" : budget.currency === "GBP" ? "£" : budget.currency;
+
+  // ================================================================
+  // PAGE 1 — Header + Client info + Items table
+  // ================================================================
   const page1 = pdf.addPage([PAGE_W, PAGE_H]);
-  const W = PAGE_W;
-  const H = PAGE_H;
 
   // Background
-  page1.drawRectangle({ x: 0, y: 0, width: W, height: H, color: rgb(0.98, 0.985, 0.995) });
+  drawRect(page1, 0, 0, PAGE_W, PAGE_H, theme.light);
 
-  // Top dark bar
-  page1.drawRectangle({ x: 0, y: H - 180, width: W, height: 180, color: rgb(0.06, 0.08, 0.14) });
-  page1.drawRectangle({ x: 0, y: H - 180, width: W, height: 4, color: accentRgb });
+  // --- TOP ACCENT BAR (thin line at top) ---
+  drawRect(page1, 0, PAGE_H - 3, PAGE_W, 3, theme.primary);
 
-  // Logo
-  const logoW = 50;
-  const logoH = 50;
-  const logoX = 50;
-  const logoY = H - 155;
+  // --- HEADER SECTION ---
+  const headerTop = PAGE_H - 65;
+
+  // Logo top-left
   if (logo) {
-    page1.drawImage(logo, { x: logoX, y: logoY, width: logoW, height: logoH });
+    page1.drawImage(logo, { x: MARGIN_X, y: headerTop - 22, width: 36, height: 36 });
   }
 
-  // Company name
+  // Company name next to logo
   page1.drawText("LUMICATECH", {
-    x: logoW + 60, y: H - 110,
-    size: 18, font: fontBold, color: rgb(1, 1, 1),
+    x: logo ? MARGIN_X + 44 : MARGIN_X,
+    y: headerTop - 12,
+    size: 14,
+    font: fontBold,
+    color: theme.text,
   });
   page1.drawText("Industrial Systems", {
-    x: logoW + 60, y: H - 130,
-    size: 10, font: fontRegular, color: rgb(0.7, 0.75, 0.82),
+    x: logo ? MARGIN_X + 44 : MARGIN_X,
+    y: headerTop - 26,
+    size: 8,
+    font: fontRegular,
+    color: theme.muted,
   });
 
-  // Document title
+  // "PRESUPUESTO" top-right
+  const docDate = new Date(budget.createdAt).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" });
+  const docId = id.slice(0, 8).toUpperCase();
+
   page1.drawText("PRESUPUESTO", {
-    x: W - 200, y: H - 140,
-    size: 28, font: fontBold, color: accentRgb,
+    x: PAGE_W - MARGIN_X - 140,
+    y: headerTop - 10,
+    size: 16,
+    font: fontBold,
+    color: theme.primary,
   });
-  page1.drawText(`#${id.slice(0, 8).toUpperCase()}`, {
-    x: W - 200, y: H - 165,
-    size: 11, font: fontRegular, color: rgb(0.6, 0.65, 0.72),
+  page1.drawText(`#${docId}`, {
+    x: PAGE_W - MARGIN_X - 140,
+    y: headerTop - 26,
+    size: 9,
+    font: fontRegular,
+    color: theme.muted,
   });
-  page1.drawText(
-    `Fecha: ${new Date(budget.createdAt).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" })}`,
-    { x: W - 200, y: H - 175, size: 9, font: fontRegular, color: rgb(0.5, 0.55, 0.62) }
-  );
 
-  if (budget.validUntil) {
-    page1.drawText(
-      `Válido hasta: ${new Date(budget.validUntil).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" })}`,
-      { x: W - 200, y: H - 190, size: 9, font: fontRegular, color: rgb(0.5, 0.55, 0.62) }
-    );
-  }
+  // --- DIVIDER LINE ---
+  drawLine(page1, MARGIN_X, headerTop - 40, PAGE_W - MARGIN_X, headerTop - 40, theme.border, 0.5);
 
-  // Client info box
-  const clientBoxY = H - 230;
-  page1.drawRectangle({ x: 50, y: clientBoxY - 60, width: 230, height: 70, color: rgb(0.95, 0.96, 0.98), borderColor: rgb(0.88, 0.9, 0.94), borderWidth: 1, borderOpacity: 0.5 });
+  // --- CLIENT INFO BOX ---
+  const clientY = headerTop - 70;
 
-  page1.drawText("DATOS DEL CLIENTE", { x: 60, y: clientBoxY - 10, size: 8, font: fontBold, color: rgb(0.4, 0.45, 0.52) });
-  page1.drawText(budget.clientName, { x: 60, y: clientBoxY - 28, size: 12, font: fontBold, color: rgb(0.1, 0.14, 0.2) });
+  // "CLIENTE" label
+  page1.drawText("CLIENTE", {
+    x: MARGIN_X,
+    y: clientY + 10,
+    size: 7,
+    font: fontBold,
+    color: theme.muted,
+  });
+
+  // Client name
+  page1.drawText(budget.clientName, {
+    x: MARGIN_X,
+    y: clientY - 5,
+    size: 13,
+    font: fontBold,
+    color: theme.text,
+  });
+
+  // Company
   if (budget.company) {
-    page1.drawText(budget.company, { x: 60, y: clientBoxY - 42, size: 10, font: fontRegular, color: rgb(0.35, 0.4, 0.46) });
+    page1.drawText(budget.company, {
+      x: MARGIN_X,
+      y: clientY - 20,
+      size: 10,
+      font: fontRegular,
+      color: theme.muted,
+    });
   }
-  page1.drawText(budget.clientEmail, { x: 60, y: clientBoxY - 54, size: 9, font: fontRegular, color: rgb(0.4, 0.45, 0.52) });
 
-  // Project title
-  page1.drawText(budget.title, { x: 50, y: clientBoxY - 95, size: 16, font: fontBold, color: rgb(0.1, 0.14, 0.2) });
+  // Email
+  page1.drawText(budget.clientEmail, {
+    x: MARGIN_X,
+    y: clientY - 34,
+    size: 9,
+    font: fontRegular,
+    color: theme.muted,
+  });
 
-  // ============================================
-  // Page 2 — Items table + totals
-  // ============================================
-  const page2 = pdf.addPage([PAGE_W, PAGE_H]);
-  page2.drawRectangle({ x: 0, y: 0, width: W, height: H, color: rgb(0.98, 0.985, 0.995) });
+  // --- PROJECT TITLE ---
+  const titleY = clientY - 60;
+  page1.drawText(budget.title, {
+    x: MARGIN_X,
+    y: titleY,
+    size: 14,
+    font: fontBold,
+    color: theme.text,
+  });
 
-  // Top accent bar
-  page2.drawRectangle({ x: 0, y: H - 40, width: W, height: 4, color: accentRgb });
-  page2.drawRectangle({ x: 0, y: H - 45, width: W, height: 40, color: rgb(0.06, 0.08, 0.14) });
-  if (logo) {
-    page2.drawImage(logo, { x: 50, y: H - 35, width: 20, height: 20 });
+  // Valid until
+  if (budget.validUntil) {
+    const validDate = new Date(budget.validUntil).toLocaleDateString("es-ES", { day: "2-digit", month: "long", year: "numeric" });
+    page1.drawText(`Válido hasta: ${validDate}`, {
+      x: MARGIN_X,
+      y: titleY - 18,
+      size: 9,
+      font: fontRegular,
+      color: theme.muted,
+    });
   }
-  page2.drawText("LUMICATECH", { x: 78, y: H - 33, size: 11, font: fontBold, color: rgb(1, 1, 1) });
 
-  // Table header
-  let y = H - 85;
-
-  page2.drawText("DETALLE DE SERVICIOS", { x: 50, y: y + 10, size: 10, font: fontBold, color: rgb(0.16, 0.2, 0.3) });
-  y -= 18;
-
-  // Header bar
-  page2.drawRectangle({ x: 50, y: y - 2, width: W - 100, height: 22, color: rgb(0.06, 0.08, 0.14) });
-
-  const colConcept = 55;
-  const colDesc = 200;
-  const colQty = 340;
-  const colPrice = 400;
-  const colTotal = 485;
-
-  page2.drawText("CONCEPTO", { x: colConcept, y: y + 3, size: 8, font: fontBold, color: rgb(0.85, 0.9, 0.95) });
-  page2.drawText("DESCR.", { x: colDesc, y: y + 3, size: 8, font: fontBold, color: rgb(0.85, 0.9, 0.95) });
-  page2.drawText("CANT.", { x: colQty, y: y + 3, size: 8, font: fontBold, color: rgb(0.85, 0.9, 0.95) });
-  page2.drawText("P. UNIT.", { x: colPrice, y: y + 3, size: 8, font: fontBold, color: rgb(0.85, 0.9, 0.95) });
-  page2.drawText("TOTAL", { x: colTotal, y: y + 3, size: 8, font: fontBold, color: rgb(0.85, 0.9, 0.95) });
-
-  y -= 26;
-
-  // Items
+  // --- ITEMS TABLE ---
+  const tableTop = titleY - 40;
   const items = budget.items || [];
+
+  // Table header bar
+  drawRect(page1, MARGIN_X, tableTop - 2, CONTENT_W, 20, theme.dark);
+
+  // Column positions
+  const col1 = MARGIN_X + 5;      // Concepto
+  const col2 = MARGIN_X + 260;    // Descripción
+  const col3 = MARGIN_X + 350;    // Cant.
+  const col4 = MARGIN_X + 400;    // P. Unit.
+  const col5 = MARGIN_X + 465;    // Total
+
+  // Header labels
+  const headerY = tableTop + 4;
+  page1.drawText("CONCEPTO", { x: col1, y: headerY, size: 7, font: fontBold, color: theme.white });
+  page1.drawText("DESCRIPCIÓN", { x: col2, y: headerY, size: 7, font: fontBold, color: theme.white });
+  page1.drawText("CANT.", { x: col3, y: headerY, size: 7, font: fontBold, color: theme.white });
+  page1.drawText("P. UNIT.", { x: col4, y: headerY, size: 7, font: fontBold, color: theme.white });
+  page1.drawText("TOTAL", { x: col5, y: headerY, size: 7, font: fontBold, color: theme.white });
+
+  // Table bottom line
+  drawLine(page1, MARGIN_X, tableTop - 2, PAGE_W - MARGIN_X, tableTop - 2, theme.dark, 1);
+
+  // Items rows
+  let rowY = tableTop - 24;
+  const rowH = 16;
+  const minContentY = 140; // stop before footer
+
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
-    const isEven = i % 2 === 0;
 
-    if (isEven) {
-      page2.drawRectangle({ x: 50, y: y - 14, width: W - 100, height: 18, color: rgb(0.97, 0.975, 0.985) });
+    // Alternating row bg
+    if (i % 2 === 0) {
+      drawRect(page1, MARGIN_X, rowY - rowH, CONTENT_W, rowH, theme.surface);
     }
 
-    if (y < 160) {
-      // New page for items
-      const newPage = pdf.addPage([PAGE_W, PAGE_H]);
-      newPage.drawRectangle({ x: 0, y: 0, width: W, height: H, color: rgb(0.98, 0.985, 0.995) });
-      newPage.drawRectangle({ x: 0, y: H - 40, width: W, height: 4, color: accentRgb });
-      newPage.drawRectangle({ x: 0, y: H - 45, width: W, height: 40, color: rgb(0.06, 0.08, 0.14) });
-      if (logo) {
-        newPage.drawImage(logo, { x: 50, y: H - 35, width: 20, height: 20 });
-      }
-      newPage.drawText("LUMICATECH", { x: 78, y: H - 33, size: 11, font: fontBold, color: rgb(1, 1, 1) });
-      y = H - 85;
+    // Left border accent for each row
+    if (i % 3 === 0) {
+      drawRect(page1, MARGIN_X, rowY - rowH, 2, rowH, theme.primary);
     }
 
-    const conceptText = item.concept.length > 35 ? item.concept.slice(0, 35) + "…" : item.concept;
-    page2.drawText(conceptText, { x: colConcept, y, size: 9, font: fontBold, color: rgb(0.15, 0.2, 0.27) });
-
-    if (item.description) {
-      page2.drawText(item.description.slice(0, 25), { x: colDesc, y, size: 8, font: fontRegular, color: rgb(0.4, 0.45, 0.52) });
-    }
-
-    page2.drawText(String(item.quantity), { x: colQty, y, size: 9, font: fontRegular, color: rgb(0.2, 0.25, 0.3) });
-    page2.drawText(`${item.unitPrice.toFixed(2)}`, { x: colPrice, y, size: 9, font: fontRegular, color: rgb(0.2, 0.25, 0.3) });
-    page2.drawText(`${item.total.toFixed(2)} ${budget.currency}`, { x: colTotal, y, size: 9, font: fontBold, color: rgb(0.1, 0.14, 0.2) });
-
-    y -= 18;
-  }
-
-  // Totals box
-  y -= 10;
-  const totalsBoxX = 340;
-  const totalsBoxW = 205;
-
-  page2.drawRectangle({ x: totalsBoxX - 10, y: y - 80, width: totalsBoxW, height: 85, color: rgb(0.95, 0.96, 0.98) });
-
-  drawTotalsRow(page2, fontRegular, "Subtotal", `${budget.subtotal.toFixed(2)} ${budget.currency}`, totalsBoxX, y, false);
-  y -= 16;
-  drawTotalsRow(page2, fontRegular, `IVA (${budget.taxPercent}%)`, `${budget.taxAmount.toFixed(2)} ${budget.currency}`, totalsBoxX, y, false);
-  y -= 16;
-
-  if (budget.discount > 0) {
-    drawTotalsRow(page2, fontRegular, "Descuento", `-${budget.discount.toFixed(2)} ${budget.currency}`, totalsBoxX, y, false);
-    y -= 16;
-  }
-
-  // Final total
-  page2.drawRectangle({ x: totalsBoxX - 10, y: y - 2, width: totalsBoxW, height: 24, color: accentRgb });
-  page2.drawText("TOTAL", { x: totalsBoxX, y: y + 4, size: 10, font: fontBold, color: rgb(1, 1, 1) });
-  page2.drawText(`${budget.finalTotal.toFixed(2)} ${budget.currency}`, { x: totalsBoxX + 110, y: y + 4, size: 12, font: fontBold, color: rgb(1, 1, 1) });
-
-  // Notes
-  if (budget.notes) {
-    y = H - 130;
-    page2.drawRectangle({ x: 50, y: y - 55, width: W - 100, height: 60, color: rgb(0.97, 0.98, 0.99), borderColor: rgb(0.88, 0.9, 0.94), borderWidth: 1, borderOpacity: 1 });
-
-    page2.drawText("NOTAS", { x: 60, y: y - 10, size: 8, font: fontBold, color: rgb(0.4, 0.45, 0.52) });
-    const notesText = budget.notes.length > 250 ? budget.notes.slice(0, 250) + "…" : budget.notes;
-    page2.drawText(notesText, { x: 60, y: y - 26, size: 9, font: fontRegular, color: rgb(0.3, 0.35, 0.42), maxWidth: W - 120 });
-  }
-
-  drawFooter(page2, fontRegular, footer, H, W);
-
-  // ============================================
-  // Page 3 — Acceptance / Signature (if not accepted)
-  // ============================================
-  if (budget.status !== "aceptado") {
-    const page3 = pdf.addPage([PAGE_W, PAGE_H]);
-    page3.drawRectangle({ x: 0, y: 0, width: W, height: H, color: rgb(0.98, 0.985, 0.995) });
-
-    page3.drawRectangle({ x: 0, y: H - 180, width: W, height: 180, color: rgb(0.06, 0.08, 0.14) });
-    page3.drawRectangle({ x: 0, y: H - 180, width: W, height: 4, color: accentRgb });
-
-    if (logo) {
-      page3.drawImage(logo, { x: 50, y: H - 150, width: 50, height: 50 });
-    }
-    page3.drawText("LUMICATECH", { x: 115, y: H - 110, size: 18, font: fontBold, color: rgb(1, 1, 1) });
-    page3.drawText("Industrial Systems", { x: 115, y: H - 130, size: 10, font: fontRegular, color: rgb(0.7, 0.75, 0.82) });
-
-    page3.drawText("ACEPTACIÓN", { x: W - 200, y: H - 140, size: 28, font: fontBold, color: accentRgb });
-
-    const acceptY = H - 240;
-    page3.drawText("El abajo firmante acepta los términos y condiciones del presente presupuesto.", {
-      x: 50, y: acceptY, size: 11, font: fontRegular, color: rgb(0.25, 0.3, 0.36), maxWidth: W - 100,
+    // Concept
+    const conceptText = item.concept.length > 32 ? item.concept.slice(0, 32) + "…" : item.concept;
+    page1.drawText(conceptText, {
+      x: col1,
+      y: rowY - 4,
+      size: 9,
+      font: fontBold,
+      color: theme.text,
     });
-    page3.drawText(`Presupuesto #${id.slice(0, 8).toUpperCase()}`, { x: 50, y: acceptY - 20, size: 10, font: fontRegular, color: rgb(0.35, 0.4, 0.46) });
-    page3.drawText(`Importe total: ${budget.finalTotal.toFixed(2)} ${budget.currency}`, { x: 50, y: acceptY - 38, size: 10, font: fontBold, color: rgb(0.1, 0.14, 0.2) });
 
-    const sigY = H - 420;
-    page3.drawLine({ start: { x: 50, y: sigY }, end: { x: 250, y: sigY }, thickness: 1, color: rgb(0.7, 0.75, 0.82) });
-    page3.drawText("Firma del cliente", { x: 50, y: sigY - 16, size: 9, font: fontRegular, color: rgb(0.4, 0.45, 0.52) });
-    page3.drawText("Nombre:", { x: 50, y: sigY - 32, size: 9, font: fontRegular, color: rgb(0.4, 0.45, 0.52) });
+    // Description
+    if (item.description) {
+      page1.drawText(item.description.slice(0, 30), {
+        x: col2,
+        y: rowY - 4,
+        size: 8,
+        font: fontRegular,
+        color: theme.muted,
+      });
+    }
 
-    page3.drawLine({ start: { x: 320, y: sigY }, end: { x: 545, y: sigY }, thickness: 1, color: rgb(0.7, 0.75, 0.82) });
-    page3.drawText("Fecha y sello", { x: 320, y: sigY - 16, size: 9, font: fontRegular, color: rgb(0.4, 0.45, 0.52) });
+    // Quantity
+    page1.drawText(String(item.quantity), {
+      x: col3,
+      y: rowY - 4,
+      size: 9,
+      font: fontRegular,
+      color: theme.text,
+    });
 
-    drawFooter(page3, fontRegular, footer, H, W);
+    // Unit price
+    page1.drawText(`${item.unitPrice.toFixed(2)}`, {
+      x: col4,
+      y: rowY - 4,
+      size: 9,
+      font: fontRegular,
+      color: theme.text,
+    });
+
+    // Total (right aligned)
+    page1.drawText(`${item.total.toFixed(2)} ${currencySymbol}`, {
+      x: col5,
+      y: rowY - 4,
+      size: 9,
+      font: fontBold,
+      color: theme.text,
+    });
+
+    rowY -= rowH;
+  }
+
+  // --- TOTALS BOX ---
+  const totalsY = Math.max(rowY - 20, minContentY + 30);
+  const totalsBoxX = MARGIN_X + 240;
+  const totalsBoxW = 255;
+  const totalsBoxH = budget.discount > 0 ? 82 : 66;
+
+  // Box background
+  drawRect(page1, totalsBoxX, totalsY - totalsBoxH, totalsBoxW, totalsBoxH, theme.surface, theme.border, 0.5);
+
+  // Subtotal
+  drawTotalsLine(page1, fontRegular, "Subtotal", `${budget.subtotal.toFixed(2)} ${currencySymbol}`, totalsBoxX + 10, totalsY, theme.muted, theme.text, 9);
+  let ty = totalsY - 16;
+
+  // Discount
+  if (budget.discount > 0) {
+    drawTotalsLine(page1, fontRegular, `Descuento`, `-${budget.discount.toFixed(2)} ${currencySymbol}`, totalsBoxX + 10, ty, theme.muted, theme.text, 9);
+    ty -= 16;
+  }
+
+  // IVA
+  drawTotalsLine(page1, fontRegular, `IVA (${budget.taxPercent}%)`, `${budget.taxAmount.toFixed(2)} ${currencySymbol}`, totalsBoxX + 10, ty, theme.muted, theme.text, 9);
+  ty -= 16;
+
+  // Final total bar
+  drawRect(page1, totalsBoxX, ty - 2, totalsBoxW, 22, theme.primary);
+  page1.drawText("TOTAL", { x: totalsBoxX + 10, y: ty + 4, size: 10, font: fontBold, color: theme.white });
+  page1.drawText(`${budget.finalTotal.toFixed(2)} ${currencySymbol}`, { x: totalsBoxX + totalsBoxW - 10, y: ty + 4, size: 11, font: fontBold, color: theme.white });
+
+  // --- NOTES ---
+  if (budget.notes) {
+    const notesY = Math.min(totalsY - totalsBoxH - 20, PAGE_H - 160);
+    if (notesY > minContentY + 20) {
+      drawLine(page1, MARGIN_X, notesY + 10, PAGE_W - MARGIN_X, notesY + 10, theme.border, 0.5);
+      page1.drawText("NOTAS", { x: MARGIN_X, y: notesY + 5, size: 7, font: fontBold, color: theme.muted });
+      const notesText = budget.notes.length > 300 ? budget.notes.slice(0, 300) + "…" : budget.notes;
+      page1.drawText(notesText, {
+        x: MARGIN_X,
+        y: notesY - 10,
+        size: 8,
+        font: fontRegular,
+        color: theme.muted,
+        maxWidth: CONTENT_W,
+      });
+    }
+  }
+
+  // --- FOOTER ---
+  drawFooter(page1, fontRegular, footer, theme, PAGE_H, PAGE_W);
+
+  // ================================================================
+  // PAGE 2 — Terms + Acceptance (if not accepted)
+  // ================================================================
+  if (budget.status !== "aceptado") {
+    const page2 = pdf.addPage([PAGE_W, PAGE_H]);
+    drawRect(page2, 0, 0, PAGE_W, PAGE_H, theme.light);
+    drawRect(page2, 0, PAGE_H - 3, PAGE_W, 3, theme.primary);
+
+    // Header
+    const hY = PAGE_H - 55;
+    if (logo) {
+      page2.drawImage(logo, { x: MARGIN_X, y: hY - 18, width: 30, height: 30 });
+    }
+    page2.drawText("LUMICATECH", {
+      x: logo ? MARGIN_X + 38 : MARGIN_X,
+      y: hY - 8,
+      size: 12,
+      font: fontBold,
+      color: theme.text,
+    });
+    page2.drawText("Industrial Systems", {
+      x: logo ? MARGIN_X + 38 : MARGIN_X,
+      y: hY - 20,
+      size: 8,
+      font: fontRegular,
+      color: theme.muted,
+    });
+
+    page2.drawText("CONDICIONES Y ACEPTACIÓN", {
+      x: PAGE_W - MARGIN_X - 200,
+      y: hY - 8,
+      size: 14,
+      font: fontBold,
+      color: theme.primary,
+    });
+    drawLine(page2, MARGIN_X, hY - 30, PAGE_W - MARGIN_X, hY - 30, theme.border, 0.5);
+
+    // Section: Terms
+    let termsY = hY - 65;
+
+    page2.drawText("TÉRMINOS DEL PRESUPUESTO", {
+      x: MARGIN_X,
+      y: termsY,
+      size: 10,
+      font: fontBold,
+      color: theme.text,
+    });
+    termsY -= 18;
+
+    const terms = [
+      `Este presupuesto tiene una validez de 15 días desde la fecha de emisión.`,
+      "Los precios incluyen IVA salvo indicación contraria.",
+      "El plazo de ejecución comenzará una vez recibido el abono de la señal.",
+      "Cualquier modificación en el alcance del proyecto podrá afectar al precio final.",
+      "El cliente será notificado de cualquier incidencia que afecte al cronograma.",
+    ];
+
+    for (const term of terms) {
+      page2.drawText(`• ${term}`, {
+        x: MARGIN_X,
+        y: termsY,
+        size: 8.5,
+        font: fontRegular,
+        color: theme.muted,
+        maxWidth: CONTENT_W,
+      });
+      termsY -= 14;
+    }
+
+    // Section: Payment
+    termsY -= 8;
+    page2.drawText("FORMA DE PAGO", {
+      x: MARGIN_X,
+      y: termsY,
+      size: 10,
+      font: fontBold,
+      color: theme.text,
+    });
+    termsY -= 18;
+
+    const payments = [
+      "Señal del 50% al inicio del proyecto.",
+      "El 50% restante contra entrega y aceptación del trabajo.",
+      "Forma de pago: transferencia bancaria.",
+    ];
+
+    for (const p of payments) {
+      page2.drawText(`• ${p}`, {
+        x: MARGIN_X,
+        y: termsY,
+        size: 8.5,
+        font: fontRegular,
+        color: theme.muted,
+        maxWidth: CONTENT_W,
+      });
+      termsY -= 14;
+    }
+
+    // Section: Acceptance
+    termsY -= 10;
+    if (termsY > 200) {
+      page2.drawText("ACEPTACIÓN", {
+        x: MARGIN_X,
+        y: termsY,
+        size: 10,
+        font: fontBold,
+        color: theme.text,
+      });
+      termsY -= 20;
+
+      page2.drawText("El abajo firmante acepta los términos y condiciones descritos en el presente presupuesto,", {
+        x: MARGIN_X,
+        y: termsY,
+        size: 9,
+        font: fontRegular,
+        color: theme.muted,
+        maxWidth: CONTENT_W,
+      });
+      page2.drawText("incluyendo alcance, condiciones y forma de pago.", {
+        x: MARGIN_X,
+        y: termsY - 14,
+        size: 9,
+        font: fontRegular,
+        color: theme.muted,
+        maxWidth: CONTENT_W,
+      });
+
+      termsY -= 35;
+
+      // Signature lines
+      page2.drawLine({ start: { x: MARGIN_X, y: termsY }, end: { x: MARGIN_X + 200, y: termsY }, thickness: 0.5, color: theme.muted });
+      page2.drawText("Firma y sello del cliente", { x: MARGIN_X, y: termsY - 14, size: 8, font: fontRegular, color: theme.muted });
+
+      page2.drawLine({ start: { x: MARGIN_X + 250, y: termsY }, end: { x: PAGE_W - MARGIN_X, y: termsY }, thickness: 0.5, color: theme.muted });
+      page2.drawText("Fecha", { x: MARGIN_X + 250, y: termsY - 14, size: 8, font: fontRegular, color: theme.muted });
+    }
+
+    drawFooter(page2, fontRegular, footer, theme, PAGE_H, PAGE_W);
   }
 
   const pdfBytes = await pdf.save();
@@ -253,31 +449,44 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
     status: 200,
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": `inline; filename="presupuesto-${id}.pdf"`,
+      "Content-Disposition": `inline; filename="presupuesto-${docId}.pdf"`,
       "Cache-Control": "no-store",
     },
   });
 }
 
-function drawTotalsRow(page: PDFPage, font: PDFFont, label: string, value: string, x: number, y: number, _bold = false) {
-  page.drawText(label, { x, y, size: 9, font, color: rgb(0.35, 0.4, 0.46) });
-  page.drawText(value, { x: x + 110, y, size: 9, font, color: rgb(0.1, 0.14, 0.2) });
+// --- Helper functions ---
+
+function drawRect(page: PDFPage, x: number, y: number, w: number, h: number, color: [number, number, number], borderColor?: [number, number, number], borderWidth?: number, borderOpacity?: number) {
+  page.drawRectangle({ x, y, width: w, height: h, color: rgb(...color) });
+  if (borderColor && borderWidth) {
+    page.drawRectangle({ x, y, width: w, height: h, borderColor: rgb(...borderColor), borderWidth, borderOpacity: borderOpacity ?? 1 });
+  }
 }
 
-function drawFooter(page: PDFPage, font: PDFFont, footerLines: string[], H: number, W: number) {
-  let footerY = 65;
-  page.drawLine({ start: { x: 50, y: footerY + 20 }, end: { x: W - 50, y: footerY + 20 }, thickness: 0.5, color: rgb(0.86, 0.9, 0.94) });
+function drawLine(page: PDFPage, x1: number, y1: number, x2: number, y2: number, color: [number, number, number], thickness: number) {
+  page.drawLine({ start: { x: x1, y: y1 }, end: { x: x2, y: y2 }, thickness, color: rgb(...color) });
+}
+
+function drawTotalsLine(page: PDFPage, font: PDFFont, label: string, value: string, x: number, y: number, labelColor: [number, number, number], valueColor: [number, number, number], size: number) {
+  page.drawText(label, { x, y, size, font, color: rgb(...labelColor) });
+  page.drawText(value, { x: x + 130, y, size, font, color: rgb(...valueColor) });
+}
+
+function drawFooter(page: PDFPage, font: PDFFont, footerLines: string[], theme: BudgetTemplateTheme, H: number, W: number) {
+  const footerY = 55;
+  drawLine(page, MARGIN_X, footerY + 15, W - MARGIN_X, footerY + 15, theme.border, 0.5);
 
   for (const line of footerLines) {
-    page.drawText(line, { x: 50, y: footerY, size: 7.5, font, color: rgb(0.45, 0.5, 0.56) });
-    footerY -= 11;
+    page.drawText(line, { x: MARGIN_X, y: footerY, size: 7, font, color: theme.muted });
+    footerY -= 10;
   }
 
-  page.drawText("LumicaTech Industrial Systems", { x: W / 2 - 60, y: 30, size: 7, font, color: rgb(0.55, 0.6, 0.66) });
-}
-
-function hexToRgb(hex: string) {
-  const clean = hex.replace("#", "");
-  const bigint = Number.parseInt(clean, 16);
-  return rgb(((bigint >> 16) & 255) / 255, ((bigint >> 8) & 255) / 255, (bigint & 255) / 255);
+  page.drawText("LumicaTech Industrial Systems · www.lumicatech.es", {
+    x: W / 2 - 70,
+    y: 25,
+    size: 7,
+    font,
+    color: theme.muted,
+  });
 }
