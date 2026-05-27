@@ -9,7 +9,8 @@ const navItems = [
   { num: '02', label: 'Proyectos',  href: '/#projects', indent: 'pl-8' },
   { num: '03', label: 'Servicios',  href: '/#services', indent: 'pl-4' },
   { num: '04', label: 'Filosofía',  href: '/#approach', indent: 'pl-10' },
-  { num: '05', label: 'Contacto',   href: '/#contact',  indent: 'pl-6' },
+  { num: '05', label: 'Blog',       href: '/blog',      indent: 'pl-6' },
+  { num: '06', label: 'Contacto',   href: '/#contact',  indent: 'pl-6' },
 ];
 
 export default function Header() {
@@ -70,6 +71,7 @@ export default function Header() {
             <Link href="/#projects" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Proyectos</Link>
             <Link href="/#services" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Servicios</Link>
             <Link href="/#approach" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Filosofía</Link>
+            <Link href="/blog" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Blog</Link>
             <a href="/#contact" className="text-on-surface-variant font-headline tracking-tight transition-colors duration-200 hover:text-primary">Contacto</a>
           </div>
 

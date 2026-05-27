@@ -1,8 +1,31 @@
 import type { NextConfig } from "next";
+import createNextMdx from "@next/mdx";
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeRaw from 'rehype-raw';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+
+const withMDX = createNextMdx({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      rehypeRaw,
+      rehypeSlug,
+      [rehypeAutolinkHeadings, {
+        behavior: 'append',
+      }],
+      rehypeHighlight,
+    ],
+  },
+});
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
   output: 'standalone', // Necesario para Docker
+  experimental: {
+    mdxRs: true,
+  },
   images: {
     remotePatterns: [
       {
@@ -83,4 +106,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);

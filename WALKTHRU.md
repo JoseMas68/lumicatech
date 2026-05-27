@@ -1,4 +1,44 @@
-# WALKTHRU — LumicaTech Admin
+# WALKTHRU — LumicaTech
+
+## Fase: Blog con MDX
+
+### Qué se hizo
+
+Se implementó el sistema de blog completo usando **Next.js + MDX** (no WordPress). Los artículos se escriben en Markdown/MDX y se publican automáticamente.
+
+**Arquitectura:**
+- Artículos en `src/content/blog/*.mdx` — Markdown con frontmatter YAML
+- Página de lista en `/blog` — Muestra todos los artículos agrupados por categoría
+- Página de artículo en `/blog/[slug]` — Renderiza el MDX con componentes personalizados
+- Componentes MDX: syntax highlighting, tablas, callouts, imágenes, enlaces
+- SEO automático: Open Graph, Twitter Cards, Schema Article, metadata dinámica
+- Navegación: enlace "Blog" añadido al header (desktop + mobile)
+- Artículos relacionados al final de cada artículo
+
+**Archivos creados:**
+- `src/types/blog.ts` — Interfaces TypeScript para posts y metadata
+- `src/lib/blog.ts` — Utilidades: `getBlogPostMetadata()`, `getBlogPostBySlug()`, `getCategories()`, `parseFrontmatter()`
+- `src/components/blog/BlogCard.tsx` — Tarjeta de artículo con imagen, categoría, fecha, read time
+- `src/components/blog/BlogPostContent.tsx` — Renderer MDX con rehype/remark plugins
+- `app/blog/page.tsx` — Página principal del blog con filtros por categoría
+- `app/blog/[slug]/page.tsx` — Página de artículo individual con hero, contenido, compartir, relacionados
+- `next.config.ts` — Integración con @next/mdx y plugins de markdown
+- `src/content/blog/que-es-perforacion-horizontal-dirigida.mdx` — Primer artículo publicado
+- `app/components/Header.tsx` — Añadido enlace "Blog" a la navegación
+
+**Flujo de trabajo:**
+1. Escribir artículo en MDX → `src/content/blog/titulo-articulo.mdx`
+2. Commit + push a GitHub
+3. Vercel detecta el cambio → deploy automático (1-2 min)
+4. Artículo publicado en `/blog/titulo-articulo`
+
+### Primer artículo
+
+- **Título:** "Qué es la Perforación Horizontal Dirigida y Cómo Funciona"
+- **Categoría:** perforacion
+- **Slug:** que-es-perforacion-horizontal-dirigida
+- **URL:** `/blog/que-es-perforacion-horizontal-dirigida`
+- **Contenido:** Explicación completa del proceso HDD, ventajas vs excavación, aplicaciones
 
 ## Fase: Budget PDF Professional Redesign (v2 - May 2026)
 

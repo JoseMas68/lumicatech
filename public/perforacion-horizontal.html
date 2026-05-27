@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perforación Horizontal Dirigida Castellón | Sin Obras | LumicaTech</title>
+<meta name="description" content="Perforación horizontal dirigida en Castellón. Sin abrir la vía, sin obras, sin parar tu negocio. Presupuesto en 24h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #1a365d;
+  --blue-light: #2a4a7f;
+  --blue-dark: #0f2440;
+  --orange: #f6993d;
+  --orange-dark: #e8850f;
+  --orange-light: #fbb06b;
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--gray-800); line-height: 1.6; background: var(--white); }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(26,54,93,0.97); backdrop-filter: blur(10px); padding: 0 2rem; height: 70px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+.nav-logo { font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: -0.5px; }
+.nav-logo span { color: var(--orange); }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--orange); }
+.nav-cta { background: var(--orange); color: var(--white) !important; padding: 0.5rem 1.2rem; border-radius: 8px; font-weight: 600 !important; transition: all 0.2s; }
+.nav-cta:hover { background: var(--orange-dark); transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 5px; }
+.hamburger span { width: 25px; height: 2px; background: var(--white); transition: 0.3s; }
+
+/* HERO */
+.hero { background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 50%, var(--blue-light) 100%); color: var(--white); padding: 140px 2rem 100px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(246,153,61,0.15) 0%, transparent 70%); border-radius: 50%; }
+.hero::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(246,153,61,0.1) 0%, transparent 70%); border-radius: 50%; }
+.hero-content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
+.hero-badge { display: inline-block; background: rgba(246,153,61,0.15); border: 1px solid rgba(246,153,61,0.3); color: var(--orange-light); padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; letter-spacing: 0.5px; }
+.hero h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1.5px; }
+.hero h1 span { color: var(--orange); }
+.hero p { font-size: 1.2rem; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
+.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn-primary { background: var(--orange); color: var(--white); padding: 1rem 2.5rem; border-radius: 12px; font-size: 1rem; font-weight: 700; text-decoration: none; transition: all 0.3s; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.5rem; box-shadow: 0 4px 15px rgba(246,153,61,0.3); }
+.btn-primary:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 6px 25px rgba(246,153,61,0.4); }
+.btn-secondary { background: rgba(255,255,255,0.1); color: var(--white); padding: 1rem 2.5rem; border-radius: 12px; font-size: 1rem; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
+.btn-secondary:hover { background: rgba(255,255,255,0.2); }
+.hero-stats { display: flex; justify-content: center; gap: 3rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.hero-stat { text-align: center; }
+.hero-stat .number { font-size: 2.2rem; font-weight: 800; color: var(--orange); }
+.hero-stat .label { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 1px; }
+
+/* SECTIONS */
+section { padding: 80px 2rem; }
+.container { max-width: 1100px; margin: 0 auto; }
+.section-label { display: inline-block; background: rgba(246,153,61,0.1); color: var(--orange-dark); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1rem; }
+.section-title { font-size: 2.4rem; font-weight: 800; color: var(--blue-dark); margin-bottom: 1rem; letter-spacing: -1px; line-height: 1.2; }
+.section-subtitle { font-size: 1.1rem; color: var(--gray-500); max-width: 600px; margin-bottom: 3rem; }
+.text-center { text-align: center; }
+.text-center .section-subtitle { margin-left: auto; margin-right: auto; }
+
+/* BENEFITS */
+.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.benefit-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 16px; padding: 2rem; transition: all 0.3s; position: relative; }
+.benefit-card:hover { border-color: var(--orange); transform: translateY(-4px); box-shadow: 0 10px 40px rgba(26,54,93,0.08); }
+.benefit-icon { width: 50px; height: 50px; background: linear-gradient(135deg, var(--orange), var(--orange-dark)); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1.2rem; }
+.benefit-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.5rem; }
+.benefit-card p { font-size: 0.9rem; color: var(--gray-500); line-height: 1.6; }
+
+/* SERVICES */
+.services-section { background: var(--gray-50); }
+.services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.service-card { background: var(--white); border-radius: 16px; padding: 2.5rem; border: 1px solid var(--gray-200); transition: all 0.3s; }
+.service-card:hover { border-color: var(--blue); box-shadow: 0 8px 30px rgba(26,54,93,0.06); }
+.service-card .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+.service-card h3 { font-size: 1.2rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.5rem; }
+.service-card p { color: var(--gray-500); font-size: 0.95rem; line-height: 1.6; }
+.service-card .service-tag { display: inline-block; background: rgba(26,54,93,0.08); color: var(--blue); padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-top: 1rem; margin-right: 0.3rem; }
+
+/* PROCESS */
+.process-section { background: var(--blue-dark); color: var(--white); }
+.process-section .section-label { background: rgba(246,153,61,0.2); color: var(--orange-light); }
+.process-section .section-title { color: var(--white); }
+.process-section .section-subtitle { color: rgba(255,255,255,0.6); }
+.process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 1rem; }
+.process-step { text-align: center; position: relative; }
+.process-step::after { content: '→'; position: absolute; right: -1.2rem; top: 2rem; font-size: 1.5rem; color: var(--orange); }
+.process-step:last-child::after { display: none; }
+.step-number { width: 60px; height: 60px; background: var(--orange); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 800; margin: 0 auto 1rem; }
+.process-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.process-step p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+/* ZONES */
+.zones-section { background: var(--gray-50); }
+.zones-tags { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; max-width: 800px; margin: 0 auto; }
+.zone-tag { background: var(--white); border: 1px solid var(--gray-200); padding: 0.7rem 1.3rem; border-radius: 50px; font-size: 0.9rem; font-weight: 500; color: var(--gray-700); transition: all 0.2s; }
+.zone-tag:hover { border-color: var(--orange); color: var(--orange-dark); background: rgba(246,153,61,0.05); }
+.zone-tag.main { background: var(--blue); color: var(--white); border-color: var(--blue); }
+.zone-tag.main:hover { background: var(--blue-light); }
+
+/* PRICING */
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
+.pricing-card { background: var(--white); border: 2px solid var(--gray-200); border-radius: 16px; padding: 2.5rem 2rem; text-align: center; transition: all 0.3s; position: relative; }
+.pricing-card.featured { border-color: var(--orange); transform: scale(1.05); }
+.pricing-card.featured::before { content: 'Más popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--orange); color: var(--white); padding: 0.3rem 1rem; border-radius: 50px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.pricing-card:hover { border-color: var(--blue); box-shadow: 0 10px 40px rgba(26,54,93,0.08); }
+.pricing-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.5rem; }
+.pricing-card .price { font-size: 2rem; font-weight: 800; color: var(--blue); margin: 1rem 0; }
+.pricing-card .price span { font-size: 0.9rem; font-weight: 400; color: var(--gray-400); }
+.pricing-card ul { list-style: none; text-align: left; margin: 1.5rem 0; }
+.pricing-card ul li { padding: 0.4rem 0; font-size: 0.9rem; color: var(--gray-600); display: flex; align-items: center; gap: 0.5rem; }
+.pricing-card ul li::before { content: '✓'; color: var(--orange); font-weight: 700; }
+
+/* FAQ */
+.faq-list { max-width: 700px; margin: 0 auto; }
+.faq-item { border: 1px solid var(--gray-200); border-radius: 12px; margin-bottom: 0.8rem; overflow: hidden; transition: all 0.2s; }
+.faq-item:hover { border-color: var(--gray-300); }
+.faq-question { padding: 1.3rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--blue-dark); font-size: 1rem; background: var(--white); transition: background 0.2s; user-select: none; }
+.faq-question:hover { background: var(--gray-50); }
+.faq-arrow { font-size: 1.2rem; transition: transform 0.3s; color: var(--gray-400); }
+.faq-item.open .faq-arrow { transform: rotate(180deg); color: var(--orange); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+.faq-item.open .faq-answer { max-height: 300px; }
+.faq-answer-inner { padding: 0 1.5rem 1.3rem; color: var(--gray-500); font-size: 0.95rem; line-height: 1.7; }
+
+/* CONTACT */
+.contact-section { background: linear-gradient(135deg, var(--blue-dark), var(--blue)); color: var(--white); }
+.contact-section .section-label { background: rgba(246,153,61,0.2); color: var(--orange-light); }
+.contact-section .section-title { color: var(--white); }
+.contact-section .section-subtitle { color: rgba(255,255,255,0.6); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 900px; margin: 0 auto; }
+.contact-info { display: flex; flex-direction: column; gap: 2rem; }
+.contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+.contact-item-icon { width: 45px; height: 45px; background: rgba(246,153,61,0.15); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.contact-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+.contact-item p { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.form-group label { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+.form-group input, .form-group textarea, .form-group select { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 0.9rem 1rem; color: var(--white); font-family: inherit; font-size: 0.95rem; transition: all 0.2s; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: var(--orange); background: rgba(255,255,255,0.15); }
+.form-group select option { background: var(--blue); color: var(--white); }
+.form-group textarea { resize: vertical; min-height: 100px; }
+.form-submit { background: var(--orange); color: var(--white); padding: 1rem 2rem; border-radius: 12px; font-size: 1rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; margin-top: 0.5rem; }
+.form-submit:hover { background: var(--orange-dark); transform: translateY(-2px); }
+
+/* FOOTER */
+footer { background: var(--gray-900); color: rgba(255,255,255,0.5); padding: 3rem 2rem; text-align: center; font-size: 0.85rem; }
+footer a { color: var(--orange); text-decoration: none; }
+footer .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+footer .footer-links a { color: rgba(255,255,255,0.6); font-size: 0.85rem; }
+footer .footer-links a:hover { color: var(--orange); }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--blue-dark); padding: 1.5rem 2rem; gap: 1rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; }
+  .hero-stats { flex-direction: column; gap: 1.5rem; }
+  .benefits-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr; }
+  .process-steps { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .process-step::after { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.featured { transform: none; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  section { padding: 60px 1.5rem; }
+  .section-title { font-size: 1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Lumica<span>Tech</span></div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#beneficios">Ventajas</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#zonas">Zonas</a></li>
+    <li><a href="#precios">Precios</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contacto" class="nav-cta">Pedir Presupuesto</a></li>
+  </ul>
+  <div class="hamburger" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <div class="hero-badge">🔧 PERFORACIÓN HORIZONTAL DIRIGIDA</div>
+    <h1>Perforación horizontal en <span>Castellón</span> sin obras ni cortes</h1>
+    <p>Instalamos tuberías, cables y conducciones bajo tierra sin abrir la vía, sin parar tu negocio y sin levantamiento de tierra. Solución limpia, rápida y profesional.</p>
+    <div class="hero-buttons">
+      <a href="#contacto" class="btn-primary">📋 Pedir Presupuesto Gratis</a>
+      <a href="#servicios" class="btn-secondary">Ver Servicios →</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">+200</div>
+        <div class="label">Proyectos</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">98%</div>
+        <div class="label">Satisfacción</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">24h</div>
+        <div class="label">Presupuesto</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section id="beneficios">
+  <div class="container text-center">
+    <div class="section-label">Ventajas</div>
+    <h2 class="section-title">¿Por qué perforación horizontal?</h2>
+    <p class="section-subtitle">La técnica que elimina los problemas de las perforaciones tradicionales</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🏗️</div>
+        <h3>Sin obras ni levantamiento</h3>
+        <p>No hay que abrir calles, jardines ni pavimentos. El terreno queda intacto antes y después del trabajo.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⏱️</div>
+        <h3>3x más rápido</h3>
+        <p>Un proyecto que con métodos tradicionales lleva semanas, con HDD se resuelve en días.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💰</div>
+        <h3>Menor coste total</h3>
+        <p>Ahorras en rehabilitación, restauración y tiempo de parada. El coste global es significativamente menor.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🛡️</div>
+        <h3>Mínima molestia</h3>
+        <p>Tu negocio sigue operativo. No interrumpimos el tráfico peatonal ni el acceso a tu local.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">📐</div>
+        <h3>Precisión milimétrica</h3>
+        <p>GPS y sistemas de guiado por láser permiten seguir trayectorias exactas con precisión de centímetros.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">🌿</div>
+        <h3>Respetuoso con el medio</h3>
+        <p>Menos maquinaria, menos residuos, menos impacto ambiental. Ideal en zonas protegidas o urbanas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="servicios">
+  <div class="container text-center">
+    <div class="section-label">Servicios</div>
+    <h2 class="section-title">¿Qué podemos instalar?</h2>
+    <p class="section-subtitle">Perforación horizontal para todo tipo de infraestructuras bajo tierra</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🔌</div>
+        <h3>Conductos eléctricos y de datos</h3>
+        <p>Instalación de cableado eléctrico, fibra óptica y conducciones para telecomunicaciones sin excavar.</p>
+        <span class="service-tag">Telecomunicaciones</span>
+        <span class="service-tag">Electricidad</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💧</div>
+        <h3>Tuberías de agua y gas</h3>
+        <p>Cruce de ríos, calles y edificaciones para instalaciones de agua potable, riego y gas natural.</p>
+        <span class="service-tag">Agua</span>
+        <span class="service-tag">Gas</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏠</div>
+        <h3>Conexiones a viviendas</h3>
+        <p>Enlaces de agua, luz y fibra a chalets, fincas y urbanizaciones sin tocar el jardín ni la entrada.</p>
+        <span class="service-tag">Residencial</span>
+        <span class="service-tag">Aislados</span>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏭</div>
+        <h3>Infraestructura industrial</h3>
+        <p>Perforaciones de gran diámetro para naves industriales, polígonos y grandes proyectos de ingeniería.</p>
+        <span class="service-tag">Industrial</span>
+        <span class="service-tag">Gran escala</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="proceso">
+  <div class="container text-center">
+    <div class="section-label">Cómo trabajamos</div>
+    <h2 class="section-title">De la idea a la instalación en 4 pasos</h2>
+    <p class="section-subtitle">Proceso claro, transparente y sin sorpresas</p>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h3>Estudio gratuito</h3>
+        <p>Visitamos el terreno, analizamos el subsuelo y diseñamos la trayectoria óptima sin coste.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h3>Presupuesto en 24h</h3>
+        <p>Recibes un presupuesto detallado, cerrado y sin letra pequeña. Vale por 30 días.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h3>Ejecución</h3>
+        <p>Nuestro equipo con maquinaria propia realiza la perforación y el ensartado del conducto.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h3>Entrega y garantía</h3>
+        <p>Verificación con cámaras, documentación del recorrido y garantía de 10 años.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZONES -->
+<section class="zones-section" id="zonas">
+  <div class="container text-center">
+    <div class="section-label">Cobertura</div>
+    <h2 class="section-title">Zonas de actuación</h2>
+    <p class="section-subtitle">Operamos en toda la provincia de Castellón y alrededores</p>
+    <div class="zones-tags">
+      <div class="zone-tag main">Castellón de la Plana</div>
+      <div class="zone-tag main">Benicarló</div>
+      <div class="zone-tag main">Vila-real</div>
+      <div class="zone-tag">Oropesa del Mar</div>
+      <div class="zone-tag">Peníscola</div>
+      <div class="zone-tag">Almassora</div>
+      <div class="zone-tag">Nules</div>
+      <div class="zone-tag">Vinaroz</div>
+      <div class="zone-tag">La Jana</div>
+      <div class="zone-tag">Alcalá de Chivert</div>
+      <div class="zone-tag">San Jorge</div>
+      <div class="zone-tag">Borriana</div>
+      <div class="zone-tag">Benicàssim</div>
+      <div class="zone-tag">Morella</div>
+      <div class="zone-tag">Valencia</div>
+      <div class="zone-tag">Tarragona</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="precios">
+  <div class="container text-center">
+    <div class="section-label">Precios orientativos</div>
+    <h2 class="section-title">Tarifas por tipo de proyecto</h2>
+    <p class="section-subtitle">Precios estimados. Cada proyecto es único y requiere estudio personalizado.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Conexión residencial</h3>
+        <div class="price">Desde 1.500€ <span>/ proyecto</span></div>
+        <ul>
+          <li>Hasta 50m de perforación</li>
+          <li>Conducto para fibra + luz</li>
+          <li>Estudio del terreno incluido</li>
+          <li>Garantía 10 años</li>
+        </ul>
+        <a href="#contacto" class="btn-primary" style="width:100%;justify-content:center;">Pedir Presupuesto</a>
+      </div>
+      <div class="pricing-card featured">
+        <h3>Comercial / Industrial</h3>
+        <div class="price">Desde 5.000€ <span>/ proyecto</span></div>
+        <ul>
+          <li>Hasta 200m de perforación</li>
+          <li>Múltiples conductos</li>
+          <li>Estudio geotécnico</li>
+          <li>Coordinación con obra</li>
+          <li>Garantía 10 años</li>
+        </ul>
+        <a href="#contacto" class="btn-primary" style="width:100%;justify-content:center;">Pedir Presupuesto</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Gran infraestructura</h3>
+        <div class="price">A medida</div>
+        <ul>
+          <li>+200m de perforación</li>
+          <li>Diámetros grandes</li>
+          <li>Cruce de obstáculos</li>
+          <li>Ingeniería completa</li>
+        </ul>
+        <a href="#contacto" class="btn-primary" style="width:100%;justify-content:center;">Contactar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="services-section" id="faq">
+  <div class="container text-center">
+    <div class="section-label">Preguntas frecuentes</div>
+    <h2 class="section-title">Todo lo que necesitas saber</h2>
+    <p class="section-subtitle">Las respuestas a las dudas más comunes sobre perforación horizontal</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ¿Realmente no hace falta abrir la calle?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">Correcto. La perforación horizontal dirigida (HDD) permite pasar tuberías y conductos bajo tierra sin excavar una zanja. Solo necesitas dos puntos de acceso: uno de entrada y otro de salida. En la superficie, el impacto es prácticamente nulo.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ¿Cuánto tiempo tarda una perforación?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">Depende de la distancia y el tipo de terreno. Una conexión residencial típica (30-50m) se completa en 1-2 días. Proyectos más largos (100-200m) pueden llevar 3-5 días. Siempre te daremos un plazo exacto antes de empezar.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ¿Qué tipo de terrenos sois capaces de atravesar?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">Trabajamos con suelos arcillosos, arenosos, roca blanda e incluso roca dura con maquinaria especializada. Antes de cada proyecto realizamos un estudio del subsuelo para confirmar la viabilidad.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ¿Es necesario algún permiso municipal?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">En la mayoría de casos sí, pero nosotros nos encargamos de toda la tramitación. Te asesoramos sobre los permisos necesarios y gestionamos las licencias con el ayuntamiento correspondiente.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ¿Qué garantía ofrecéis?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">Todos nuestros trabajos incluyen una garantía de 10 años sobre la instalación. Además, entregamos documentación completa con el recorrido exacto de la tubería enterrada para futuras referencias.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+          ¿Trabajáis con comunidades de propietarios?
+          <span class="faq-arrow">▼</span>
+        </div>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí, somos especialistas en conexiones para urbanizaciones y comunidades de chalets aislados. Entendemos la burocracia y ayudamos con la documentación necesaria para las juntas de propietarios.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contacto">
+  <div class="container text-center">
+    <div class="section-label">Contacto</div>
+    <h2 class="section-title">¿Tienes un proyecto en mente?</h2>
+    <p class="section-subtitle">Cuéntanos qué necesitas y te enviamos un presupuesto sin compromiso en menos de 24 horas</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <h4>Teléfono</h4>
+            <p>+34 600 000 000</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <p>info@lumicatech.com</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <h4>Ubicación</h4>
+            <p>Castellón de la Plana, Valencia</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🕐</div>
+          <div>
+            <h4>Horario</h4>
+            <p>Lun - Vie: 8:00 - 18:00</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('¡Formulario de demostración! En producción se conectaría a tu backend.');">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" placeholder="+34 600 000 000" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="tu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>Tipo de proyecto</label>
+          <select>
+            <option value="">Selecciona una opción</option>
+            <option>Conexión residencial (casa/chalet)</option>
+            <option>Conexión comercial</option>
+            <option>Proyecto industrial</option>
+            <option>Infraestructura grande</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Describe tu proyecto</label>
+          <textarea placeholder="Cuéntanos: ubicación, distancia aproximada, qué necesitas instalar..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">📋 Enviar y Pedir Presupuesto</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#beneficios">Ventajas</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#precios">Precios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <p>© 2026 <a href="https://lumicatech.com">LumicaTech</a> — Perforación Horizontal Dirigida en Castellón</p>
+  <p style="margin-top:0.5rem;font-size:0.75rem;">Perforación horizontal dirigida · Sin obras · Sin abrir la vía · Empresa de perforación en Castellón</p>
+</footer>
+
+</body>
+</html>
